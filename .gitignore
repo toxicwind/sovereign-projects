@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+bun.lockb
+.pnpm-store/
+
+# Build & Runtime
+dist/
+build/
+*.tsbuildinfo
+.cache/
+tmp/
+*.log
+*.pid
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# OS & Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+.project_map.json
+
+# Local Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local model weights / Large binaries
+*.gguf
+*.bin
+*.pt
+*.safetensors
