@@ -1,152 +1,38 @@
-# tau
+# Tau: The Sovereign AI Agent Engine
 
-The sovereign **agent runner**: a CLI + TUI + extension host that drives the
-sovereign AI stack. Forked from `can1357/oh-my-pi`, repointed at the Sovereign
-fleet (Herd for inference, Nexus for tools), and bundled with the Soverign-Stack
-control plane contract.
+> **Name note:** `.omp` == `.tau` — renamed monorepo. `alias omp` is leftover from install; real CLI is `tau` (`opencode`).
+Tau (formerly OMP) is the AI-native agent engine for the Sovereign ecosystem, designed for 1M+ context reasoning and multi-tool orchestration.
 
-Version: **18.0.8** (from `engine/packages/coding-agent/package.json`).
-Runtime: Bun `>=1.3.14`.
+## Architecture
+- **Engine Core:** Located in `packages/coding-agent/` and `packages/agent/`.
+- **Orchestration:** Built for federated tool use via MCP and high-performance inference through the Herd inference router.
+- **Monorepo Integration:** Part of the Sovereign workspace architecture (see `/README.md` in the monorepo root).
 
-## What this is
+## Getting Started
+1. **Setup:** Ensure you are running from the monorepo root.
+2. **Development:** Use the standard Tau CLI, aliased in your `.bashrc`:
+   `alias tau='/home/toxic/.local/bin/tau --cwd="$PWD"'`
 
-`tau` is **not** a coding IDE, kernel, or control plane. It is the runtime
-that lets an LLM act on your repo: it reads files, runs shell, edits code,
-manages sessions, and federates tools/inference through the Sovereign stack.
+## ⚡ Hardware Architecture & Build Concurrency (Ryzen 7 8700F)
+> **Build Throttle Notice**: Rust builds are configured with `jobs = 12` in `.cargo/config.toml` (target-cpu `znver4`).
+- **Why throttled to 12?** The AMD Ryzen 7 8700F has 8 cores / 16 threads sharing a unified **16 MiB L3 cache**. Unbounded 16-thread `rustc` bursts saturate L3 cache lines and memory bus bandwidth simultaneously alongside `sccache`, causing desktop/shell input lag (loadavg > 24). Clamping to 12 jobs leaves 4 hardware threads dedicated to shell, editor, and system daemons while maintaining >90% compilation throughput.
+- **To UNCAP to 100% (16 threads)**:
+  ```bash
+  cargo build -j 16
+  # Or remove `jobs = 12` in .cargo/config.toml
+  ```
+- **CPU Scaling Governor**: Workstation uses `powersave` governor by default. For maximal burst performance during compilation:
+  ```bash
+  echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+  ```
 
-Per-turn contract:
+## Documentation Index
+- [Architecture Guide](/docs/ARCHITECTURE.md)
+- [Setup Guide](/docs/SETUP.md)
+- [Contributor Guide](/CONTRIBUTING.md)
+- [Packages Overview](/docs/packages/)
 
-- **1M-token context** per session.
-- **11-tool advisor suite** wired into every run (read, bash, edit, write, …).
-- **MCP federation** through `mesh` (Nexus) on `:25127` — every approved tool
-  in the mesh is a candidate tool.
-- **Inference** through `herd` (llama-swap) on `:25100` — model registry,
-  routing, and quotas.
-- **Omnifoo MCP** for omnibar/files/desktop-notify glue.
-
-## Active Emergent Features
-- **High-Frequency Liveness Probes & Failfast**: Sub-second health polling and strict per-attempt deadlines.
-- **Worker-Limit Handling**: Backpressure-aware subagent concurrency control (up to 32 concurrent workers).
-- **Multi-Strategy Inference**: Dynamic failover across Herd local models, NVIDIA NIM, and OpenRouter endpoints.
-- **Subagent Mesh Routing**: Autonomous cross-agent delegation through Mesh MCP gateway on `:25127`.
-- **Dynamic `${ENV_VAR}` Interpolation**: First-class runtime variable expansion across agent settings and launch configs.
-
-The agent logic lives in `engine/packages/coding-agent`; the TUI is in
-`engine/packages/tui`; the model registry and providers live in
-`engine/packages/ai` (pi-catalog with `registry/*.ts` provider definitions).
-
-## Where it fits
-
-`tau` is one workspace inside the **`sovereign-projects`** monorepo
-(`github.com/toxicwind/sovereign-projects`). Sibling workspaces include
-`herd`, `mesh`, `qed`, `sovereign`, and others. Each workspace owns one
-service or client; tau owns the agent runtime.
-
-The authoritative **control plane** lives in `~/sovereign/`
-(`toxicwind/sovereign`). It is generated from `~/sovereign/config/ports.env`
-and `~/sovereign/src/services/*` via `bun run scripts/generate.ts`. tau
-**consumes** the SSOT defined there — it does not own ports, models, or
-service registrations.
-
-Launchers in this monorepo (`pi`, `omp`, `tau`) all resolve to the same dev
-wrapper that execs `engine/packages/coding-agent/src/cli.ts`.
-
-## Layout
-
-The repo is split into three subtrees:
-
-- **`engine/`** — the actual product code. A Bun workspaces monorepo with
-  packages:
-  - `ai` — model catalog and provider registry (herd-backed).
-  - `coding-agent` — the CLI/TUI agent loop, session state, tool dispatch.
-    Entry: `src/cli.ts` (exports the `omp` bin).
-  - `tui` — terminal UI, omnibar, theme/i18n (`src/i18n/`).
-  - `collab-web` — collaborative web UI + tool-view bundle.
-  - `browser-relay` — local browser automation relay (extension + worker).
-  - `wire` — worker/daemon IPC protocols (blob-broker, LSP-mux, daemon-broker).
-  - `utils` — shared pi-utils: CLI runner, dirs, worker-host, postmortem.
-  - `agent` — agent core types and runtime helpers.
-  - `stats` — telemetry / session stats.
-  - `omptype` — public type surface for extensions.
-  - `types` — shared type packages.
-  - `native` — native binaries (Bun `--compile` targets).
-  - `typescript-edit-benchmark` — edit/codemod benchmark harness.
-  - Plus `kimi/`-specific vendors under `engine/vendor/` (submodules):
-    `oh-my-pi`, `pi-upstream`, `pi-subagents`, `kimi-code-sovereign`,
-    `modelbeats`, `tinker-cookbook`. Init with
-    `git submodule update --init --recursive`.
-
-- **`extensions/`** — the `omp-extensions` monorepo: external OMP plugins
-  (e.g. `omp-kafka`, `omp-edit-committer`). See `extensions/README.md`.
-
-- **`kimi/`** — `kimi-code-sovereign` fork integration surface.
-
-## Run it
-
-From this directory (`tau/`):
-
-```sh
-bun install              # once, at monorepo root
-bun run dev              # execs engine/packages/coding-agent/src/cli.ts
-```
-
-Global launchers on PATH:
-
-- `tau` — workspace launcher
-- `omp` — canonical alias for `tau` (matches the upstream bin name)
-- `pi` — legacy alias (preserved for muscle memory)
-
-- **bin/tau** — a local symlink for first-class dev convenience in this 
-  environment. It links to the canonical `~/.local/bin/tau` for quick access.
-
-All three preserve the caller's `$PWD` — they do not `cd` you into the
-monorepo. If you launch from `/tmp`, tau stays in `/tmp` (unless `--cwd` is
-passed).
-
-The CLI self-checks Bun and exits cleanly if the runtime is too old:
-
-```
-error: Bun runtime must be >= 1.3.14 (found v<Bun.version>). Please upgrade: bun upgrade
-```
-
-## Extensions
-
-`extensions/` is a separate workspace for OMP plugins. tau loads them as
-sidecar capabilities (tools, slash commands, MCP bridges). See
-[`extensions/README.md`](./extensions/README.md) for the plugin manifest
-contract and authoring guide.
-
-## MCP / Herd wiring
-
-tau does not hardcode endpoints. The MCP and inference URLs live in the
-**agent settings** under `provider_urls`:
-
-- `provider_urls.herd` → `http://127.0.0.1:25100` (llama-swap / herd)
-- `provider_urls.mesh` → `http://127.0.0.1:25127` (Nexus / mcpproxy)
-
-Other providers (Cloudflare AI Gateway, NVIDIA NIM, OpenRouter, …) are
-configured in `engine/packages/ai/src/registry/` as `ProviderDefinition`
-entries with `prepareRequest` hooks for model-id transforms. The registry is
-hot-reloadable; no CLI restart is needed to pick up a new model.
-
-Omnifoo MCP is wired the same way — declare it in `provider_urls` and tau
-will discover its tools through the mesh federation layer.
-
-## Status
-
-- **Version:** 18.0.8 (from `engine/packages/coding-agent/package.json`).
-- **Runtime:** Bun `>=1.3.14`.
-- **Context window:** 1M tokens per session.
-- **Tool surface:** 11-tool advisor suite, expandable via mesh MCP federation.
-- **Launcher invariants:** preserves caller's `$PWD`; redirects `/tmp` and
-  `/var/tmp` to `$HOME` only when no explicit `--cwd` is passed.
-- **Upstream:** forked from `can1357/oh-my-pi`; tracked upstream as
-  `badlogic/pi-mono`.
-
-## Where to look next
-
-- `engine/packages/coding-agent/src/cli.ts` — CLI entry, command registration.
-- `engine/packages/ai/src/registry/` — provider/model registry.
-- `engine/packages/tui/src/i18n/` — i18n runtime (pilot: en + no).
-- `engine/AGENTS.md` — toolchain and vendor submodule layout.
-- `extensions/README.md` — plugin authoring.
+---
+- **Harness state:** See `.tau/harness-ref.json` (mesh URL `25127` mcpproxy-go, subagent `inkling-small:free`, env deconfused, `.pi`/`.omp` symlinks verified, temp `1.0`, effort mapped).
+- **Commit reference:** `fa7f8ad` in sovereign-projects root.
+*(Managed by the Sovereign infrastructure pipeline.)*

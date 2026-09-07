@@ -1,23 +1,47 @@
 # Dependencies
 node_modules/
 bun.lockb
+.bun/
 .pnpm-store/
 
-# Build & Runtime
+# Build & Runtime Artifacts
 dist/
 build/
+target/
 *.tsbuildinfo
+.turbo/
+Cargo.lock.bak
 .cache/
 tmp/
-*.log
-*.pid
+/tmp/
 
-# Environment & Secrets
-.env
+# Logs, Databases & Session State
+logs/
+*.log
+*.qslog
+*.jsonl
+*.pid
+session-export*
+*.session
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+.agent-orchestration/
+.wezterm.sock*
+
+# Environment & Secrets (Zero-Leak Boundary)
+.env*
+!.env.example
+!.env.template
 .env.local
 .env.*.local
+.secrets*
+*.token
 *.pem
 *.key
+*.cert
+*.pfx
 
 # OS & Editor
 .DS_Store
