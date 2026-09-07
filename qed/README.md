@@ -1,6 +1,7 @@
 # QED
 
-> The definitive AI-native code editor. Proof complete.
+> **SSOT: QED == Zed (our sovereign fork).** The definitive AI-native code editor. Proof complete.
+> Upstream: [zed-industries/zed](https://github.com/zed-industries/zed) · Maintained as `toxicwind/qed` with `toxicwind/zedra` collaboration host.
 
 [![CI](https://github.com/toxicwind/qed/actions/workflows/ci.yml/badge.svg)](https://github.com/toxicwind/qed/actions)
 [![Lint](https://github.com/toxicwind/qed/actions/workflows/lint.yml/badge.svg)](https://github.com/toxicwind/qed/actions)

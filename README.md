@@ -38,7 +38,7 @@ The stack is strictly decoupled into two operating layers:
 | **Tau** | [`/tau`](./tau/README.md) | Canonical AI coding agent engine (TypeScript / Bun / Rust) | CLI: `tau`, Web: `:25192` |
 | **Herd** | [`/herd`](./herd/README.md) | Multi-model inference router & llama-swap fork | API: `:25100/v1`, UI: `:25100/ui/` |
 | **Mesh** | [`/mesh`](./mesh/README.md) | Sovereign MCP federation gateway (`mcpproxy-go`) | MCP: `:25127/mcp`, Hub: `:25115` |
-| **QED** | [`/qed`](./qed/README.md) | Definitive AI-native editor & Zedra host | Host: `:25130`, Collab |
+| **QED** | [`/qed`](./qed/README.md) | Definitive AI-native editor (our Zed fork) & Zedra host | Host: `:25130`, Collab |
 | **Shell** | [`/shell`](./shell/README.md) | Desktop environment (Hyprland + QuickShell) | Wayland / Hyprland |
 | **Boundless** | [`/boundless`](./boundless/README.md) | ADA/508-compliant document splitting substrate | Web UI: `:10200` |
 
