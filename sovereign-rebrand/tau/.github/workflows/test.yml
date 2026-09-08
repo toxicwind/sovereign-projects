@@ -1,0 +1,93 @@
+name: Test
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - 'bun.lockb'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - 'bun.lockb'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - packages/agent
+          - packages/ai
+          - packages/coding-agent
+          - packages/tui
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - run: bun test
+        working-directory: ${{ matrix.package }}
+        env:
+          NODE_ENV: test
+          CI: true
+
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - run: bun run build
+      - run: bun run test:integration
+        env:
+          NODE_ENV: test
+          CI: true
+
+  harness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - run: bun run test:harness
+        working-directory: packages/agent
+        env:
+          NODE_ENV: test
+          CI: true
+
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - run: bun run coverage:harness
+        working-directory: packages/agent
+      - uses: codecov/codecov-action@v4
+        with:
+          files: packages/agent/coverage/lcov.info
+          fail_ci_if_error: false
+          verbose: true
+
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - uses: browser-actions/setup-chrome@v1
+      - run: bun run check:browser-smoke
+        env:
+          CI: true
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.setup-chrome.outputs.chrome-path }}

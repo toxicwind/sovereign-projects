@@ -1,0 +1,93 @@
+name: Build
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - 'bun.lockb'
+      - '.github/workflows/build.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - 'bun.lockb'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - packages/agent
+          - packages/ai
+          - packages/coding-agent
+          - packages/tui
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - run: bun run build
+        working-directory: ${{ matrix.package }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package }}-build
+          path: ${{ matrix.package }}/dist/
+          retention-days: 7
+
+  binary:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            bun-target: bun-linux-x64
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            bun-target: bun-darwin-arm64
+          - os: macos-13
+            target: x86_64-apple-darwin
+            bun-target: bun-darwin-x64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-bun
+      - run: bun run build:binary
+        working-directory: packages/coding-agent
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tau-binary-${{ matrix.target }}
+          path: packages/coding-agent/dist/
+          retention-days: 30
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

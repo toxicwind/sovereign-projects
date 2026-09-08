@@ -1,0 +1,59 @@
+name: Autonomous
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches: [main, master]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-bun
+      - name: Run autonomous review
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Collect changed files
+          git fetch origin ${{ github.base_ref }} --depth=1
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '\.(ts|tsx|js|jsx)$' | head -20)
+
+          if [ -z "$CHANGED" ]; then
+            echo "No TypeScript/JavaScript files changed. Skipping review."
+            exit 0
+          fi
+
+          echo "Changed files: $CHANGED"
+
+          # Run lint on changed files only
+          echo "$CHANGED" | xargs bunx eslint --max-warnings 0 || true
+
+          # Typecheck changed packages
+          for pkg in packages/agent packages/ai packages/coding-agent packages/tui; do
+            if echo "$CHANGED" | grep -q "^$pkg/"; then
+              echo "Typechecking $pkg..."
+              (cd $pkg && bun run typecheck) || true
+            fi
+          done
+
+  auto-fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'auto-fix')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./.github/actions/setup-bun
+      - run: bun run format
+      - run: bun run lint:fix
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: auto-fix formatting and linting'
+          branch: ${{ github.head_ref }}

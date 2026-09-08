@@ -1,0 +1,7 @@
+# Stale Fork Sentinel
+
+This directory (`sovereign-swap/`) is a stale copy of `llama-swap/`.
+AstMatrix source files here are superseded by `../llama-swap/internal/astmatrix/`.
+The active buildable Go router source is `../llama-swap/`.
+The active configuration is `~/sovereign/config/herd.yaml`.
+Do not build or deploy from this directory.

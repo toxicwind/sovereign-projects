@@ -1,0 +1,79 @@
+name: Upstream Sync
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      upstream_branch:
+        description: 'Upstream branch'
+        default: 'main'
+
+env:
+  UPSTREAM_URL: https://github.com/earendil-works/pi.git
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream
+        run: |
+          git remote add upstream $UPSTREAM_URL || true
+          git fetch upstream ${{ github.event.inputs.upstream_branch || 'main' }}
+
+      - name: Create sync branch
+        run: |
+          UPSTREAM_BRANCH="${{ github.event.inputs.upstream_branch || 'main' }}"
+          git checkout -B upstream-sync origin/main
+          git merge upstream/$UPSTREAM_BRANCH --no-edit || true
+
+      - name: Check conflicts
+        id: conflicts
+        run: |
+          CONFLICTS=$(git diff --name-only --diff-filter=U)
+          if [ -n "$CONFLICTS" ]; then
+            echo "has_conflicts=true" >> $GITHUB_OUTPUT
+            echo "$CONFLICTS" > conflicts.txt
+            echo "::warning::Merge conflicts detected"
+            exit 1
+          else
+            echo "has_conflicts=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Push sync branch
+        if: steps.conflicts.outputs.has_conflicts != 'true'
+        run: git push origin upstream-sync --force
+
+      - name: Create PR
+        if: steps.conflicts.outputs.has_conflicts != 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: upstream-sync
+          title: 'chore: sync with upstream earendil-works/pi'
+          body: |
+            Automated upstream sync from `earendil-works/pi`.
+
+            - Synced at: ${{ github.event.repository.updated_at }}
+            - Upstream branch: ${{ github.event.inputs.upstream_branch || 'main' }}
+
+            Please review before merging.
+          draft: true
+
+      - name: Upload conflicts
+        if: failure() && steps.conflicts.outputs.has_conflicts == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: merge-conflicts
+          path: conflicts.txt

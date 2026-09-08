@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: go vet ./...
+      - uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: go test -v -race -coverprofile=coverage.out ./...
+      - run: go tool cover -html=coverage.out -o coverage.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.html
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: go build -v -o herd ./cmd
+      - uses: actions/upload-artifact@v4
+        with:
+          name: herd-linux-x64
+          path: herd
+
+  cross:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux/amd64
+            ext: ''
+          - os: ubuntu-latest
+            target: linux/arm64
+            ext: ''
+          - os: macos-latest
+            target: darwin/amd64
+            ext: ''
+          - os: macos-latest
+            target: darwin/arm64
+            ext: ''
+          - os: windows-latest
+            target: windows/amd64
+            ext: '.exe'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - run: |
+          GOOS=$(echo ${{ matrix.target }} | cut -d/ -f1)
+          GOARCH=$(echo ${{ matrix.target }} | cut -d/ -f2)
+          go build -v -o herd-${{ matrix.target }}${{ matrix.ext }} ./cmd
+        env:
+          GOOS: ${{ matrix.GOOS }}
+          GOARCH: ${{ matrix.GOARCH }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: herd-${{ matrix.target }}
+          path: herd-${{ matrix.target }}${{ matrix.ext }}
