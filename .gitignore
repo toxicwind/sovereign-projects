@@ -62,3 +62,23 @@ venv/
 *.bin
 *.pt
 *.safetensors
+
+# Build artifacts
+mesh/**/node_modules/
+mesh/**/dist/
+herd/engines/target/
+tau/tau/
+tau/packages/coding-agent/target/
+
+# Backup artifacts  
+tau.bak-*/
+
+# Sensitive / generated
+.env.local
+*.env.example
+
+# TUI / IDE
+.vscode/
+.idea/
+.husky/
+
