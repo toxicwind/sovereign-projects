@@ -1,0 +1,87 @@
+name: Test
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - '**.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - '**.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-rust
+      - run: cargo test --all-features --workspace
+        env:
+          RUST_BACKTRACE: 1
+
+  nextest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-rust
+      - uses: taiki-e/install-action@nextest
+      - run: cargo nextest run --all-features --workspace
+        env:
+          RUST_BACKTRACE: 1
+
+  miri:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-rust
+        with:
+          toolchain: nightly
+          components: miri
+      - run: cargo miri test --all-features --workspace
+        env:
+          MIRIFLAGS: -Zmiri-strict-provenance
+
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-rust
+      - uses: taiki-e/install-action@cargo-llvm-cov
+      - run: cargo llvm-cov --all-features --workspace --lcov --output-path lcov.info
+      - uses: codecov/codecov-action@v4
+        with:
+          files: lcov.info
+          fail_ci_if_error: false
+
+  sanitizer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        sanitizer: [address, leak, memory]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-rust
+        with:
+          toolchain: nightly
+      - run: |
+          rustup component add rust-src --toolchain nightly
+          export RUSTFLAGS="-Z sanitizer=${{ matrix.sanitizer }}"
+          cargo +nightly test -Z build-std --target x86_64-unknown-linux-gnu
+        env:
+          RUST_BACKTRACE: 1
