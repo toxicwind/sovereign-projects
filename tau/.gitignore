@@ -46,3 +46,4 @@ session-export*
 .vscode/
 *.swp
 *~
+tau/packages/natives/native/pi_natives.linux-x64-modern.node
