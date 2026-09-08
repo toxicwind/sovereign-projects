@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-09-08T01:50:17.542Z",
+  "sovereignProjectsPath": "/home/toxic/projects/sovereign-projects",
+  "symlinkFrom": "/home/toxic/sovereign-projects",
+  "linkedToSovereign": {
+    "healthAudit": "/home/toxic/sovereign/helpers/health-audit.ts",
+    "gitMutator": "/home/toxic/sovereign/helpers/git-mutator/cli.ts",
+    "portsEnv": "/home/toxic/sovereign/config/ports.env"
+  },
+  "subdirIntegrations": {
+    "herd": {
+      "path": "/home/toxic/projects/sovereign-projects/herd",
+      "sovereignPort": "herd=25100",
+      "engines": true
+    },
+    "zedra": {
+      "path": "/home/toxic/projects/sovereign-projects/zedra",
+      "sovereignLink": "zed integration via sovereign-zed"
+    },
+    "boundless": {
+      "path": "/home/toxic/projects/sovereign-projects/boundless",
+      "sovereignLink": "openfang/yote services"
+    },
+    "extensions": {
+      "path": "/home/toxic/projects/sovereign-projects/extensions",
+      "sovereignLink": "semantouch/engram"
+    },
+    "tau": {
+      "path": "/home/toxic/projects/sovereign-projects/tau",
+      "sovereignLink": "tau packages/coding-agent"
+    },
+    "sovereign-internal": {
+      "path": "/home/toxic/projects/sovereign-projects/sovereign-internal",
+      "sovereignLink": "AGENTS.md mirror"
+    }
+  }
+}
