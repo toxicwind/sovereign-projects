@@ -15,7 +15,8 @@
       "packages/*",
       "extensions/*",
       "extensions/packages/*",
-      "python/robomp/web"
+      "python/robomp/web",
+      "vendors/kimi-code"
     ],
     "catalog": {
       "@babel/generator": "7.29.8",
