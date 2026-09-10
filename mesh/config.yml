@@ -63,11 +63,11 @@ providers:
   fetch: auto
 modelRoles:
   default: openrouter/inclusionai/ling-3.0-flash-fin:free:high
-  task: nvidia/nemotron-3-super-120b-a12b:high
-  slow: nvidia/nemotron-3-super-120b-a12b:high
-  plan: nvidia/nemotron-3-super-120b-a12b:high
-  smol: nvidia/Qwen3.6-27B-NVFP4:high
-  tiny: nvidia/Qwen3.6-27B-NVFP4:high
+  task: qwen/qwen3.6-35b-a3b:high
+  slow: qwen/qwen3.6-35b-a3b:high
+  plan: qwen/qwen3.6-35b-a3b:high
+  smol: qwen/qwen3.6-27b:high
+  tiny: qwen/qwen3.6-27b:high
 subagents:
   can_spawn_subagents: true
   whitelist:
@@ -79,7 +79,7 @@ subagents:
     - explorer
     - analyst
     - debugger
-  defaultModel: nvidia/nemotron-3-super-120b-a12b:high
+  defaultModel: qwen/qwen3.6-35b-a3b:high
   subagent: inherit
 tools:
   approvalMode: yolo
@@ -130,7 +130,7 @@ theme:
   dark: dark-midnight
   light: light
 setupVersion: 2
-defaultThinkingLevel: max
+defaultThinkingLevel: high
 hideThinkingBlock: false
 memory:
   backend: hindsight
