@@ -11,6 +11,7 @@ Exposes a single OpenAI-compatible endpoint that every agent runtime (Tau, OpenC
 - `http://127.0.0.1:25100/metrics` — Runtime telemetry and routing counters
 
 ---
+
 ## Current Status
 
 | Component | State | Notes |
@@ -41,7 +42,7 @@ Herd dynamically handles process management, context eviction, model loading, an
 
 ## AstMatrix Production Routing & Resilience
 
-AstMatrix is Herd's first-class routing and reliability subsystem (`llama-swap/internal/astmatrix/`, 2000+ lines of Go):
+AstMatrix is Herd's first-class routing and reliability subsystem (`herd/internal/config/`, Go config parser with matrix DSL):
 
 - **Circuit Breaker**: 5-strike failfast threshold with automatic 30s half-open backoff cooldown. Flapping or crashing backends are isolated before degrading client agents.
 - **Token Bucket Rate Limiting**: Per-provider rate limiting with exponential backoff on HTTP 429 status codes.
@@ -54,7 +55,7 @@ AstMatrix is Herd's first-class routing and reliability subsystem (`llama-swap/i
 - **SSE Stream Normalization**: Guarantees compliant `chat.completion.chunk` event streams for strict consumers (Zed, Tau, OpenFang).
 
 **Configuration**: Configured via the `astMatrix:` block in `~/sovereign/config/herd.yaml`.
-**Source**: `~/projects/sovereign-projects/llama-swap/internal/astmatrix/`.
+**Source**: `herd/internal/config/` — Go config parser, matrix DSL, model config, merge logic.
 
 ---
 
@@ -78,15 +79,16 @@ Herd routes inference requests based on model scheduler priorities defined in `~
 ```
 sovereign-projects/
 ├── herd/
-│   ├── engines/                     # C++ inference engine forks (beellama.cpp, llama-cpp-turboquant, ik_llama.cpp)
-│   ├── internal/config/             # Historical config parser references
-│   └── README.md                    # Authoritative Herd architecture document
-└── llama-swap/                      # Build-ready Go router source + AstMatrix core
-    ├── internal/astmatrix/          # Circuit breaker, rate limiting, and dispatch engines
-    ├── internal/server/             # HTTP handlers, SSE streamer, proxy pipeline
-    ├── internal/router/             # Model lifecycle manager and engine supervisor
-    ├── internal/config/             # Full YAML configuration parser and validator
-    └── Makefile                     # Build targets
+│   ├── internal/config/         # Go config parser, matrix DSL, model config, merge logic
+│   └── README.md                # Authoritative Herd architecture document
+├── mesh/                        # Mesh inference router config
+│   └── config.yml               # Mesh-specific agent configuration
+├── .tau/                        # Tau agent runtime
+│   ├── config.yml               # Tau agent configuration (nvidia models)
+│   ├── models.yml               # Available model list
+│   └── blackboard/              # Collaboration boards (hubs, signals, manifests)
+├── packages/                    # Sovereign packages (router, scripts, skills, auth)
+└── tau/vendors/                 # Vendor submodules (kimi-code, Relay-AI, etc.)
 ```
 
 ---
@@ -95,7 +97,6 @@ sovereign-projects/
 
 - **Configuration SSOT**: `~/sovereign/config/herd.yaml` (852 lines).
 - **Service Launcher**: `~/sovereign/stack/services/herd.sh`.
-- **System Binary**: `~/projects/llama-swap/llama-swap` (symlinked directly to `~/projects/sovereign-projects/llama-swap/llama-swap`).
 - **Health Check**:
   ```bash
   curl -s http://127.0.0.1:25100/health
