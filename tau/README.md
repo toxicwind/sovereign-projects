@@ -8,6 +8,12 @@ Tau (formerly OMP) is the AI-native agent engine for the Sovereign ecosystem, de
 - **Orchestration:** Built for federated tool use via MCP and high-performance inference through the Herd inference router.
 - **Monorepo Integration:** Part of the Sovereign workspace architecture (see `/README.md` in the monorepo root).
 
+## Upstream & Vendor Policy
+> ⚠️ **CRITICAL: `vendor/` is strictly for upstream tracking and reference only.**
+- Never edit or commit working code directly inside `vendor/` or `engine/vendor/`.
+- `vendor/oh-my-pi/` mirrors canonical upstream to diff schemas, track dependency changes, and pull updates.
+- Active monorepo development, workspace packages, and custom enhancements live exclusively in `packages/`, `crates/`, and `extensions/`.
+
 ## Getting Started
 1. **Setup:** Ensure you are running from the monorepo root.
 2. **Development:** Use the standard Tau CLI, aliased in your `.bashrc`:

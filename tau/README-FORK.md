@@ -5,8 +5,8 @@
 ```
 tau/
 ├── package.json          ← root wrapper, workspaces → engine/packages/*
-├── vendor/               ← upstream repos (oh-my-pi, kimi-code-sovereign, modelbeats, pi-subagents, pi-upstream, tinker-cookbook)
-│   └── oh-my-pi/         ← upstream oh-my-pi source (canonical reference)
+├── vendor/               ← upstream repos (oh-my-pi, kimi-code-sovereign, etc.) — READ-ONLY REFERENCE ONLY
+│   └── oh-my-pi/         ← upstream oh-my-pi source (canonical tracking mirror, never edited directly)
 ├── engine/               ← main working tree (fork of oh-my-pi with sovereign changes)
 │   ├── packages/         ← canonical packages — ALL code lives here
 │   ├── crates/           ← Rust crates (pi-ast, pi-builtins, pi-iso, pi-natives, pi-shell, pi-voice, pi-walker)
@@ -23,7 +23,7 @@ tau/
 ## How It Works
 
 - **engine/** is the fork of upstream oh-my-pi. All code changes go here.
-- **vendor/** holds upstream repos that track their real remotes (pullable via git submodule).
+- **vendor/** holds upstream reference repos that track real remotes (pullable via git submodule). It is strictly read-only reference material: do not make direct changes or development edits here.
 - **packages/** is a compatibility mirror synced from engine/ — root package.json workspaces point here.
 - **crates/** contains the Rust native layer (pi-natives, pi-ast, etc.).
 
