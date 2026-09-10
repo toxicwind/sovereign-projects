@@ -7,7 +7,7 @@ const AUTH_URL = "https://org.ngc.nvidia.com/setup/personal-keys";
 const API_BASE_URL = "https://integrate.api.nvidia.com/v1";
 const VALIDATION_MODEL = "nvidia/llama-3.1-nemotron-70b-instruct";
 const PROVIDER_ID = "nvidia";
-const API_KEY_PREFIX = "nvapi-";
+const DEFAULT_MODEL = "nvidia/nemotron-3-ultra-550b-a55b";
 
 export async function loginNvidia(options: OAuthController): Promise<string> {
 	if (!options.onPrompt) {
@@ -32,11 +32,8 @@ export async function loginNvidia(options: OAuthController): Promise<string> {
 	if (!trimmed) {
 		throw new AIError.ApiKeyRequiredError();
 	}
-	if (!trimmed.startsWith(API_KEY_PREFIX)) {
-		throw new AIError.ApiKeyRequiredError("NVIDIA API keys must start with nvapi-");
-	}
 
-	options.onProgress?.("Validating NVIDIA API key...");
+	options.onProgress?.("Validating API key (optional)...");
 	try {
 		await validateOpenAICompatibleApiKey({
 			provider: PROVIDER_ID,
@@ -62,4 +59,5 @@ export const nvidiaProvider = {
 	id: "nvidia",
 	name: "NVIDIA",
 	login: (cb: OAuthLoginCallbacks) => loginNvidia(cb),
+	defaultModel: DEFAULT_MODEL,
 } as const satisfies ProviderDefinition;

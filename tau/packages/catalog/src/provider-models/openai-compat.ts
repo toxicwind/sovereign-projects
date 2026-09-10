@@ -1252,31 +1252,7 @@ export interface NvidiaModelManagerConfig {
 export function nvidiaModelManagerOptions(
 	config?: NvidiaModelManagerConfig,
 ): ModelManagerOptions<"openai-completions"> {
-	return createSimpleOpenAICompletionsOptions(
-		"nvidia",
-		config?.baseUrl ?? Bun.env.NVIDIA_BASE_URL ?? "https://integrate.api.nvidia.com/v1",
-		config,
-	);
-}
-
-// ---------------------------------------------------------------------------
-// 5. Herd (local llama-swap / sovereign-router)
-// ---------------------------------------------------------------------------
-
-export interface HerdModelManagerConfig {
-	apiKey?: string;
-	baseUrl?: string;
-	fetch?: FetchImpl;
-}
-
-export function herdModelManagerOptions(
-	config?: HerdModelManagerConfig,
-): ModelManagerOptions<"openai-completions"> {
-	return createSimpleOpenAICompletionsOptions(
-		"herd" as unknown as Parameters<typeof getBundledModels>[0],
-		config?.baseUrl ?? Bun.env.HERD_BASE_URL ?? Bun.env.LLAMA_SWAP_BASE_URL ?? "http://127.0.0.1:25100/v1",
-		config,
-	);
+	return createSimpleOpenAICompletionsOptions("nvidia", "https://integrate.api.nvidia.com/v1", config);
 }
 
 // ---------------------------------------------------------------------------

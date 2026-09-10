@@ -598,14 +598,11 @@ export function buildOpenAICompat(spec: ModelSpec<"openai-completions">): Resolv
 		// Local-only like `qwenPreserveThinking`: first-party Qwen APIs
 		// (Dashscope, Qwen Portal) drive effort through their own OpenAI-style
 		// dialect, and local Ollama keeps its native effort vocabulary.
-		// NVIDIA NIM's Qwen chat-template dialect also needs the nested
-		// `reasoning_effort` kwarg so user-selected reasoning tiers survive the
-		// `chat_template_kwargs` translation instead of defaulting to xhigh.
 		qwenTemplateReasoningEffort:
-			((thinkingFormat === "qwen" || thinkingFormat === "qwen-chat-template") &&
-				(isLocalOpenAICompatBackend || isNvidiaNim) &&
-				provider !== "ollama" &&
-				isQwen38PlusTemplateEffortModelId(spec.id)),
+			(thinkingFormat === "qwen" || thinkingFormat === "qwen-chat-template") &&
+			isLocalOpenAICompatBackend &&
+			provider !== "ollama" &&
+			isQwen38PlusTemplateEffortModelId(spec.id),
 		requiresAssistantContentForToolCalls: isKimiModel || isDirectDeepseekReasoning,
 		cacheControlFormat: isOpenRouter && spec.id.startsWith("anthropic/") ? "anthropic" : undefined,
 		supportsPromptCacheBreakpoints,
@@ -781,14 +778,10 @@ export function buildOpenAIResponsesCompat(spec: OpenAIResponsesSpecLike): Resol
 		// not via a top-level `reasoning_content` field — this flag is
 		// chat-completions-only.
 		replayReasoningContent: false,
-        // Responses-only; the Qwen `preserve_thinking` template knob lives on
-        // the chat-completions wire shape, never on Responses.
-        qwenPreserveThinking: false,
-        qwenTemplateReasoningEffort:
-            ((thinkingFormat === "qwen" || thinkingFormat === "qwen-chat-template") &&
-                (isLocalOpenAICompatBackend || isNvidiaNim) &&
-                provider !== "ollama" &&
-                isQwen38PlusTemplateEffortModelId(spec.id)),
+		// Responses-only; the Qwen `preserve_thinking` template knob lives on
+		// the chat-completions wire shape, never on Responses.
+		qwenPreserveThinking: false,
+		qwenTemplateReasoningEffort: false,
 		requiresThinkingAsText: false,
 		requiresMistralToolIds: false,
 		requiresToolResultName: false,

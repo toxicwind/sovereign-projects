@@ -2,15 +2,6 @@
 
 ## [Unreleased]
 
-### Added
-
-- New `providers.unboundedRetryAfter` setting (string array, default `["opencode-go", "opencode-zen"]`) under the providers tab → Retry group. Provider ids in this list get the `retry.maxDelayMs` cap disabled automatically — `0` is passed to the transport so server-requested `retry-after-ms` (opencode-go / opencode-zen daily-quota resets can request ~21_400_000 ms / ~6h) is honored end-to-end instead of capping or bailing out against the user-set ceiling. Caller-supplied `streamOptions.maxRetryDelayMs` still wins; set the array to `[]` to opt all providers out.
-
-### Fixed
-
-- `TurnRecovery` no longer fails fast with `Provider requested Nms wait, exceeds retry.maxDelayMs` when the failing message's provider is registered as `retry.unboundedRetryAfter: true` (opencode-go, opencode-zen, and any future provider opted in via the new `ProviderDefinition.retry` field). Previously, the fail-fast fired at the user-set 5-min ceiling even though the transport would have honored the wait, so daily-quota resets surfaced as a hard error instead of a waited retry.
-- The settings-aware stream wrapper now applies the per-provider cap override (`providers.unboundedRetryAfter` ⊆ `model.provider` ⇒ `0`) before forwarding to `streamSimple`, so the cap lift reaches the transport for both main turns and advisor turns (which previously went through bare `streamSimple` and skipped the override).
-
 ## [18.0.8] - 2026-08-27
 
 ### Added
@@ -581,7 +572,7 @@
 - Fixed destructive `rm` escaping the critical-pattern approval check when anything separates the flags from the target, so `rm -rf -- /`, `rm --recursive --force /` and `rm -rf --no-preserve-root /` are now classified critical like `rm -rf /`. `--no-preserve-root` is treated as critical wherever it appears, since it is what defeats coreutils' own refusal to recurse on `/`.
 - Fixed thinking-loop aborts (`AIError.Flag.ThinkingLoop`) walking `retry.fallbackChains` and switching to another model family on attempt 1, so a healthy planning turn on Grok 4.6 (SuperGrok / Cursor OAuth) no longer gets replaced by whatever the chain lists next. The loop guard now re-samples the same model with its `thinking-loop-redirect` notice, and no longer parks the model selector on a fallback cooldown. ([#8760](https://github.com/can1357/oh-my-pi/issues/8760))
 - Fixed the clipboard image-paste keybind attaching Finder's generated file icon instead of the copied image on macOS. Current Finder `Cmd+C` pasteboards advertise both a `public.file-url` and a generated 1024x1024 icon bitmap, so `arboard::get_image()` succeeded with the icon and `InputController.handleImagePaste` attached it before the file-URL branch was ever reached. The handler now probes `readMacFileUrlsFromClipboard()` before the bitmap representation, so an image file URL wins over the co-advertised icon; pure bitmap pasteboards (screenshots, browser copies) and non-image file URLs still fall through to the image/text paths ([#8769](https://github.com/can1357/oh-my-pi/issues/8769)).
-- Fixed the Home Manager module (`programs.omp.settings`) breaking every launch on macOS with `Failed to acquire native file lock … Permission denied (os error 13)`. The declared config is now copied into `~/.tau/agent/config.yml` as a writable file via `home.activation` instead of a read-only `/nix/store` symlink, so OMP can acquire its config lock and persist runtime changes; `home-manager switch` still reapplies the declared settings ([#8775](https://github.com/can1357/oh-my-pi/issues/8775)).
+- Fixed the Home Manager module (`programs.tau.settings`) breaking every launch on macOS with `Failed to acquire native file lock … Permission denied (os error 13)`. The declared config is now copied into `~/.tau/agent/config.yml` as a writable file via `home.activation` instead of a read-only `/nix/store` symlink, so OMP can acquire its config lock and persist runtime changes; `home-manager switch` still reapplies the declared settings ([#8775](https://github.com/can1357/oh-my-pi/issues/8775)).
 - Fixed OpenCode MCP servers 401ing when config used OpenCode's `{env:VAR}`/`{file:path}` substitution (e.g. `Bearer {env:MCP_KEY}` headers); the OpenCode loader now expands those tokens the way OpenCode does instead of only `${VAR}` ([#8778](https://github.com/can1357/oh-my-pi/issues/8778)).
 - Fixed `omp update` leaking Bun's raw `fetch()` error ("pass `verbose: true` in the second argument to fetch()") when a proxy environment variable (`HTTPS_PROXY`, `ALL_PROXY`, …) uses an unsupported scheme such as SOCKS; the update check now reports an actionable message naming the offending variable and the http/https proxy requirement ([#8784](https://github.com/can1357/oh-my-pi/issues/8784)).
 - Fixed worker subprocesses (memory embeddings, tiny-model titles, TTS/STT, JS eval, browser relay, LSP mux, daemon broker) running with their cwd pinned to the CLI install directory. They share the agent's foreground process group, and terminal cwd heuristics such as kitty's `new_tab_with_cwd` pick the newest process in that group, so new terminal tabs opened in `~/.bun/install/global/node_modules/@oh-my-pi/pi-coding-agent/dist` while any worker was alive. Workers now spawn with the absolute host entry and inherit the agent's cwd.
@@ -776,7 +767,7 @@
 - Fixed the Windows console disappearing when running commands like `/stats`.
 - Fixed retry-fallback selection switching to a fallback model with a context window too small to hold the current session context.
 - Fixed OpenCode discovery ignoring `opencode.jsonc` files and rejecting comments in `opencode.json`.
-- Fixed WSL2 startup hanging forever when the Windows interop pipe is wedged: the WSL host-home discovery probes (`cmd.exe`, `wslpath`) now run under a 500ms hard timeout and fall back to the Linux `$HOME`/`~/.omp` candidates ([#8402](https://github.com/can1357/oh-my-pi/issues/8402)).
+- Fixed WSL2 startup hanging forever when the Windows interop pipe is wedged: the WSL host-home discovery probes (`cmd.exe`, `wslpath`) now run under a 500ms hard timeout and fall back to the Linux `$HOME`/`~/.tau` candidates ([#8402](https://github.com/can1357/oh-my-pi/issues/8402)).
 
 ## [17.2.15] - 2026-08-12
 

@@ -46,9 +46,8 @@
   },
   "files": [
     "src",
-    "!**/*.test.ts",
-    "!**/*.spec.ts",
-    "!scripts"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "exports": {
     ".": {
@@ -90,10 +89,6 @@
     "./compat/*": {
       "types": "./src/compat/*.ts",
       "import": "./src/compat/*.ts"
-    },
-    "./model-catalog": {
-      "types": "./src/model-catalog.ts",
-      "import": "./src/model-catalog.ts"
     },
     "./*": {
       "types": "./src/*.ts",

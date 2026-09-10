@@ -7,6 +7,7 @@ const AUTH_URL = "https://org.ngc.nvidia.com/setup/personal-keys";
 const API_BASE_URL = "https://integrate.api.nvidia.com/v1";
 const VALIDATION_MODEL = "nvidia/llama-3.1-nemotron-70b-instruct";
 const PROVIDER_ID = "nvidia";
+const DEFAULT_MODEL = "nvidia/nemotron-3-ultra-550b-a55b";
 
 export async function loginNvidia(options: OAuthController): Promise<string> {
 	if (!options.onPrompt) {
@@ -58,4 +59,5 @@ export const nvidiaProvider = {
 	id: "nvidia",
 	name: "NVIDIA",
 	login: (cb: OAuthLoginCallbacks) => loginNvidia(cb),
+	defaultModel: DEFAULT_MODEL,
 } as const satisfies ProviderDefinition;

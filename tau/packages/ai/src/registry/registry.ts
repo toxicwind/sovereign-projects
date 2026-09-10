@@ -10,7 +10,6 @@ import { basetenProvider } from "./baseten";
 import { bedrockMantleProvider } from "./bedrock-mantle";
 import { cerebrasProvider } from "./cerebras";
 import { cloudflareAiGatewayProvider } from "./cloudflare-ai-gateway";
-import { cloudflareAiGatewayWorkersProvider } from "./cloudflare-ai-gateway-workers";
 import { coreWeaveProvider } from "./coreweave";
 import { cursorProvider } from "./cursor";
 import { deepinfraProvider } from "./deepinfra";
@@ -44,7 +43,6 @@ import { moonshotProvider } from "./moonshot";
 import { nanogptProvider } from "./nanogpt";
 import { novitaProvider } from "./novita";
 import { nvidiaProvider } from "./nvidia";
-import { herdProvider } from "./herd";
 import { ollamaProvider } from "./ollama";
 import { ollamaCloudProvider } from "./ollama-cloud";
 import { openaiProvider } from "./openai";
@@ -128,7 +126,6 @@ const ALL = [
 	fireworksProvider,
 	togetherProvider,
 	nvidiaProvider,
-	herdProvider,
 	novitaProvider,
 	deepinfraProvider,
 	huggingfaceProvider,
@@ -143,7 +140,6 @@ const ALL = [
 	coreWeaveProvider,
 	vercelAiGatewayProvider,
 	cloudflareAiGatewayProvider,
-	cloudflareAiGatewayWorkersProvider,
 	litellmProvider,
 	kiloProvider,
 	zenmuxProvider,
@@ -172,7 +168,6 @@ const ALL = [
 
 export type RegistryDef = (typeof ALL)[number];
 export const PROVIDER_REGISTRY: readonly ProviderDefinition[] = ALL;
-export { resolveProviderMaxRetryDelayMs } from "./retry-config";
 
 const BY_ID = new Map<string, ProviderDefinition>(ALL.map(p => [p.id, p] as [string, ProviderDefinition]));
 

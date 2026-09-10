@@ -239,7 +239,7 @@ export const CATALOG_PROVIDERS = [
 	},
 	{
 		id: "groq",
-		defaultModel: "openai/gpt-oss-120b",
+		defaultModel: "llama-3.3-70b-versatile",
 		envVars: ["GROQ_API_KEY"],
 		createModelManagerOptions: (config: ModelManagerConfig) => groqModelManagerOptions(config),
 		catalogDiscovery: { label: "Groq" },

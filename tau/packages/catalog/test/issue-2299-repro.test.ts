@@ -66,39 +66,39 @@ describe("issue #2299 — NVIDIA NIM qwen thinking format", () => {
 		expect(buildOpenAICompat(dashscope).thinkingFormat).toBe("qwen");
 	});
 
-  it("emits chat_template_kwargs.enable_thinking — never top-level enable_thinking — on the wire", async () => {
-    const model = getBundledModel<"openai-completions">("nvidia", "qwen/qwen3.5-397b-a17b");
-    expect(model.provider).toBe("nvidia");
-    expect(model.baseUrl).toBe("https://integrate.api.nvidia.com/v1");
-    expect(model.reasoning).toBe(true);
-    expect(model.compatConfig?.thinkingFormat).toBeUndefined();
+	it("emits chat_template_kwargs.enable_thinking — never top-level enable_thinking — on the wire", async () => {
+		const model = getBundledModel<"openai-completions">("nvidia", "qwen/qwen3.5-397b-a17b");
+		expect(model.provider).toBe("nvidia");
+		expect(model.baseUrl).toBe("https://integrate.api.nvidia.com/v1");
+		expect(model.reasoning).toBe(true);
+		expect(model.compatConfig?.thinkingFormat).toBeUndefined();
 
-    const captured: { body: string | null } = { body: null };
-    const fetchMock: FetchImpl = async (_input, init) => {
-      captured.body = typeof init?.body === "string" ? init.body : null;
-      return sseDoneResponse();
-    };
+		const captured: { body: string | null } = { body: null };
+		const fetchMock: FetchImpl = async (_input, init) => {
+			captured.body = typeof init?.body === "string" ? init.body : null;
+			return sseDoneResponse();
+		};
 
-    const context: Context = {
-      messages: [{ role: "user", content: "hi", timestamp: Date.now() }],
-    };
-    const stream = streamOpenAICompletions(model as Model<"openai-completions">, context, {
-      apiKey: "nvapi-test",
-      reasoning: "high",
-      fetch: fetchMock,
-    });
-    for await (const _ of stream) {
-      // drain
-    }
+		const context: Context = {
+			messages: [{ role: "user", content: "hi", timestamp: Date.now() }],
+		};
+		const stream = streamOpenAICompletions(model as Model<"openai-completions">, context, {
+			apiKey: "nvapi-test",
+			reasoning: "high",
+			fetch: fetchMock,
+		});
+		for await (const _ of stream) {
+			// drain
+		}
 
-    expect(captured.body).not.toBeNull();
-    const parsed = JSON.parse(captured.body ?? "{}") as Record<string, unknown>;
-    // Issue #2299: NVIDIA NIM 400s on top-level `enable_thinking`. The
-    // vLLM-compatible `chat_template_kwargs.enable_thinking` is what the
-    // official `qwen/qwen3.5-122b-a10b` docs example uses.
-    expect(parsed.enable_thinking).toBeUndefined();
-    expect(parsed.chat_template_kwargs).toEqual({ enable_thinking: true });
-  });
+		expect(captured.body).not.toBeNull();
+		const parsed = JSON.parse(captured.body ?? "{}") as Record<string, unknown>;
+		// Issue #2299: NVIDIA NIM 400s on top-level `enable_thinking`. The
+		// vLLM-compatible `chat_template_kwargs.enable_thinking` is what the
+		// official `qwen/qwen3.5-122b-a10b` docs example uses.
+		expect(parsed.enable_thinking).toBeUndefined();
+		expect(parsed.chat_template_kwargs).toEqual({ enable_thinking: true });
+	});
 });
 
 describe("issue #2299-adj — Fireworks Qwen thinking format", () => {

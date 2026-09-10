@@ -6,11 +6,10 @@
  * exposes the equivalent, broader `decodePrintableKey` helper. Keep the legacy
  * name available without reintroducing it into the canonical package surface.
  */
-import { ImageProtocol, TERMINAL, TUI, type Terminal } from "@oh-my-pi/pi-tui";
+import { ImageProtocol, TERMINAL } from "@oh-my-pi/pi-tui";
 
 export * from "@oh-my-pi/pi-tui";
 export { decodePrintableKey as decodeKittyPrintable } from "@oh-my-pi/pi-tui";
-export { stripVTControlCharacters as stripTerminalSequences } from "node:util";
 
 /** Report canonical terminal capabilities through the legacy Pi TUI shape. */
 export function getCapabilities(): {
@@ -41,17 +40,4 @@ export function deleteKittyImage(imageId: number): string {
 /** Delete every Kitty graphics image using the legacy Pi TUI bare sequence. */
 export function deleteAllKittyImages(): string {
 	return "\x1b_Ga=d,d=A,q=2\x1b\\";
-}
-
-/**
- * Compatibility class for legacy extensions expecting TuiAltScreen from @earendil-works/pi-tui.
- */
-export class TuiAltScreen extends TUI {
-	constructor(terminal: Terminal, showHardwareCursor?: boolean, _legacy?: unknown, _options?: unknown) {
-		super(terminal, showHardwareCursor);
-	}
-
-	flash(_message: string, _durationMs?: number): void {
-		// No-op or notification flash in compatibility mode
-	}
 }

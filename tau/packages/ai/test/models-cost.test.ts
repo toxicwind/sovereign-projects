@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import type { Usage } from "@oh-my-pi/pi-ai/types";
-import { calculateCost, getBundledModel } from "@oh-my-pi/pi-catalog/models";
+import { applyReportedCost, calculateCost, getBundledModel } from "@oh-my-pi/pi-catalog/models";
+import { applyReportedCost as applyReportedCostAi } from "../src/models";
 
 describe("calculateCost", () => {
 	it("keeps token-based calculation for GitHub Copilot models", () => {
@@ -233,5 +234,36 @@ describe("calculateCost", () => {
 		expect(usage.cost.output).toBeCloseTo(0.045, 12);
 		expect(usage.cost.cacheRead).toBeCloseTo(0.001, 12);
 		expect(usage.cost.cacheWrite).toBeCloseTo(0.0125, 12);
+	});
+});
+
+describe("applyReportedCost", () => {
+	it("calculates cost breakdown and assigns to usage.cost", () => {
+		const model = {
+			cost: {
+				input: 10,
+				output: 30,
+				cacheRead: 2.5,
+				cacheWrite: 5,
+			},
+		};
+		const usage = {
+			input: 100_000,
+			output: 10_000,
+			cacheRead: 50_000,
+			cacheWrite: 20_000,
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 },
+		};
+
+		const breakdown = applyReportedCost(usage, model);
+		expect(breakdown.input).toBeCloseTo(1.0, 6);
+		expect(breakdown.output).toBeCloseTo(0.3, 6);
+		expect(breakdown.cacheRead).toBeCloseTo(0.125, 6);
+		expect(breakdown.cacheWrite).toBeCloseTo(0.1, 6);
+		expect(breakdown.total).toBeCloseTo(1.525, 6);
+		expect(usage.cost.total).toBeCloseTo(1.525, 6);
+
+		const breakdownAi = applyReportedCostAi(usage, model);
+		expect(breakdownAi.total).toBeCloseTo(1.525, 6);
 	});
 });

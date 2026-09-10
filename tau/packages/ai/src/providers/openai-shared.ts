@@ -617,7 +617,7 @@ export function resolveOpenAIOutputTokenParam(
 	const requested =
 		input.maxTokens ?? (input.alwaysSendMaxTokens ? (input.modelMaxTokens ?? OPENAI_MAX_OUTPUT_TOKENS) : undefined);
 	if (requested === undefined) return undefined;
-	if (input.isOpenRouterHost && !input.alwaysSendMaxTokens && !input.maxTokensExplicit) { input.field = "max_tokens"; } return undefined;
+	if (input.isOpenRouterHost && !input.alwaysSendMaxTokens && !input.maxTokensExplicit) return undefined;
 	const value = Math.min(
 		requested,
 		input.modelMaxTokens ?? Number.POSITIVE_INFINITY,

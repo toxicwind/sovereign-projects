@@ -11,31 +11,29 @@ Exposes a single OpenAI-compatible endpoint that every agent runtime (Tau, OpenC
 - `http://127.0.0.1:25100/metrics` — Runtime telemetry and routing counters
 
 ---
+## Current Status
 
-## Architecture
+| Component | State | Notes |
+|---|---|---|
+| Router (`:25100`) | ⚠ needs restart | llama-swap was killed, queue cleared |
+| beellama.cpp engine | ✗ binary missing | `${BEELLAMA_BIN}` not on disk |
+| llama-cpp-turboquant | ✗ binary missing | `${TURBO_BIN}` not on disk |
+| ik_llama.cpp | ✗ binary missing | `${IK_BIN}` not on disk |
+| Models (83 listed) | All unloaded | No VRAM allocated until engines fixed |
+| Model files | 22/23 present | `Qwen2.5-1.5D-Draft-Q8_0.gguf` missing |
 
-A high-performance Go router on `:25100` orchestrating 3 C++ inference engine forks on an NVIDIA GeForce RTX 3090 (24GB VRAM):
+### Fork Summary
 
-```
-                       ┌──────────────────────────────┐
-                       │        Agent Runtimes         │
-                       │ (Tau, OpenCode, CodeShift)    │
-                       └──────────────┬───────────────┘
-                                      │ :25100 (OpenAI API)
-                       ┌──────────────▼───────────────┐
-                       │             Herd             │
-                       │  Go Router + AstMatrix Core  │
-                       └──────────────┬───────────────┘
-                                      │
-            ┌─────────────────────────┼─────────────────────────┐
-            │                         │                         │
-┌───────────▼───────────┐ ┌───────────▼───────────┐ ┌───────────▼───────────┐
-│     beellama.cpp      │ │  llama-cpp-turboquant │ │       ik_llama.cpp    │
-│  CUDA 86 / znver4     │ │  Fast quantized       │ │  Experimental         │
-│  Flash attention,     │ │  inference, low VRAM  │ │  kernels & custom     │
-│  AVX-512 optimization │ │  footprint            │ │  quantization         │
-└───────────────────────┘ └───────────────────────┘ └───────────────────────┘
-```
+| Fork | Binary | Models Served | Flags |
+|---|---|---|---|
+| **beellama.cpp** (CUDA 86) | `${BEELLAMA_BIN}` | EXAONE 1.2B, Qwen 3.5/3.6 Flash, Gemma 12B/21B, MN Grand 23B, Qwen 28B | `--kv-unified --no-host --cache-ram 0` |
+| **llama-cpp-turboquant** | `${TURBO_BIN}` | *(none assigned)* | `--no-warmup` |
+| **ik_llama.cpp** | `${IK_BIN}` | heretic-27B Q5 variants | `--fit --fit-margin 512 --no-warmup --defrag-thold 0.1` |
+
+### Config SSOT
+- `~/sovereign/config/herd.yaml` (852 lines)
+- Routing via AstMatrix: circuit breaker, token bucket, dispatch strategies
+- Priority schedule in `routing.scheduler.fifo.priority`
 
 Herd dynamically handles process management, context eviction, model loading, and engine invocation behind a unified endpoint.
 

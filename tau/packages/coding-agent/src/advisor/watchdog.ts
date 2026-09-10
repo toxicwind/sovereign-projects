@@ -76,18 +76,13 @@ export async function collectConfigCandidates(
 		}
 	}
 
-const CONFIG_DIRS = [".tau", ".omp"];
-
 	// 2. Project levels (both standalone and native config .omp/): walk up from cwd to repoRoot / home
 	let current = cwd;
 	while (true) {
 		for (const filename of filenames) {
-			for (const dir of CONFIG_DIRS) {
-				candidates.add(path.resolve(current, dir, filename));
-			}
+			candidates.add(path.resolve(current, ".omp", filename));
 			candidates.add(path.resolve(current, filename));
 		}
-
 		if (current === (repoRoot ?? home)) break;
 		const parent = path.dirname(current);
 		if (parent === current) break;
@@ -101,10 +96,9 @@ const CONFIG_DIRS = [".tau", ".omp"];
 			const parent = path.dirname(candidate);
 			const baseName = parent.split(path.sep).pop() ?? "";
 			const isUser = userPaths.has(candidate);
-			const isConfigDir = CONFIG_DIRS.includes(baseName);
-			const ownerDir = isConfigDir ? path.dirname(parent) : parent;
+			const ownerDir = baseName === ".omp" ? path.dirname(parent) : parent;
 			const ownerBaseName = ownerDir.split(path.sep).pop() ?? "";
-			if (isUser || !ownerBaseName.startsWith(".") || isConfigDir) {
+			if (isUser || !ownerBaseName.startsWith(".") || baseName === ".omp") {
 				const relative = path.relative(cwd, ownerDir);
 				const depth = relative === "" ? 0 : relative.split(path.sep).filter(Boolean).length;
 				items.push({ path: candidate, content, level: isUser ? "user" : "project", depth });

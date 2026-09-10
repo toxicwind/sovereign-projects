@@ -115,3 +115,50 @@ export function modelsAreEqual<TApi extends Api>(
 	if (!a || !b) return false;
 	return a.id === b.id && a.provider === b.provider;
 }
+
+/**
+ * Calculate token cost breakdown from model metadata and apply it to usage.
+ */
+export function applyReportedCost(
+	usage: Partial<Usage> & { cost?: Partial<Usage["cost"]> },
+	model: { cost?: Partial<ModelCost> },
+): Usage["cost"] {
+	const cost = model?.cost ?? {};
+	const inputTokens = usage.input ?? 0;
+	const outputTokens = usage.output ?? 0;
+	const cacheReadTokens = usage.cacheRead ?? 0;
+	const cacheWriteTokens = usage.cacheWrite ?? 0;
+
+	const promptTokens = inputTokens + cacheReadTokens + cacheWriteTokens;
+	const longContext = (cost as ModelCost).longContext;
+	let rates: Partial<TokenCost> = cost;
+	if (longContext) {
+		const reachesThreshold =
+			promptTokens > longContext.inputThreshold ||
+			(longContext.inputThresholdInclusive === true && promptTokens === longContext.inputThreshold);
+		if (reachesThreshold) {
+			rates = longContext;
+		}
+	}
+
+	const inputRate = (rates.input ?? 0) / 1_000_000;
+	const outputRate = (rates.output ?? 0) / 1_000_000;
+	const cacheReadRate = (rates.cacheRead ?? 0) / 1_000_000;
+	const cacheWriteRate = (rates.cacheWrite ?? 0) / 1_000_000;
+
+	const breakdown: Usage["cost"] = {
+		input: inputRate * inputTokens,
+		output: outputRate * outputTokens,
+		cacheRead: cacheReadRate * cacheReadTokens,
+		cacheWrite: cacheWriteRate * cacheWriteTokens,
+		total: 0,
+	};
+	breakdown.total = breakdown.input + breakdown.output + breakdown.cacheRead + breakdown.cacheWrite;
+
+	if (usage.cost) {
+		Object.assign(usage.cost, breakdown);
+	}
+
+	return breakdown;
+}
+

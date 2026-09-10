@@ -1,5 +1,20 @@
+import * as os from "node:os";
+import * as path from "node:path";
 import { getProjectDir, setProjectDir } from "@oh-my-pi/pi-utils";
 import type { Args } from "./args";
+
+function isTempDir(dir: string): boolean {
+	const normalized = path.resolve(dir);
+	const osTmp = path.resolve(os.tmpdir());
+	return (
+		normalized === "/tmp" ||
+		normalized === "/var/tmp" ||
+		normalized.startsWith("/tmp/") ||
+		normalized.startsWith("/var/tmp/") ||
+		normalized === osTmp ||
+		normalized.startsWith(`${osTmp}/`)
+	);
+}
 
 export async function applyStartupCwd(parsed: Args): Promise<void> {
 	if (parsed.cwd) {
@@ -7,8 +22,6 @@ export async function applyStartupCwd(parsed: Args): Promise<void> {
 			setProjectDir(parsed.cwd);
 		} catch (error) {
 			const reason = error instanceof Error ? error.message : String(error);
-			// Permission denials are the macOS TCC case; a plain ENOENT typo
-			// should not be told to grant Full Disk Access.
 			const code = (error as NodeJS.ErrnoException | null)?.code;
 			const hint =
 				code === "EACCES" || code === "EPERM"
@@ -16,11 +29,18 @@ export async function applyStartupCwd(parsed: Args): Promise<void> {
 					: "";
 			throw new Error(`Cannot change working directory to ${parsed.cwd}: ${reason}.${hint}`);
 		}
-		// setProjectDir resolves the (possibly relative) target against the launch
-		// cwd and chdirs into it. Re-sync parsed.cwd to the resolved absolute path
-		// so downstream consumers (buildSessionOptions, settings/discovery, session
-		// persistence) don't re-resolve a relative string against the new cwd.
 		parsed.cwd = getProjectDir();
 		return;
+	}
+
+	const current = getProjectDir();
+	if (isTempDir(current)) {
+		const home = os.homedir();
+		try {
+			setProjectDir(home);
+			parsed.cwd = getProjectDir();
+		} catch {
+			// Fallback silently if home is unreachable
+		}
 	}
 }

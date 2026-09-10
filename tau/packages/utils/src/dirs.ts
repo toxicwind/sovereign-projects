@@ -277,13 +277,9 @@ export function getSafeProjectCwd(): string {
 	return os.homedir();
 }
 
-/** Get the config directory name relative to home (e.g. ".tau", ".omp" or PI_CONFIG_DIR override). */
+/** Get the config directory name relative to home (e.g. ".omp" or PI_CONFIG_DIR override). */
 export function getConfigDirName(): string {
-	if (process.env.PI_CONFIG_DIR) return process.env.PI_CONFIG_DIR;
-	if (fs.existsSync(path.join(os.homedir(), ".tau"))) {
-		return ".tau";
-	}
-	return CONFIG_DIR_NAME;
+	return process.env.PI_CONFIG_DIR || CONFIG_DIR_NAME;
 }
 
 /** Get the config agent directory name relative to home (e.g. ".omp/agent" or PI_CONFIG_DIR + "/agent"). */
