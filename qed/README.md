@@ -1,68 +1,34 @@
-# Zedra
+# QED — Definitive AI-Native Code Editor & Remote Substrate
 
-An experimental remote code editor on mobile with GPU-accelerated rendering powered by Zed's GPUI, P2P tunnel over QUIC/UDP by Iroh. Zedra focuses on providing mobile-first experience for developers to read code, view changes, and run AI agents over a secure, P2P tunnel.
+**Port**: `:25130` (Host & Collaboration)  
+**Role**: The unified editor layer for the Sovereign autonomous agent ecosystem.
 
-![Zedra](https://raw.githubusercontent.com/tanlethanh/zedra/main/packages/landing/public/OG.png)
+---
 
-## Security Note
+## 🏛️ Workspace Topology
 
-Zedra is early, but it provides the most secure approach with e2e encryption, direct connection, and zero-trust model in a near future. If you have any concern about security, email me at [tanle@zedra.dev](mailto:tanle@zedra.dev), I will support to bring Zedra to your workflow with trust.
+QED unifies the desktop editor engine and the remote mobile/P2P substrate under a single cohesive workspace:
 
-## Download App
-
-- iOS — [AppStore](https://apps.apple.com/vn/app/zedra-code-from-anywhere/id6760534630) or [TestFlight](https://testflight.apple.com/join/1EWe2kRH)
-- Android — [Google Play](https://play.google.com/store/apps/details?id=dev.zedra.app)
- 
-## Desktop daemon
-
-Note: Zedra uses direct P2P connections when possible, but may fallback to relays if blocked by `Symmetric NAT` or `CGNAT` (common in home networks). Works best on LANs and supported relay regions. For high latency issues, please reach out. Learn more: [How NAT traversal works](https://tailscale.com/blog/how-nat-traversal-works)
-
-**MacOS/Linux**
-```shell
-curl -fsSL zedra.dev/install.sh | sh
-# Install agent hooks for notification
-zedra setup
-# Start daemon in working directory
-zedra start --detach
+```
+qed/
+├── zed/     ← Definitive AI-native editor engine (our toxicwind/zed fork)
+│               - 240+ Rust crates, GPUI accelerated rendering
+│               - First-class NVIDIA NIM, Inkling, and MCP tool normalizers
+│               - Port: :25130 (Livekit collaboration & server)
+└── zedra/   ← Remote daemon & mobile client substrate (Zedra host)
+                - P2P tunnel over QUIC/UDP (Iroh)
+                - Mobile agent hooks, e2e encryption
+                - Remote headless daemon
 ```
 
-**Windows**
+---
 
-```powershell
-irm https://zedra.dev/install.ps1 | iex
-zedra start --detach
+## 🚀 Quick Verification
+
+```bash
+# Verify Zed workspace builds
+cargo check --manifest-path qed/zed/Cargo.toml --package zed
+
+# Verify Zedra daemon builds
+bun --cwd qed/zedra test
 ```
-
-**Claude Code**
-```shell
-# Config Zedra skills, hooks for Claude
-zedra setup claude
-# In Claude Code, reload plugins and start Zedra
-/zedra-start
-```
-
-**Codex**
-
-```shell
-# Config Zedra skills, hooks for Codex
-zedra setup codex
-# In Codex, reload plugins and start Zedra
-$zedra-start
-```
-
-Scan the QR code with the Zedra app. That's it.
-
-## How It Works
-
-1. `zedra start` runs a lightweight daemon on your desktop
-2. Phone and desktop discover each other automatically — direct P2P, relay fallback
-3. All traffic is encrypted end-to-end with TLS 1.3. No credentials leave your device
-
-
-## Status
-
-Zedra is under active development. Core features are stable and in use — bugs, rough edges, and breaking changes should be expected. Feedback and issues are welcome on [GitHub](https://github.com/tanlethanh/zedra/issues).
-
-## License
-
-MIT © [Tan Le](https://github.com/tanlethanh)
