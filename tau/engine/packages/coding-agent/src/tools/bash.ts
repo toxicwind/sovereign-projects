@@ -1,3 +1,15 @@
+
+/**
+ * Strips bare diagnostic echo banners emitted by models trained on terminal observations.
+ */
+function sanitizeInklingEchoes(cmd: string): string {
+    // Strip standalone echo commands dumping state headers
+    return cmd
+        .split("\n")
+        .filter(line => !line.trim().match(/^echo\s+["'][=]{3,}.*["']$/))
+        .join("\n");
+}
+
 import * as fs from "node:fs";
 import { type } from "@oh-my-pi/omptype";
 import type {

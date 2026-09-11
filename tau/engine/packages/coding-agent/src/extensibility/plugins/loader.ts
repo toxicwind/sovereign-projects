@@ -79,8 +79,8 @@ async function collectPluginsAtRoot(
 	projectOverrides: ProjectPluginOverrides,
 	scope: ScopedInstalledPlugin["scope"],
 ): Promise<ScopedInstalledPlugin[]> {
+	console.log("DEBUG: collectPluginsAtRoot called, root=", root);
 	const nodeModulesPath = path.join(root, "node_modules");
-	if (!fs.existsSync(nodeModulesPath)) return [];
 
 	let depsKeys: string[] = [];
 	const pkgJsonPath = path.join(root, "package.json");
@@ -174,6 +174,7 @@ async function collectPluginsAtRoot(
  * tempdir, discovery loaders threaded with `LoadContext.home`).
  */
 export async function getEnabledPlugins(cwd: string, opts: { home?: string } = {}): Promise<ScopedInstalledPlugin[]> {
+	console.log("DEBUG: getEnabledPlugins called, cwd=", cwd, "home=", opts.home);
 	const { home } = opts;
 	const cacheKey = enabledPluginsCacheKey(cwd, home);
 	const cached = enabledPluginsCache.get(cacheKey);
