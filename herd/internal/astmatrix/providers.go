@@ -2,7 +2,6 @@ package astmatrix
 
 import (
 	"os"
-	"strings"
 )
 
 // Provider represents a resolved upstream provider.
