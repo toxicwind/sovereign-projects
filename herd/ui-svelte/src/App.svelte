@@ -39,7 +39,6 @@
     "/activity": wrap({ asyncComponent: () => import("./routes/Activity.svelte"), loadingComponent: RouteLoading }),
     "/settings": wrap({ asyncComponent: () => import("./routes/Settings.svelte"), loadingComponent: RouteLoading }),
     "/performance": wrap({ asyncComponent: () => import("./routes/Performance.svelte"), loadingComponent: RouteLoading }),
-    "/benchmarks": wrap({ asyncComponent: () => import("./routes/Benchmark.svelte"), loadingComponent: RouteLoading }),
     "*": wrap({ asyncComponent: () => import("./routes/Activity.svelte"), loadingComponent: RouteLoading }),
   };
 
@@ -51,7 +50,6 @@
     "/logs": "Logs",
     "/settings": "Settings",
     "/performance": "Performance",
-    "/benchmarks": "Benchmark Suite",
   };
 
   let sectionTitle = $derived.by(() => {

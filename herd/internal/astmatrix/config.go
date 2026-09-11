@@ -1,6 +1,5 @@
 package astmatrix
 
-
 // AstMatrixConfig configures cloud provider routing with production-grade defaults.
 type AstMatrixConfig struct {
 	Enabled     bool                   `yaml:"enabled"`

@@ -65,26 +65,26 @@ func (m *MetricsCollector) GetLatency(provider string) time.Duration {
 	return total / time.Duration(len(latencies))
 }
 
-// Snapshot returns aggregate telemetry metrics for UI monitoring.
+// Snapshot returns a JSON-serializable view of the metrics state for
+// the UI /metrics endpoint.
 func (m *MetricsCollector) Snapshot() map[string]interface{} {
 	m.mu.RLock()
 	defer m.mu.RUnlock()
-
-	avgLatencies := make(map[string]int64)
-	for p, lats := range m.latencies {
-		if len(lats) > 0 {
-			var total time.Duration
-			for _, l := range lats {
-				total += l
-			}
-			avgLatencies[p] = (total / time.Duration(len(lats))).Milliseconds()
-		}
+	requests := make(map[string]int64, len(m.requests))
+	for k, v := range m.requests {
+		requests[k] = v
 	}
-
+	errors := make(map[string]int64, len(m.errors))
+	for k, v := range m.errors {
+		errors[k] = v
+	}
+	statusCodes := make(map[int]int64, len(m.statusCodes))
+	for k, v := range m.statusCodes {
+		statusCodes[k] = v
+	}
 	return map[string]interface{}{
-		"requests":      m.requests,
-		"errors":        m.errors,
-		"status_codes":  m.statusCodes,
-		"avg_latencies": avgLatencies,
+		"requests":     requests,
+		"errors":       errors,
+		"status_codes": statusCodes,
 	}
 }

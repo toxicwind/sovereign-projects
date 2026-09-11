@@ -1,7 +1,7 @@
-# AGENTS.md — Sovereign-Swap (`/home/toxic/projects/sovereign-swap`)
+# AGENTS.md — Herd / llama-swap (`/home/toxic/projects/herd`)
 
-**Role**: Sovereign-specific fork of llama-swap for dynamic local model orchestration.
-**Stack**: Go, Svelte 5, TypeScript.
+**Role**: Lightweight, transparent proxy server providing dynamic model swapping to llama.cpp and sovereign backends.
+**Stack**: Go (1.23+), TypeScript / Vite / Svelte 5 (`ui-svelte/`).
 
 ---
 

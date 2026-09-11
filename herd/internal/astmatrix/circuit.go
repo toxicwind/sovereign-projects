@@ -6,25 +6,11 @@ import (
 )
 
 type CircuitState int
-
 const (
 	StateClosed CircuitState = iota
 	StateOpen
 	StateHalfOpen
 )
-
-func (s CircuitState) String() string {
-	switch s {
-	case StateClosed:
-		return "closed"
-	case StateOpen:
-		return "open"
-	case StateHalfOpen:
-		return "half-open"
-	default:
-		return "unknown"
-	}
-}
 
 // CircuitBreaker with half-open probe support.
 type CircuitBreaker struct {
@@ -39,23 +25,16 @@ type CircuitBreaker struct {
 }
 
 func NewCircuitBreaker(maxFailures int, timeout time.Duration) *CircuitBreaker {
-	if maxFailures <= 0 {
-		maxFailures = 5
-	}
-	if timeout <= 0 {
-		timeout = 30 * time.Second
-	}
+	if maxFailures <= 0 { maxFailures = 5 }
+	if timeout <= 0     { timeout = 30 * time.Second }
 	return &CircuitBreaker{
-		maxFailures:      maxFailures,
-		timeout:          timeout,
-		halfOpenMaxCalls: 3,
-		state:            StateClosed,
+		maxFailures: maxFailures, timeout: timeout,
+		halfOpenMaxCalls: 3, state: StateClosed,
 	}
 }
 
 func (cb *CircuitBreaker) Allow() bool {
-	cb.mu.Lock()
-	defer cb.mu.Unlock()
+	cb.mu.Lock(); defer cb.mu.Unlock()
 	switch cb.state {
 	case StateClosed:
 		return true
@@ -73,15 +52,12 @@ func (cb *CircuitBreaker) Allow() bool {
 }
 
 func (cb *CircuitBreaker) RecordSuccess() {
-	cb.mu.Lock()
-	defer cb.mu.Unlock()
+	cb.mu.Lock(); defer cb.mu.Unlock()
 	switch cb.state {
 	case StateHalfOpen:
 		cb.consecutiveSuccesses++
 		if cb.consecutiveSuccesses >= cb.halfOpenMaxCalls {
-			cb.state = StateClosed
-			cb.failures = 0
-			cb.consecutiveSuccesses = 0
+			cb.state = StateClosed; cb.failures = 0; cb.consecutiveSuccesses = 0
 		}
 	case StateClosed:
 		cb.failures = 0
@@ -89,30 +65,24 @@ func (cb *CircuitBreaker) RecordSuccess() {
 }
 
 func (cb *CircuitBreaker) RecordFailure() {
-	cb.mu.Lock()
-	defer cb.mu.Unlock()
-	cb.failures++
-	cb.lastFailureTime = time.Now()
+	cb.mu.Lock(); defer cb.mu.Unlock()
+	cb.failures++; cb.lastFailureTime = time.Now()
 	switch cb.state {
 	case StateHalfOpen:
-		cb.state = StateOpen
-		cb.consecutiveSuccesses = 0
+		cb.state = StateOpen; cb.consecutiveSuccesses = 0
 	case StateClosed:
-		if cb.failures >= cb.maxFailures {
-			cb.state = StateOpen
-		}
+		if cb.failures >= cb.maxFailures { cb.state = StateOpen }
 	}
 }
 
 func (cb *CircuitBreaker) State() CircuitState {
-	cb.mu.RLock()
-	defer cb.mu.RUnlock()
+	cb.mu.RLock(); defer cb.mu.RUnlock()
 	return cb.state
 }
 
-// Stats returns the circuit breaker metrics for UI and telemetry.
-func (cb *CircuitBreaker) Stats() (string, int, time.Time) {
-	cb.mu.RLock()
-	defer cb.mu.RUnlock()
-	return cb.state.String(), cb.failures, cb.lastFailureTime
+// Stats returns a snapshot of the breaker's current state, failure count,
+// and time of the most recent failure. Used by the UI status endpoint.
+func (cb *CircuitBreaker) Stats() (CircuitState, int, time.Time) {
+	cb.mu.RLock(); defer cb.mu.RUnlock()
+	return cb.state, cb.failures, cb.lastFailureTime
 }
