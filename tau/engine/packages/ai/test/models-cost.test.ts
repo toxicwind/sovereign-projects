@@ -1,7 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import type { Usage } from "@oh-my-pi/pi-ai/types";
-import { applyReportedCost, calculateCost, getBundledModel } from "@oh-my-pi/pi-catalog/models";
-import { applyReportedCost as applyReportedCostAi } from "../src/models";
+import { calculateCost, getBundledModel, getBundledModels } from "@oh-my-pi/pi-catalog/models";
 
 describe("calculateCost", () => {
 	it("keeps token-based calculation for GitHub Copilot models", () => {
@@ -180,8 +179,17 @@ describe("calculateCost", () => {
 	});
 
 	it("prices OpenAI Codex GPT models from the matching OpenAI catalog entry", () => {
-		const openAIModel = getBundledModel("openai", "gpt-5.4");
-		const codexModel = getBundledModel("openai-codex", "gpt-5.4");
+		const openAIModel = getBundledModels("openai")
+			.sort((a, b) => a.id.localeCompare(b.id))
+			.find(
+				model =>
+					model.id.startsWith("gpt-") &&
+					model.cost.input > 0 &&
+					model.cost.output > 0 &&
+					getBundledModel("openai-codex", model.id) !== undefined,
+			);
+		if (!openAIModel) throw new Error("Expected a shared, priced OpenAI/Codex GPT model");
+		const codexModel = getBundledModel("openai-codex", openAIModel.id);
 		const usage: Usage = {
 			input: 1000,
 			output: 500,
@@ -190,12 +198,15 @@ describe("calculateCost", () => {
 			totalTokens: 1700,
 			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 },
 		};
+		const referenceUsage = structuredClone(usage);
+		calculateCost(openAIModel, referenceUsage);
 
 		expect(codexModel.cost).toEqual(openAIModel.cost);
 
 		calculateCost(codexModel, usage);
 
-		expect(usage.cost.total).toBeCloseTo(0.01005, 8);
+		expect(referenceUsage.cost.total).toBeGreaterThan(0);
+		expect(usage.cost).toEqual(referenceUsage.cost);
 	});
 
 	it("keeps Daybreak Blue at short-context rates through 272K prompt tokens", () => {
@@ -234,36 +245,5 @@ describe("calculateCost", () => {
 		expect(usage.cost.output).toBeCloseTo(0.045, 12);
 		expect(usage.cost.cacheRead).toBeCloseTo(0.001, 12);
 		expect(usage.cost.cacheWrite).toBeCloseTo(0.0125, 12);
-	});
-});
-
-describe("applyReportedCost", () => {
-	it("calculates cost breakdown and assigns to usage.cost", () => {
-		const model = {
-			cost: {
-				input: 10,
-				output: 30,
-				cacheRead: 2.5,
-				cacheWrite: 5,
-			},
-		};
-		const usage = {
-			input: 100_000,
-			output: 10_000,
-			cacheRead: 50_000,
-			cacheWrite: 20_000,
-			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 },
-		};
-
-		const breakdown = applyReportedCost(usage, model);
-		expect(breakdown.input).toBeCloseTo(1.0, 6);
-		expect(breakdown.output).toBeCloseTo(0.3, 6);
-		expect(breakdown.cacheRead).toBeCloseTo(0.125, 6);
-		expect(breakdown.cacheWrite).toBeCloseTo(0.1, 6);
-		expect(breakdown.total).toBeCloseTo(1.525, 6);
-		expect(usage.cost.total).toBeCloseTo(1.525, 6);
-
-		const breakdownAi = applyReportedCostAi(usage, model);
-		expect(breakdownAi.total).toBeCloseTo(1.525, 6);
 	});
 });

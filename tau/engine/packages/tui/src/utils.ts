@@ -354,7 +354,8 @@ export function visibleWidth(str: string): number {
 		for (let m = OSC66_SPAN_REGEX.exec(str); m !== null; m = OSC66_SPAN_REGEX.exec(str)) {
 			let scale = 1;
 			let explicit: number | undefined;
-			for (const part of m[1].split(":")) {
+			const group1 = m[1] ?? "";
+			for (const part of group1.split(":")) {
 				if (part.indexOf("=") !== 1) continue;
 				const value = Number.parseInt(part.slice(2), 10);
 				if (!Number.isFinite(value)) continue;
@@ -364,7 +365,7 @@ export function visibleWidth(str: string): number {
 					explicit = value;
 				}
 			}
-			width += scale * (explicit ?? Bun.stringWidth(m[2], STRING_WIDTH_OPTS));
+			width += scale * (explicit ?? Bun.stringWidth(m[2] ?? "", STRING_WIDTH_OPTS));
 		}
 	}
 
@@ -394,7 +395,8 @@ export function osc66MaxScale(line: string): number {
 	let max = 1;
 	OSC66_SPAN_REGEX.lastIndex = 0;
 	for (let m = OSC66_SPAN_REGEX.exec(line); m !== null; m = OSC66_SPAN_REGEX.exec(line)) {
-		for (const part of m[1].split(":")) {
+		const group1 = m[1] ?? "";
+			for (const part of group1.split(":")) {
 			if (part.indexOf("=") !== 1 || part[0] !== "s") continue;
 			const value = Number.parseInt(part.slice(2), 10);
 			if (Number.isFinite(value) && value > max && value <= 7) max = value;
@@ -623,7 +625,16 @@ export function applyBackgroundToLine(line: string, width: number, bgFn: (text: 
 	const paddingNeeded = Math.max(0, width - visibleLen);
 
 	// Apply background to content + padding
-	const withPadding = line + padding(paddingNeeded);
+	let withPadding = line + padding(paddingNeeded);
+	// Nested background resets (e.g. inline color chips closing with \x1b[49m)
+	// would terminate a plain open…close background wrapper early; re-open the
+	// line background after each one (same trick as Theme.bgFill).
+	if (line.includes("\x1b[49m")) {
+		const probe = bgFn("\x01");
+		const probeIdx = probe.indexOf("\x01");
+		const open = probeIdx > 0 ? probe.slice(0, probeIdx) : "";
+		if (open) withPadding = withPadding.replaceAll("\x1b[49m", `\x1b[49m${open}`);
+	}
 	return bgFn(withPadding);
 }
 

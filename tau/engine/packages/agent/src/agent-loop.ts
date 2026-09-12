@@ -73,6 +73,7 @@ import type {
 	AgentMessage,
 	AgentPreModelCallResult,
 	AgentTool,
+	AgentToolArgStream,
 	AgentToolCall,
 	AgentToolResult,
 	AgentTurnEndContext,
@@ -555,12 +556,35 @@ export function agentLoop(
 }
 
 /**
+ * Trailing assistant message whose runnable tool calls have no results yet.
+ *
+ * A harness that strips failed/aborted tool results in order to re-execute
+ * the calls (e.g. `AgentSession.retry`'s tool replay) leaves the transcript
+ * in this shape; {@link agentLoopContinue} resumes it by running those calls
+ * before the next model call. Cursor exec-resolved blocks are excluded — the
+ * provider already executed those server-side. `length`-truncated turns never
+ * qualify: their trailing call arguments may be incomplete.
+ */
+export function unpairedToolCallTail(messages: readonly AgentMessage[]): AssistantMessage | undefined {
+	const tail = messages[messages.length - 1];
+	if (tail?.role !== "assistant") return undefined;
+	// Mirrors the loop's `runnableStop` rule for fresh turns.
+	if (tail.stopReason !== "toolUse" && tail.stopReason !== "stop") return undefined;
+	const hasRunnable = tail.content.some(
+		c => c.type === "toolCall" && (c as CursorExecResolvedCarrier)[kCursorExecResolved] !== true,
+	);
+	return hasRunnable ? tail : undefined;
+}
+
+/**
  * Continue an agent loop from the current context without adding a new message.
  * Used for retries - context already has user message or tool results.
  *
  * **Important:** The last message in context must convert to a `user` or `toolResult` message
- * via `convertToLlm`. If it doesn't, the LLM provider will reject the request.
- * This cannot be validated here since `convertToLlm` is only called once per turn.
+ * via `convertToLlm` — except for an assistant tail with unpaired runnable
+ * tool calls (see {@link unpairedToolCallTail}), which resumes by executing
+ * those calls first. Any other assistant tail is rejected here; other invalid
+ * tails cannot be validated since `convertToLlm` is only called once per turn.
  */
 export function agentLoopContinue(
 	context: AgentContext,
@@ -572,7 +596,7 @@ export function agentLoopContinue(
 		throw new Error("Cannot continue: no messages in context");
 	}
 
-	if (context.messages[context.messages.length - 1].role === "assistant") {
+	if (context.messages[context.messages.length - 1].role === "assistant" && !unpairedToolCallTail(context.messages)) {
 		throw new Error("Cannot continue from message role: assistant");
 	}
 
@@ -745,7 +769,7 @@ function createDetailedCapture(config: AgentLoopConfig): {
 	const wired: AgentLoopConfig = {
 		...config,
 		telemetry: {
-			...(config.telemetry ?? {}),
+			...config.telemetry,
 			onRunEnd: (summary, coverage) => {
 				captured = { summary, coverage };
 				userHook?.(summary, coverage);
@@ -901,7 +925,10 @@ function extractIntent(args: Record<string, unknown>): { intent?: string; stripp
 	if (typeof intent !== "string") {
 		return { strippedArgs };
 	}
-	const trimmed = intent.trim();
+	const trimmed = intent
+		.trim()
+		.replace(/\s*\.+$/, "")
+		.trim();
 	return { intent: trimmed.length > 0 ? trimmed : undefined, strippedArgs };
 }
 
@@ -1061,6 +1088,43 @@ async function runLoopBody(
 		let softSatisfies: SoftToolRequirement["satisfies"];
 		let directiveResolvedForTurn = false;
 		let turnOpen = false;
+		// A trailing assistant message with unpaired tool calls: the harness
+		// stripped the failed/aborted results so this run re-executes the calls
+		// (AgentSession.retry's tool replay). Run them before the first model
+		// call; the loop then continues normally on the fresh results. Queued
+		// steering stays parked until after the batch — injecting a message
+		// between the tool_use blocks and their results would break the
+		// provider's pairing invariant.
+		const resumeTail = unpairedToolCallTail(currentContext.messages);
+		if (resumeTail) {
+			stream.push({ type: "turn_start" });
+			emitInputMessages(stream, messagesToEmit);
+			messagesToEmit = [];
+			turnOpen = true;
+			const executionResult = await executeToolCalls(
+				currentContext,
+				resumeTail,
+				signal,
+				stream,
+				config,
+				telemetry,
+				invokeAgentSpan,
+			);
+			for (const result of executionResult.toolResults) {
+				currentContext.messages.push(result);
+				newMessages.push(result);
+			}
+			await emitTurnEnd(stream, currentContext, resumeTail, executionResult.toolResults, config, signal, {
+				willContinue: !isDeadlineExceeded(config.deadline),
+			});
+			turnOpen = false;
+			// A tool hook may mark its completed result as terminal (e.g. subagent
+			// yield) — same stop-before-next-model-call rule as the main loop.
+			if (signal?.reason === TERMINAL_TOOL_RESULT_ABORT_REASON) {
+				endAgentStream(stream, newMessages, telemetry, stepCounter.count);
+				return;
+			}
+		}
 
 		// Outer loop: continues when queued follow-up messages arrive after agent would stop
 		while (true) {
@@ -1715,6 +1779,17 @@ async function streamAssistantResponse(
 			let partialMessage: AssistantMessage | null = null;
 			let addedPartial = false;
 			const completedToolCallIds = new Set<string>();
+			const argStreams = new Map<number, { id: string; stream: AgentToolArgStream }>();
+			const cancelArgStreams = (): void => {
+				for (const { id, stream: argStream } of argStreams.values()) {
+					try {
+						argStream.cancel();
+					} catch (error) {
+						logger.debug("Tool argument stream cancel failed", { toolCallId: id, error });
+					}
+				}
+				argStreams.clear();
+			};
 
 			const responseIterator = response[Symbol.asyncIterator]();
 			const finishAbortedStream = async (): Promise<AssistantMessage> => {
@@ -1828,6 +1903,52 @@ async function streamAssistantResponse(
 					// when the LLM is streaming chunks faster than the loop can rest.
 					await yieldIfDue();
 
+					if (event.type === "toolcall_start") {
+						const block = event.partial.content[event.contentIndex];
+						if (block?.type === "toolCall") {
+							const tool = resolveToolForCall(context.tools, block, config.resolveFallbackTool);
+							if (tool?.openArgStream) {
+								try {
+									const argStream = tool.openArgStream({
+										toolCallId: block.id,
+										toolName: block.name,
+										customWireName: block.customWireName,
+										emit: update =>
+											stream.push({
+												type: "tool_stream_update",
+												toolCallId: block.id,
+												toolName: block.name,
+												update,
+											}),
+									});
+									if (argStream) argStreams.set(event.contentIndex, { id: block.id, stream: argStream });
+								} catch (error) {
+									logger.debug("Tool argument stream open failed", { toolCallId: block.id, error });
+								}
+							}
+						}
+					} else if (event.type === "toolcall_delta") {
+						const entry = argStreams.get(event.contentIndex);
+						if (entry) {
+							try {
+								entry.stream.push(event.delta);
+							} catch (error) {
+								logger.debug("Tool argument stream push failed", { toolCallId: entry.id, error });
+							}
+						}
+					} else if (event.type === "toolcall_end") {
+						const entry = argStreams.get(event.contentIndex);
+						if (entry) {
+							try {
+								entry.stream.end(event.toolCall.arguments);
+							} catch (error) {
+								logger.debug("Tool argument stream end failed", { toolCallId: entry.id, error });
+							} finally {
+								argStreams.delete(event.contentIndex);
+							}
+						}
+					}
+
 					switch (event.type) {
 						case "start":
 							partialMessage = event.partial;
@@ -1884,6 +2005,7 @@ async function streamAssistantResponse(
 				}
 			} finally {
 				detachAbortListener?.();
+				cancelArgStreams();
 			}
 
 			let trailing = await response.result();
@@ -2147,6 +2269,68 @@ function resolveToolForCall(
 	);
 }
 
+/** Shortest suggestable segment; below this the match is noise (`id`, `to`). */
+const MIN_TOOL_NAME_SUGGESTION_SEGMENT = 3;
+/** Cap on names listed for an ambiguous miss, so the error stays readable. */
+const MAX_TOOL_NAME_SUGGESTIONS = 3;
+
+/**
+ * Advertised tool names sharing a trailing `_`-delimited segment with `name`.
+ *
+ * A model that mis-transcribes a long opaque tool name reliably keeps the
+ * trailing verb — that segment is the only part carrying meaning, while any
+ * leading id segments are high-entropy and mnemonic-free. Matching on it turns
+ * an otherwise dead `not found` into a self-correcting one.
+ *
+ * Both the last `__` and last `_` boundary are tried, so a name that lost only
+ * its separator (`…__resolve_library_id`) and one that lost a whole id segment
+ * (`…__read`) both recover. Purely advisory: this only builds an error string
+ * and never selects a tool, so dispatch semantics are unchanged.
+ */
+function suggestToolNames(
+	name: string,
+	tools: ReadonlyArray<Pick<AgentTool, "name" | "customWireName">> | undefined,
+): string[] {
+	if (!tools || tools.length === 0) return [];
+	const segments: string[] = [];
+	for (const boundary of ["__", "_"]) {
+		const idx = name.lastIndexOf(boundary);
+		if (idx < 0) continue;
+		const segment = name.slice(idx + boundary.length);
+		if (segment.length >= MIN_TOOL_NAME_SUGGESTION_SEGMENT && !segments.includes(segment)) segments.push(segment);
+	}
+	if (segments.length === 0) return [];
+	// Longest tail first. A distinctive `__` tail (`resolve_library_get`) is a
+	// far stronger signal than the generic `_` tail it contains (`get`), and the
+	// caller truncates the list — so the strongest match has to sort ahead of
+	// however many tools happen to share the weak one.
+	segments.sort((a, b) => b.length - a.length);
+	const matches: string[] = [];
+	for (const segment of segments) {
+		for (const tool of tools) {
+			for (const candidate of [tool.name, tool.customWireName]) {
+				if (candidate === undefined || candidate === name || matches.includes(candidate)) continue;
+				if (candidate === segment || candidate.endsWith(`_${segment}`)) matches.push(candidate);
+			}
+		}
+	}
+	return matches;
+}
+
+/**
+ * `Tool <name> not found`, plus a suggestion when the advertised set contains a
+ * plausible intended target. Exact wording is not a contract; the model reads it.
+ */
+function formatToolNotFoundMessage(
+	name: string,
+	tools: ReadonlyArray<Pick<AgentTool, "name" | "customWireName">> | undefined,
+): string {
+	const suggestions = suggestToolNames(name, tools);
+	if (suggestions.length === 0) return `Tool ${name} not found`;
+	if (suggestions.length === 1) return `Tool ${name} not found. Did you mean ${suggestions[0]}?`;
+	return `Tool ${name} not found. Closest available: ${suggestions.slice(0, MAX_TOOL_NAME_SUGGESTIONS).join(", ")}`;
+}
+
 /**
  * Pre-dispatch phase for every pending tool call on `assistantMessage`, run in
  * call order: intent extraction, argument validation, and the `beforeToolCall`
@@ -2190,7 +2374,7 @@ async function prepareToolCallDispatch(
 		}
 		const validate = (args: Record<string, unknown>): Record<string, unknown> | undefined => {
 			try {
-				if (!tool) throw new Error(`Tool ${toolCall.name} not found`);
+				if (!tool) throw new Error(formatToolNotFoundMessage(toolCall.name, context.tools));
 				return validateToolArguments(tool, { ...toolCall, arguments: args });
 			} catch (validationError) {
 				if (tool?.lenientArgValidation) {
@@ -2380,8 +2564,9 @@ async function executeToolCalls(
 			// Queued steering hard-aborts only interruptible waits and raises the
 			// cooperative soft signal for everything else: the boundary dequeue
 			// below injects the message as soon as running tools finish (or
-			// background themselves), and not-yet-started tools are skipped.
-			// Idempotent — a second steer poll after the abort is a no-op.
+			// background themselves), and not-yet-started interruptible waits
+			// are skipped. Idempotent — a second steer poll after the abort is
+			// a no-op.
 			if (!steeringAbortController.signal.aborted) {
 				interruptState.triggered = true;
 				interruptState.source = steeringSource ?? "unknown";
@@ -2435,16 +2620,18 @@ async function executeToolCalls(
 	};
 
 	const runTool = async (record: (typeof records)[number], index: number): Promise<void> => {
-		// A pending interrupt preempts not-yet-started tools so the message
-		// injects promptly. A peer-IRC interrupt is the exception: it aborts
-		// interruptible waits only and leaves non-interruptible foreground work
-		// untouched (see the emit branch below and the `does not abort a
-		// non-interruptible foreground tool` case). That guarantee must hold for
-		// work still queued behind the aborted wait too — otherwise a batched
-		// `todo`/`write` gets dropped as "Skipped due to pending peer interrupt"
-		// purely for being ordered after the wait (#7493). User/system steering
-		// still preempts everything queued.
-		if (interruptState.triggered && (record.interruptible || interruptState.source !== "irc")) {
+		// A pending interrupt preempts not-yet-started *interruptible* waits so
+		// the message injects promptly instead of sitting out a `hub wait`.
+		// Non-interruptible work is never skipped, whatever the source: the
+		// expensive part — generating the call — is already paid, the tool
+		// itself is cheap, and a skip only makes the model re-emit the same
+		// call after the steer lands (#10439). The same guarantee is what keeps
+		// a batched `todo`/`write` queued behind an aborted wait alive (#7493)
+		// and lets a subagent's already-emitted terminal `yield` commit when
+		// the parent steers mid-stream (#10645). The steer still injects at the
+		// batch boundary; the cooperative soft signal lets long-running tools
+		// step aside on their own.
+		if (interruptState.triggered && record.interruptible) {
 			// Skip both span emission and the collector orphan record here. The
 			// tail sweep below (after `Promise.allSettled`) is the single path
 			// that handles "no result message was produced" — it calls
@@ -2512,7 +2699,7 @@ async function executeToolCalls(
 
 		await runInActiveSpan(toolSpan, async () => {
 			try {
-				if (!tool) throw new Error(`Tool ${toolCall.name} not found`);
+				if (!tool) throw new Error(formatToolNotFoundMessage(toolCall.name, tools));
 				if (record.signal.aborted) {
 					result = createToolSignalAbortedResult(record.signal);
 					isError = true;
@@ -2659,8 +2846,8 @@ async function executeToolCalls(
 
 	// While tool calls are in flight, queued steering or interrupting IRC would
 	// otherwise wait out the tools' own window. Poll only non-consuming queues:
-	// detection hard-aborts interruptible waits, soft-signals cooperative tools
-	// (auto-background bash), and skips not-yet-started tools, so the boundary
+	// detection hard-aborts interruptible waits (running or not yet started)
+	// and soft-signals cooperative tools (auto-background bash), so the boundary
 	// dequeue below injects the message promptly. Gated on immediate-interrupt
 	// mode; checkSteering is idempotent (no-op once triggered).
 	const watchSteeringWhileRunning =

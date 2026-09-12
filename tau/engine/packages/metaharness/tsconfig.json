@@ -1,10 +1,21 @@
 {
-	"extends": "../tsconfig.workspace.json",
-	"compilerOptions": {
-		"jsx": "react-jsx",
-		"lib": ["ES2024", "DOM", "DOM.Iterable", "DOM.AsyncIterable"]
-	},
-	"include": [
-		"src"
-	]
+  "extends": "../tsconfig.workspace.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": [
+      "ES2024",
+      "DOM",
+      "DOM.Iterable",
+      "DOM.AsyncIterable"
+    ],
+    "composite": true,
+    "declaration": true,
+    "incremental": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/tb"
+  ]
 }

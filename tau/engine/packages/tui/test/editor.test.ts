@@ -3,7 +3,14 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 import { stripVTControlCharacters } from "node:util";
-import { CURSOR_MARKER, Editor, type EditorTheme, TUI } from "@oh-my-pi/pi-tui";
+import {
+	type ComposerStyle,
+	CURSOR_MARKER,
+	Editor,
+	type EditorTheme,
+	registerComposerStyle,
+	TUI,
+} from "@oh-my-pi/pi-tui";
 import { CombinedAutocompleteProvider } from "@oh-my-pi/pi-tui/autocomplete";
 import { KeybindingsManager, setKeybindings, TUI_KEYBINDINGS } from "@oh-my-pi/pi-tui/keybindings";
 import { setKittyProtocolActive } from "@oh-my-pi/pi-tui/keys";
@@ -88,6 +95,68 @@ describe("Editor component", () => {
 	});
 
 	describe("Prompt history navigation", () => {
+		it("recalls each large paste after another draft and a submission without overwriting payloads", () => {
+			const editor = new Editor(defaultEditorTheme);
+			const first = "first payload ".repeat(120).trim();
+			const second = "second payload ".repeat(120).trim();
+			const addition = "added payload ".repeat(120).trim();
+			const submitted: string[] = [];
+			editor.onSubmit = text => {
+				submitted.push(text);
+			};
+			editor.handleInput("\x1b[200~" + first + "\x1b[201~");
+			editor.rememberDraft();
+			editor.setText("");
+			editor.handleInput("\x1b[200~" + second + "\x1b[201~");
+			editor.rememberDraft();
+			editor.handleInput("\r");
+			expect(submitted).toEqual([second]);
+
+			editor.handleInput("\x1b[A");
+			expect(editor.getExpandedText()).toBe(second);
+			editor.handleInput("\x1b[A");
+			expect(editor.getExpandedText()).toBe(first);
+			editor.handleInput("\x05");
+			editor.handleInput("\x1b[200~" + addition + "\x1b[201~");
+			editor.handleInput("\r");
+			expect(submitted).toEqual([second, first + addition]);
+			editor.handleInput("\x1b[A");
+			expect(editor.getExpandedText()).toBe(second);
+			editor.handleInput("\x1b[A");
+			expect(editor.getExpandedText()).toBe(first);
+		});
+
+		it("retains only the newest 100 drafts locally and never reloads them from storage", () => {
+			const persisted = [{ prompt: "submitted earlier" }];
+			const storage = {
+				add: async (prompt: string) => {
+					persisted.unshift({ prompt });
+				},
+				getRecent: () => persisted,
+			};
+			const editor = new Editor(defaultEditorTheme);
+			editor.setHistoryStorage(storage);
+			for (let i = 0; i < 101; i++) {
+				editor.setText("draft " + i);
+				editor.rememberDraft();
+				editor.setText("");
+			}
+			for (let i = 100; i >= 1; i--) {
+				editor.handleInput("\x1b[A");
+				expect(editor.getText()).toBe("draft " + i);
+			}
+			editor.handleInput("\x1b[A");
+			expect(editor.getText()).toBe("draft 1");
+			expect(persisted).toEqual([{ prompt: "submitted earlier" }]);
+
+			const reopened = new Editor(defaultEditorTheme);
+			reopened.setHistoryStorage(storage);
+			reopened.handleInput("\x1b[A");
+			expect(reopened.getText()).toBe("submitted earlier");
+			reopened.handleInput("\x1b[A");
+			expect(reopened.getText()).toBe("submitted earlier");
+		});
+
 		it("does nothing on Up arrow when history is empty", () => {
 			const editor = new Editor(defaultEditorTheme);
 
@@ -2940,6 +3009,39 @@ describe("Editor component", () => {
 			expect(stripVTControlCharacters(line)).not.toContain("▌");
 			expect(visibleWidth(line)).toBe(20);
 			expect(line).toContain("\x1b[44m");
+		});
+
+		it("preserves filled extension foregrounds when legacy styles omit filledSurface", () => {
+			const style: ComposerStyle = {
+				id: "legacy-filled-extension",
+				sideBorders: false,
+				verticalChrome: 0,
+				statusAttachment: "none",
+				bottomBar: "none",
+				bottomBarGap: false,
+				defaultPromptGutter: undefined,
+				defaultPaddingX: () => 0,
+				sideChromeWidth: () => 0,
+				renderTop: () => undefined,
+				renderRow: context => [context.surfaceColor(context.text + context.pad)],
+				renderBottom: () => undefined,
+			};
+			const unregister = registerComposerStyle(style);
+			try {
+				const editor = new Editor({
+					...unicodeTheme,
+					textColor: text => `\x1b[31m${text}\x1b[39m`,
+					surfaceColor: text => `\x1b[44m\x1b[37m${text}\x1b[39m\x1b[49m`,
+				});
+				editor.setBorderStyle(style.id);
+				editor.setText("hello");
+
+				const [line] = editor.render(20);
+				expect(line).toContain("\x1b[44m\x1b[37mhello");
+				expect(line).not.toContain("\x1b[44m\x1b[37m\x1b[31m");
+			} finally {
+				unregister();
+			}
 		});
 	});
 });

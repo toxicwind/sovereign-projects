@@ -6,7 +6,7 @@
  */
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { getPluginsDir, getPluginsLockfile, isEnoent } from "@oh-my-pi/pi-utils";
+import { getPluginsDir, getPluginsLockfile, isEnoent, logger } from "@oh-my-pi/pi-utils";
 import { getConfigDirPaths } from "../../config";
 import { registerPluginCacheInvalidator, resolveActiveProjectRegistryPath } from "../../discovery/helpers";
 import { installLegacyPiSpecifierShim } from "./legacy-pi-compat";
@@ -79,14 +79,16 @@ async function collectPluginsAtRoot(
 	projectOverrides: ProjectPluginOverrides,
 	scope: ScopedInstalledPlugin["scope"],
 ): Promise<ScopedInstalledPlugin[]> {
-	console.log("DEBUG: collectPluginsAtRoot called, root=", root);
 	const nodeModulesPath = path.join(root, "node_modules");
+	if (!fs.existsSync(nodeModulesPath)) return [];
 
 	let depsKeys: string[] = [];
+	let hasPackageManifest = false;
 	const pkgJsonPath = path.join(root, "package.json");
 	try {
 		const pkg: { dependencies?: Record<string, string> } = await Bun.file(pkgJsonPath).json();
 		depsKeys = Object.keys(pkg.dependencies ?? {});
+		hasPackageManifest = true;
 	} catch (err) {
 		// Linked-only setups may have no `<root>/package.json` yet — that's
 		// fine, the lockfile still records the link.
@@ -110,8 +112,27 @@ async function collectPluginsAtRoot(
 		names.add(name);
 	}
 
+	const isSymlink = async (target: string): Promise<boolean> => {
+		try {
+			return (await fs.promises.lstat(target)).isSymbolicLink();
+		} catch (err) {
+			if (isEnoent(err)) return false;
+			throw err;
+		}
+	};
 	const plugins: ScopedInstalledPlugin[] = [];
 	for (const name of names) {
+		// When a package manifest exists, a lockfile-only entry is legitimate
+		// only for linked plugins (`omp plugin link`, marketplace runtime
+		// registration), which are symlinks into node_modules. Without a
+		// manifest, retain the established lockfile-only directory layout.
+		if (hasPackageManifest && !depsKeys.includes(name) && !(await isSymlink(path.join(nodeModulesPath, name)))) {
+			logger.warn("plugins: skipping stale lockfile entry not declared in package.json", {
+				name,
+				root,
+			});
+			continue;
+		}
 		const pluginPkgPath = path.join(nodeModulesPath, name, "package.json");
 		let pluginPkg: { version: string; omp?: PluginManifest; pi?: PluginManifest };
 		try {
@@ -174,7 +195,6 @@ async function collectPluginsAtRoot(
  * tempdir, discovery loaders threaded with `LoadContext.home`).
  */
 export async function getEnabledPlugins(cwd: string, opts: { home?: string } = {}): Promise<ScopedInstalledPlugin[]> {
-	console.log("DEBUG: getEnabledPlugins called, cwd=", cwd, "home=", opts.home);
 	const { home } = opts;
 	const cacheKey = enabledPluginsCacheKey(cwd, home);
 	const cached = enabledPluginsCache.get(cacheKey);

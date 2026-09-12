@@ -1,4 +1,13 @@
 {
-	"extends": "../tsconfig.workspace.json",
-	"include": ["src", "test", "scripts"]
+  "extends": "../tsconfig.workspace.json",
+  "include": [
+    "src",
+    "test",
+    "scripts"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "incremental": true
+  }
 }

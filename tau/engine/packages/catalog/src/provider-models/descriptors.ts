@@ -9,6 +9,7 @@ import type { ModelManagerConfig, ProviderCatalogEntry, ProviderDescriptor } fro
 import { googleModelManagerOptions, googleVertexModelManagerOptions } from "./google";
 import { ollamaCloudModelManagerOptions } from "./ollama";
 import {
+	abliterationModelManagerOptions,
 	aiandModelManagerOptions,
 	aimlApiModelManagerOptions,
 	alibabaCodingPlanModelManagerOptions,
@@ -17,7 +18,9 @@ import {
 	basetenModelManagerOptions,
 	bedrockMantleModelManagerOptions,
 	cerebrasModelManagerOptions,
+	clinePassModelManagerOptions,
 	cloudflareAiGatewayModelManagerOptions,
+	commandCodeModelManagerOptions,
 	coreWeaveModelManagerOptions,
 	deepinfraModelManagerOptions,
 	deepseekModelManagerOptions,
@@ -32,12 +35,12 @@ import {
 	litellmModelManagerOptions,
 	lmStudioModelManagerOptions,
 	metaModelManagerOptions,
+	museCodeModelManagerOptions,
 	mistralModelManagerOptions,
 	moonshotModelManagerOptions,
 	nanoGptModelManagerOptions,
 	novitaModelManagerOptions,
 	nvidiaModelManagerOptions,
-	herdModelManagerOptions,
 	ollamaModelManagerOptions,
 	openaiModelManagerOptions,
 	opencodeGoModelManagerOptions,
@@ -70,6 +73,14 @@ import {
 } from "./special";
 
 export const CATALOG_PROVIDERS = [
+	{
+		id: "abliteration",
+		defaultModel: "abliterated-model",
+		envVars: ["ABLITERATION_API_KEY", "ABLIT_KEY"],
+		createModelManagerOptions: (config: ModelManagerConfig) => abliterationModelManagerOptions(config),
+		dynamicModelsAuthoritative: true,
+		catalogDiscovery: { label: "Abliteration" },
+	},
 	{
 		id: "aiand",
 		defaultModel: "moonshotai/kimi-k2.7-code",
@@ -147,6 +158,19 @@ export const CATALOG_PROVIDERS = [
 		catalogDiscovery: { label: "Cloudflare AI Gateway" },
 	},
 	{
+		id: "commandcode",
+		defaultModel: "claude-sonnet-4-6",
+		envVars: ["COMMAND_CODE_API_KEY", "COMMANDCODE_API_KEY"],
+		createModelManagerOptions: (config: ModelManagerConfig) => commandCodeModelManagerOptions(config),
+		allowUnauthenticated: true,
+		dynamicModelsAuthoritative: true,
+		catalogDiscovery: { label: "Command Code", allowUnauthenticated: true },
+		// The Provider API rows carry no reasoning/modality metadata and KDL
+		// owns the deployment policy: same-id references on other hosts must
+		// not backfill reasoning, input, or limits during generation.
+		skipCrossProviderReferenceFills: true,
+	},
+	{
 		id: "cursor",
 		defaultModel: "claude-4.6-opus-high",
 		envVars: ["CURSOR_ACCESS_TOKEN"],
@@ -177,8 +201,16 @@ export const CATALOG_PROVIDERS = [
 		catalogDiscovery: { label: "Devin", envVars: ["DEVIN_API_KEY"], oauthProvider: "devin" },
 	},
 	{
+		id: "cline-pass",
+		defaultModel: "kimi-k3",
+		envVars: ["CLINE_API_KEY"],
+		createModelManagerOptions: (config: ModelManagerConfig) => clinePassModelManagerOptions(config),
+		dynamicModelsAuthoritative: true,
+		catalogDiscovery: { label: "ClinePass", allowUnauthenticated: true },
+	},
+	{
 		id: "firepass",
-		defaultModel: "kimi-k2.6-turbo",
+		defaultModel: "glm-5.2-fast",
 		envVars: ["FIREPASS_API_KEY"],
 		createModelManagerOptions: (config: ModelManagerConfig) => firepassModelManagerOptions(config),
 	},
@@ -239,10 +271,9 @@ export const CATALOG_PROVIDERS = [
 	},
 	{
 		id: "groq",
-		defaultModel: "llama-3.3-70b-versatile",
+		defaultModel: "openai/gpt-oss-120b",
 		envVars: ["GROQ_API_KEY"],
 		createModelManagerOptions: (config: ModelManagerConfig) => groqModelManagerOptions(config),
-		catalogDiscovery: { label: "Groq" },
 	},
 	{
 		id: "huggingface",
@@ -300,6 +331,12 @@ export const CATALOG_PROVIDERS = [
 		createModelManagerOptions: (config: ModelManagerConfig) => mistralModelManagerOptions(config),
 	},
 	{
+		id: "muse-code",
+		defaultModel: "muse-spark-1.3",
+		createModelManagerOptions: (config: ModelManagerConfig) => museCodeModelManagerOptions(config),
+		dynamicModelsAuthoritative: true,
+	},
+	{
 		id: "meta",
 		defaultModel: "muse-spark-1.1",
 		envVars: ["MODEL_API_KEY", "META_API_KEY"],
@@ -328,13 +365,6 @@ export const CATALOG_PROVIDERS = [
 		envVars: ["NVIDIA_API_KEY"],
 		createModelManagerOptions: (config: ModelManagerConfig) => nvidiaModelManagerOptions(config),
 		catalogDiscovery: { label: "NVIDIA" },
-	},
-	{
-		id: "herd",
-		defaultModel: "beellama/exaone-4-0-1-2b-q4km",
-		envVars: ["HERD_API_KEY"],
-		createModelManagerOptions: (config: ModelManagerConfig) => herdModelManagerOptions(config),
-		allowUnauthenticated: true,
 	},
 	{
 		id: "novita",
@@ -595,6 +625,7 @@ export const PROVIDER_DESCRIPTORS: readonly ProviderDescriptor[] = CATALOG_ENTRY
 			createModelManagerOptions: provider.createModelManagerOptions,
 			allowUnauthenticated: provider.allowUnauthenticated,
 			dynamicModelsAuthoritative: provider.dynamicModelsAuthoritative,
+			skipCrossProviderReferenceFills: provider.skipCrossProviderReferenceFills,
 			catalogDiscovery: provider.catalogDiscovery
 				? { ...provider.catalogDiscovery, envVars: provider.catalogDiscovery.envVars ?? provider.envVars ?? [] }
 				: undefined,

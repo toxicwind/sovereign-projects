@@ -1,5 +1,18 @@
 {
-	"extends": "../tsconfig.workspace.json",
-	"include": ["src", "test", "bench"],
-	"exclude": ["node_modules", "dist", "test/ark"]
+  "extends": "../tsconfig.workspace.json",
+  "include": [
+    "src",
+    "test",
+    "bench"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test/ark"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "incremental": true
+  }
 }
