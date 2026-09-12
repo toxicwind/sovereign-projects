@@ -1,13 +1,8 @@
 {
-  "extends": "../tsconfig.workspace.json",
-  "include": [
-    "native",
-    "scripts",
-    "test"
-  ],
-  "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "incremental": true
-  }
+	"extends": "../tsconfig.workspace.json",
+	"include": [
+		"native",
+		"scripts",
+		"test"
+	]
 }
