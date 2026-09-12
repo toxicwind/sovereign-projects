@@ -12,7 +12,7 @@ Prompt/schema overlap: content reconstructible from `(name, JSON schema, blank o
 `scripts/probe.ts`: `@oh-my-pi/pi-ai` `completeSimple`; production-matching model/auth/provider behavior.
 
 ```bash
-bun .tau/skills/tool-prompt-optimization/scripts/probe.ts \
+bun .omp/skills/tool-prompt-optimization/scripts/probe.ts \
   --schema <file|json> --template <file|text> --name <tool_name>
 ```
 
@@ -26,7 +26,7 @@ bun .tau/skills/tool-prompt-optimization/scripts/probe.ts \
 `scripts/probe-builtin.ts` instantiates the live tool; gets exact `toolWireSchema`, `tool.description`, and derived outline:
 
 ```bash
-bun .tau/skills/tool-prompt-optimization/scripts/probe-builtin.ts --tool <name> [--no-summary] [--show]
+bun .omp/skills/tool-prompt-optimization/scripts/probe-builtin.ts --tool <name> [--no-summary] [--show]
 ```
 
 - `--show`: resolved schema, derived outline, real prompt; exits without API calls. Inspect before spending tokens.

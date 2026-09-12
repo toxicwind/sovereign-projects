@@ -108,9 +108,7 @@ function readProfileFromEnvSafe(): string | undefined {
 }
 
 function getBaseConfigRoot(): string {
-	const cfg = getConfigDirName();
-	if (path.isAbsolute(cfg)) return cfg;
-	return path.join(os.homedir(), cfg);
+	return path.join(os.homedir(), getConfigDirName());
 }
 
 function getProfileConfigRoot(profile: string | undefined): string {
@@ -607,9 +605,7 @@ export function getLogPath(date = new Date(), pid = process.pid): string {
  */
 export function getPluginsDir(home?: string): string {
 	if (home !== undefined && home !== RESOLVER_HOME) {
-		const cfg = getConfigDirName();
-		if (path.isAbsolute(cfg)) return path.join(cfg, "plugins");
-		return path.join(home, cfg, "plugins");
+		return path.join(home, getConfigDirName(), "plugins");
 	}
 	return dirs.rootSubdir("plugins", "data");
 }

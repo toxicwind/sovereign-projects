@@ -1519,62 +1519,6 @@ export { formatBytes as formatSize } from "../tools/render-utils";
 export { copyToClipboard } from "../utils/clipboard";
 export { Type } from "./legacy-typebox";
 
-const fileMutationQueues = new Map<string, Promise<void>>();
-let fileMutationRegistrationQueue = Promise.resolve();
-
-function isMissingPathError(error: unknown): boolean {
-	return (
-		typeof error === "object" &&
-		error !== null &&
-		"code" in error &&
-		((error as { code?: string }).code === "ENOENT" || (error as { code?: string }).code === "ENOTDIR")
-	);
-}
-
-async function getMutationQueueKey(filePath: string): Promise<string> {
-	const resolvedPath = path.resolve(filePath);
-	try {
-		return await fs.promises.realpath(resolvedPath);
-	} catch (error) {
-		if (isMissingPathError(error)) {
-			return resolvedPath;
-		}
-		throw error;
-	}
-}
-
-/**
- * Serialize file mutation operations targeting the same file.
- * Operations for different files still run in parallel.
- */
-export async function withFileMutationQueue<T>(filePath: string, fn: () => Promise<T>): Promise<T> {
-	const registration = fileMutationRegistrationQueue.then(async () => {
-		const key = await getMutationQueueKey(filePath);
-		const currentQueue = fileMutationQueues.get(key) ?? Promise.resolve();
-		let releaseNext!: () => void;
-		const nextQueue = new Promise<void>(resolveQueue => {
-			releaseNext = resolveQueue;
-		});
-		const chainedQueue = currentQueue.then(() => nextQueue);
-		fileMutationQueues.set(key, chainedQueue);
-		return { key, currentQueue, chainedQueue, releaseNext };
-	});
-	fileMutationRegistrationQueue = registration.then(
-		() => undefined,
-		() => undefined,
-	);
-	const { key, currentQueue, chainedQueue, releaseNext } = await registration;
-	await currentQueue;
-	try {
-		return await fn();
-	} finally {
-		releaseNext();
-		if (fileMutationQueues.get(key) === chainedQueue) {
-			fileMutationQueues.delete(key);
-		}
-	}
-}
-
 // Legacy pi's `@earendil-works/pi-coding-agent` root exported an `is<Tool>ToolResult`
 // family of type guards that narrow a `tool_result` event (`ToolResultEvent`) by
 // tool name. omp removed them from the public API in 10.2.3, and the barrel above

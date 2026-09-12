@@ -9,7 +9,7 @@ Example hooks for omp-coding-agent.
 omp --hook examples/hooks/permission-gate.ts
 
 # Or copy to hooks directory for auto-discovery
-cp permission-gate.ts ~/.tau/agent/hooks/
+cp permission-gate.ts ~/.omp/agent/hooks/
 ```
 
 ## Examples

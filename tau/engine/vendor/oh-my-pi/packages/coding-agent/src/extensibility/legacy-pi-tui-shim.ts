@@ -10,7 +10,6 @@ import { ImageProtocol, TERMINAL } from "@oh-my-pi/pi-tui";
 
 export * from "@oh-my-pi/pi-tui";
 export { decodePrintableKey as decodeKittyPrintable } from "@oh-my-pi/pi-tui";
-export { stripVTControlCharacters as stripTerminalSequences } from "node:util";
 
 /** Report canonical terminal capabilities through the legacy Pi TUI shape. */
 export function getCapabilities(): {

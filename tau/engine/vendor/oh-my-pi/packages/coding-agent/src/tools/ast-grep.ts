@@ -11,6 +11,7 @@ import type { RenderResultOptions } from "../extensibility/custom-tools/types";
 import { formatHashlineHeader } from "./hashline-format";
 import type { Theme } from "../modes/theme/theme";
 import astGrepDescription from "../prompts/tools/ast-grep.md" with { type: "text" };
+import { sessionDelegationBias } from "../task/prompt-policy";
 import { isScoutSpawnable } from "../task/spawn-policy";
 import { Ellipsis, fileHyperlink, renderStatusLine, renderTreeList, truncateToWidth } from "../tui";
 import { resolveFileDisplayMode } from "../utils/file-display-mode";
@@ -42,6 +43,7 @@ const astGrepSchema = type({
 	"path?": type("string").describe(
 		'file, directory, glob, or internal URL to search; pass several as a semicolon-delimited list ("src; tests"). Omitted -> searches the workspace root (".")',
 	),
+	"lang?": type("string").describe("language override, e.g. cpp for ambiguous .h files"),
 	"skip?": type("number").describe("matches to skip"),
 });
 
@@ -74,7 +76,14 @@ function retainAstFindMatch(matches: AstFindMatch[], capacity: number, candidate
 
 async function runMultiTargetAstGrep(
 	targets: Array<{ basePath: string; glob?: string }>,
-	options: { patterns: string[]; commonBasePath: string; skip: number; limit: number; signal?: AbortSignal },
+	options: {
+		patterns: string[];
+		commonBasePath: string;
+		lang?: string;
+		skip: number;
+		limit: number;
+		signal?: AbortSignal;
+	},
 ): Promise<{
 	matches: AstFindMatch[];
 	totalMatches: number;
@@ -93,6 +102,7 @@ async function runMultiTargetAstGrep(
 	for (const target of targets) {
 		const targetResult = await astGrep({
 			patterns: options.patterns,
+			lang: options.lang,
 			path: target.basePath,
 			glob: target.glob,
 			offset: 0,
@@ -154,6 +164,7 @@ export class AstGrepTool implements AgentTool<typeof astGrepSchema, AstGrepToolD
 	readonly summary = "Search code with AST patterns (structural grep)";
 	get description(): string {
 		return prompt.render(astGrepDescription, {
+			eagerDelegation: sessionDelegationBias(this.session) === "eager",
 			scoutAvailable: isScoutSpawnable(
 				this.session.settings.get("task.disabledAgents") as string[] | undefined,
 				this.session.getSessionSpawns?.() ?? "*",
@@ -215,6 +226,8 @@ export class AstGrepTool implements AgentTool<typeof astGrepSchema, AstGrepToolD
 				settings: this.session.settings,
 				signal,
 				sessionFile: this.session.getSessionFile() ?? undefined,
+				sessionId: this.session.sessionManager?.getSessionId?.() ?? this.session.getSessionId?.() ?? undefined,
+				agentRegistry: this.session.agentRegistry,
 				localProtocolOptions: this.session.localProtocolOptions,
 				skills: this.session.skills,
 				rules: this.session.activeRules,
@@ -235,6 +248,7 @@ export class AstGrepTool implements AgentTool<typeof astGrepSchema, AstGrepToolD
 			const result = multiTargets
 				? await runMultiTargetAstGrep(multiTargets, {
 						patterns,
+						lang: params.lang,
 						commonBasePath: resolvedSearchPath,
 						skip,
 						limit: DEFAULT_AST_LIMIT,
@@ -242,6 +256,7 @@ export class AstGrepTool implements AgentTool<typeof astGrepSchema, AstGrepToolD
 					})
 				: await astGrep({
 						patterns,
+						lang: params.lang,
 						path: resolvedSearchPath,
 						glob: globFilter,
 						offset: skip,

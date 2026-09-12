@@ -34,6 +34,7 @@ export function getExtraHelpText(): string {
   OPENCODE_API_KEY           - OpenCode Zen/OpenCode Go models
   CURSOR_ACCESS_TOKEN        - Cursor AI models
   CLINE_API_KEY              - ClinePass subscription models
+  COMMAND_CODE_API_KEY       - Command Code Provider API models
   AI_GATEWAY_API_KEY         - Vercel AI Gateway
   WAFER_SERVERLESS_API_KEY   - Wafer Serverless (pay-as-you-go)
   YOLO_AUTO_API_KEY          - Yolo-Auto flat-rate Qwen models
@@ -75,7 +76,6 @@ ${chalk.bold("Available Tools (default-enabled unless noted):")}
   lsp           - Language server protocol (code intelligence)
   python        - Execute Python code (requires: ${APP_NAME} setup python)
   notebook      - Edit Jupyter notebooks
-  inspect_image - Analyze images with a vision model
   browser       - Browser automation (Puppeteer)
   computer      - Native host desktop capture and input (disabled by default)
   task          - Launch sub-agents for parallel tasks
