@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-09-08T02:03:47.160Z",
+  "wire": "sovereign <-> sovereign-projects <-> projects",
+  "folders": {
+    "sovereign": {
+      "path": "/home/toxic/sovereign",
+      "helpers": [
+        "git-mutator",
+        "health-audit",
+        "ast-migrate",
+        "mesh-probe",
+        "safe-rg-audit",
+        "hardware-telemetry",
+        "clean-orphans"
+      ],
+      "hasGit": false
+    },
+    "sovereignProjects": {
+      "path": "/home/toxic/projects/sovereign-projects",
+      "symlinkFrom": "/home/toxic/sovereign-projects",
+      "gitRemote": "https://github.com/toxicwind/sovereign-projects.git",
+      "helpersLinked": true
+    },
+    "projects": {
+      "path": "/home/toxic/projects",
+      "subdirs": 467,
+      "relevant": 460,
+      "keyProjectsVerified": 8,
+      "noiseFiltered": 10,
+      "helpersLinked": true
+    }
+  },
+  "shared": {
+    "portsEnv": "/home/toxic/.sovereign-shared/ports.env",
+    "miseToml": "/home/toxic/.sovereign-shared/mise.toml",
+    "agentsMd": "/home/toxic/.sovereign-shared/AGENTS.md",
+    "helpersDir": "/home/toxic/sovereign/helpers"
+  },
+  "crossLinks": {
+    "sovereign->sovereign-projects": ".sovereign-helpers -> ../../sovereign/helpers",
+    "sovereign->projects": ".shared -> ../.sovereign-shared",
+    "sovereign-projects->sovereign": ".sovereign-helpers -> ../../sovereign/helpers",
+    "sovereign-projects->projects": ".shared -> ../.sovereign-shared",
+    "projects->sovereign": ".shared -> ./.sovereign-shared",
+    "projects->sovereign-projects": ".shared -> ./.sovereign-shared"
+  }
+}

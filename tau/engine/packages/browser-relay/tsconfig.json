@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.workspace.json",
+  "include": [
+    "extension",
+    "scripts"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "incremental": true
+  }
+}
