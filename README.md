@@ -119,6 +119,13 @@ Live service: pitchfork `herd` → `stack/services/herd.sh` with
 [`flock` daemon`](https://github.com/toxicwind/sovereign-projects/blob/main/pitchfork.toml#L224-L231) ·
 [`keypool` daemon`](https://github.com/toxicwind/sovereign-projects/blob/main/pitchfork.toml#L662-L668)
 
+The keypool sidecar (`bin/herd-keypool.py`) supports concurrent
+first-valid-wins racing via `KEYPOOL_RACE_KEYS=N` — production default is
+`1` (serial, legacy behavior, unchanged). To experiment, run a sidecar copy
+with `KEYPOOL_PORT=<alt>` + `KEYPOOL_RACE_KEYS=2` and point test traffic at
+it; do not enable racing on the live `:25109` pool without a deliberate
+decision. See [`docs/edge-additions-20260920.md`](docs/edge-additions-20260920.md).
+
 ### Agents
 
 - **[`projects/tau/`](https://github.com/toxicwind/sovereign-projects/tree/main/projects/tau)** — Tau agent engine (AI-native agent engine, 1M+ context reasoning, MCP + herd inference). Pitchfork daemon `tau` runs `engine/packages/coding-agent/dist/omp`.
@@ -162,8 +169,11 @@ unified mesh config. Daemons: `shep` (`:25127`, MCP federation),
 
 `docs/` holds architecture + ops docs (see
 [`docs/README.md`](https://github.com/toxicwind/sovereign-projects/blob/main/docs/README.md)
-for the index). `hatch/docs/` holds the bridge/cell docs moved there by the
-reorg.
+for the index), including
+[`docs/edge-additions-20260920.md`](https://github.com/toxicwind/sovereign-projects/blob/main/docs/edge-additions-20260920.md) —
+the September-2026 cutting-edge additions (keypool racing, hedged racer,
+routing scores, squawk history search). `hatch/docs/` holds the bridge/cell
+docs moved there by the reorg.
 
 **Required reading for every agent in the fleet:**
 [`docs/fleet-knowledgebase.md`](docs/fleet-knowledgebase.md) — estate map,
