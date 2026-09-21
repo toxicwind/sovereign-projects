@@ -94,15 +94,65 @@ def _audit(**fields) -> None:
         pass
 
 
+# Port is environment-driven (pitchfork daemons.awrawr-mcp sets AWR_MCP_PORT).
+_PORT = int(os.environ.get("AWR_MCP_PORT", "25198"))
+
 mcp = FastMCP(
     "awrawr-exec",
     host="127.0.0.1",
-    port=8377,
+    port=_PORT,
     transport_security=TransportSecuritySettings(
         enable_dns_rebinding_protection=True,
         allowed_hosts=_allowed_hosts,
     ),
 )
+
+
+# --- canonical spawn environment -------------------------------------------
+# The bridge is a single-user lane for the toxic user on yote. This function
+# normalizes the environment for EVERY spawned user command, in protocol
+# code, so no caller ever needs to export PATH/HOME by hand:
+#   - HOME/USER/LOGNAME are pinned to the toxic user. A supervisor started
+#     from a foreign session (or with a scrubbed env) can never leak its
+#     HOME into remote commands again.
+#   - PATH is rebuilt with the canonical yote dirs first (mise shims must
+#     win over system binaries), then the supervisor's surviving entries
+#     (minus unexpanded shell placeholders like fish's literal "%h/..."),
+#     then the core system dirs.
+# bridge/awrawr_ws_exec.py carries the same canonical definition for the WS
+# lane — keep the two in sync.
+_CANON_HOME = "/home/toxic"
+_CANON_USER = "toxic"
+_CANON_PATH_FIRST = ("/home/toxic/.local/share/mise/shims",
+                     "/home/toxic/.local/bin")
+_CANON_CORE_PATH_DIRS = ("/usr/local/sbin", "/usr/local/bin", "/usr/sbin",
+                         "/usr/bin", "/sbin", "/bin")
+
+
+def _canonical_spawn_env():
+    seen, parts = set(), []
+    for d in _CANON_PATH_FIRST:
+        seen.add(d)
+        parts.append(d)
+    raw = os.environ.get("PATH", "") or ""
+    for seg in raw.split(os.pathsep):
+        seg = seg.strip()
+        if not seg or "%" in seg:  # unexpanded placeholder, unusable
+            continue
+        seg = os.path.expanduser(seg)
+        if seg and seg not in seen:
+            seen.add(seg)
+            parts.append(seg)
+    for d in _CANON_CORE_PATH_DIRS:
+        if d not in seen:
+            seen.add(d)
+            parts.append(d)
+    env = dict(os.environ)
+    env["PATH"] = os.pathsep.join(parts)
+    env["HOME"] = _CANON_HOME
+    env["USER"] = _CANON_USER
+    env["LOGNAME"] = _CANON_USER
+    return env
 
 
 @mcp.tool()
@@ -132,6 +182,7 @@ def exec(cmd: str, workdir: str = "/home/toxic") -> str:
             text=True,
             timeout=90,
             cwd=workdir or "/home/toxic",
+            env=_canonical_spawn_env(),
         )
         out = (p.stdout or "") + (p.stderr or "")
         truncated = len(out) > 20000
@@ -185,7 +236,8 @@ def _mcp_run_one(cmd, workdir, timeout=90):
         return "POLICY DENIED: %s" % denied
     try:
         p = subprocess.run(cmd, shell=True, capture_output=True, text=True,
-                           timeout=timeout, cwd=workdir or "/home/toxic")
+                           timeout=timeout, cwd=workdir or "/home/toxic",
+                           env=_canonical_spawn_env())
         out = (p.stdout or "") + (p.stderr or "")
         truncated = len(out) > 20000
         _audit(**base, status="ok", exit=p.returncode, out_chars=len(out),
@@ -272,7 +324,7 @@ def exec_bg(cmd: str, workdir: str = "/home/toxic") -> str:
         proc = subprocess.Popen(
             cmd, shell=True, cwd=workdir or "/home/toxic",
             stdout=out, stderr=err, stdin=subprocess.DEVNULL,
-            start_new_session=True)
+            start_new_session=True, env=_canonical_spawn_env())
     except Exception as e:
         _audit(tool="exec_bg", status="error", reason=str(e)[:200],
                cmd=cmd[:500])
@@ -341,7 +393,8 @@ def _race_one(strategy, timeout):
     match = strategy.get('match')
     t0 = time.monotonic()
     try:
-        p = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=timeout)
+        p = subprocess.run(cmd, shell=True, capture_output=True, text=True,
+                             timeout=timeout, env=_canonical_spawn_env())
         out = p.stdout or ''
         valid = p.returncode == 0 and (match is None or re.search(match, out) is not None)
         r = {'name': name, 'ok': True, 'valid': valid, 'rc': p.returncode, 'error': None, 'output': out if valid else ''}
@@ -748,7 +801,7 @@ async def _serve() -> None:
     app = mcp.streamable_http_app()
     app.add_middleware(HeaderTokenAuth)
     await uvicorn.Server(
-        uvicorn.Config(app, host="127.0.0.1", port=8377, log_level="info")
+        uvicorn.Config(app, host="127.0.0.1", port=_PORT, log_level="info")
     ).serve()
 
 
