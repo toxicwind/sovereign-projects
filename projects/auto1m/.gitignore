@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+test-run.log
+test-evidence.json
