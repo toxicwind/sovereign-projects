@@ -66,7 +66,6 @@ import urllib.parse
 from pathlib import Path
 
 import fleet_relay
-import seq_alloc
 
 # ---------------------------------------------------------------------------
 # process/boot/exit telemetry (2026-09-18)
@@ -232,12 +231,7 @@ class FeedState:
         self.channel = channel
         self.identity = identity
         self.key_dir = key_dir
-        # Durable high-water floor (2026-09-21): after message
-        # deletions the disk-derived max can sit below seqs the
-        # feed already broadcast, so seed from the monotonic
-        # allocator too -- never start below it.
-        self.high = max(_channel_high(chan_dir),
-                        seq_alloc.read_high(chan_dir.parent, channel))
+        self.high = _channel_high(chan_dir)
         self.cond = threading.Condition()
         self.stop = threading.Event()
 
@@ -349,13 +343,8 @@ def _publish_message(root: Path, channel: str, sender: str, title: str, text: st
     with open(lock_path, "w") as lockf:
         fcntl.flock(lockf, fcntl.LOCK_EX)
         try:
-            # Monotonic durable allocation (2026-09-21): the old
-            # disk-derived next-seq reused dead numbers after
-            # deletions and the in-memory high-water mark then
-            # suppressed those messages forever (seq <= high
-            # looks already-delivered). alloc_seq serializes on
-            # its own internal flock; safe inside this outer lock.
-            seq = seq_alloc.alloc_seq(root, channel)
+            max_seq = _channel_high(chan_dir)
+            seq = max_seq + 1
             slug = "".join(
                 c if c.isalnum() else "-"
                 for c in (title[:30].lower() if title else "msg")
@@ -409,7 +398,6 @@ class _Handler(http.server.BaseHTTPRequestHandler):
     def _send_json(self, code: int, obj: dict):
         body = json.dumps(obj, ensure_ascii=False).encode("utf-8")
         self.send_response(code)
-        self._send_cors()
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
@@ -418,29 +406,8 @@ class _Handler(http.server.BaseHTTPRequestHandler):
     def _send_404(self):
         # Never reveal the endpoint exists: bare 404, empty body.
         self.send_response(404)
-        self._send_cors()
         self.send_header("Content-Length", "0")
         self.end_headers()
-
-    # CORS (2026-09-21, Chris's direct order): the feed is fetchable
-    # cross-origin under a simple open policy. Auth still via Bearer <redacted>
-    # preflight is answered explicitly; actual responses carry ACAO too.
-    def _send_cors(self):
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers",
-                         "Authorization, Content-Type")
-        self.send_header("Access-Control-Max-Age", "86400")
-
-    def do_OPTIONS(self):
-        parsed = urllib.parse.urlparse(self.path)
-        if parsed.path.startswith("/squawk-feed/"):
-            self.send_response(204)
-            self._send_cors()
-            self.send_header("Content-Length", "0")
-            self.end_headers()
-            return
-        self._send_404()
 
     def _send_ui(self):
         # Web UI shell: static HTML, zero secrets inside. Feed data still
@@ -451,7 +418,6 @@ class _Handler(http.server.BaseHTTPRequestHandler):
             self._send_404()
             return
         self.send_response(200)
-        self._send_cors()
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "no-store")
