@@ -1,0 +1,10 @@
+{
+  "ts": 1789949458.2597632,
+  "question_id": "a24226a0a42bab3d",
+  "question": "Will Catherine Connolly win by between 30% and 100% of votes in the final round of the 2025 Irish presidential election? Resolution date: October 27, 2025. Resolution criterion: If the margin of victory for Catherine Connolly in the final round of the 2025 Irish presidential election in Ireland falls within between 30% and 100% percentage points, inclusive of both endpoints, then the market resolves to Yes.\nThe margin of victory is calculated based on the margin type specified. For percentage points: the difference between the candidate's vote share and their closest competitor's share. For raw votes: the difference in total vote counts. For electoral votes: the difference in electoral votes won. Positive margins indicate the candidate won, negative margins indicate they lost, and zero indicates a tie. For uncontested races, the margin is 100 percentage points or total votes cast. Write-in votes are aggregated as a single candidate if not individually reported. Only certified results are used for resolution. If the election is cancelled, postponed beyond expiration, or no certified results are available, all markets resolve to No. Recounts that change the certified margin before expiration use the most recent certified results.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

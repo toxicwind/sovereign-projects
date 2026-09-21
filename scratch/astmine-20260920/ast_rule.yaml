@@ -1,0 +1,4 @@
+id: nvcf-header
+language: Tsx
+rule:
+  regex: 'NVCF-[A-Za-z-]+'

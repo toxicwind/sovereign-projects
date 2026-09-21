@@ -1,0 +1,10 @@
+{
+  "ts": 1789948119.406948,
+  "question_id": "f58c4369e7d4d96b",
+  "question": "Will Brooke Rollins be confirmed as Secretary of Agriculture by Dec 31, 2026? Resolution criterion: If Brooke Rollins is the first person confirmed by the Senate to be Secretary of Agriculture between Issuance and December 31, 2026, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

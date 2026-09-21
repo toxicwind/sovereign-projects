@@ -1,0 +1,1557 @@
+[
+ {
+  "file": "gabriel-ferraresi-NIMGEN/src/index.ts",
+  "cases": [
+   "generate_image",
+   "edit_image",
+   "list_models"
+  ],
+  "text": "switch (name) {\\n// \u2500\u2500 generate_image \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\\n  case \"generate_image\": {\\n  const genArgs = args as Record<string, unknown>;\\n  const prompt = genArgs.prompt as string;\\n  const model = (genArgs.model as string) ?? \"flux-1-dev\";\\n  const steps = genArgs.steps as number | undefined;\\n  const cfg_scale = (genArgs.cfg_scale as number) ?? 5;\\n  const negative_prompt = genArgs.negative_prompt as string | undefined;\\n  const seed = (genArgs.seed as number) ?? 0;\\n..."
+ },
+ {
+  "file": "stillhue-claudio/cli/vscode-extension/openclaude-vscode/src/state.js",
+  "cases": [
+   "ollama",
+   "gemini",
+   "mistral",
+   "codex",
+   "atomic-chat",
+   "openai"
+  ],
+  "text": "switch (profile.profile) {\\n    case 'ollama':\\n      return buildProviderState('Ollama', getDetail(profile.env, 'saved profile'), 'profile');\\n    case 'gemini':\\n      return buildProviderState('Gemini', getDetail(profile.env, 'saved profile'), 'profile');\\n    case 'mistral':\\n      return buildProviderState('Mistral', getDetail(profile.env, 'saved profile'), 'profile')\\n    case 'codex':\\n      return buildProviderState('Codex', getDetail(profile.env, 'saved profile'), 'profile');\\n    case ..."
+ },
+ {
+  "file": "stillhue-claudio/cli/vscode-extension/openclaude-vscode/src/presentation.js",
+  "cases": [
+   "profile",
+   "env",
+   "shim",
+   "unknown"
+  ],
+  "text": "switch (providerState?.source) {\\n    case 'profile':\\n      return [detail, providerSourceLabel].filter(Boolean).join(' \u00b7 ');\\n    case 'env':\\n      return /^from environment$/i.test(detail)\\n        ? detail\\n        : [detail, providerSourceLabel].filter(Boolean).join(' \u00b7 ');\\n    case 'shim':\\n    case 'unknown':\\n      return detail;\\n    default:\\n      return [detail, providerSourceLabel].filter(Boolean).join(' \u00b7 ');\\n  }"
+ },
+ {
+  "file": "tibbee-pi-nvidia-nim-provider/models/registry.ts",
+  "cases": [
+   "qwen-chat-template",
+   "deepseek-v4",
+   "kimi",
+   "nemotron-3-super-effort",
+   "reasoning-effort",
+   "none"
+  ],
+  "text": "switch (thinkingFormat) {\\n    case \"qwen-chat-template\":\\n      return { thinkingFormat: \"qwen-chat-template\" };\\n    case \"deepseek-v4\":\\n      return {}; // Handled by before_provider_request handler\\n    case \"kimi\":\\n      return {}; // Handled by before_provider_request handler (boolean thinking kwarg)\\n    case \"nemotron-3-super-effort\":\\n      return { supportsReasoningEffort: true }; // Pi sends reasoning_effort, handler converts to enable_thinking + low_effort\\n    case \"reasoning-effo..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/toolSearch.ts",
+  "cases": [
+   "tst",
+   "tst-auto",
+   "standard"
+  ],
+  "text": "switch (mode) {\\n    case 'tst':\\n      logModeDecision(true, mode, 'tst_enabled')\\n      return true\\n\\n    case 'tst-auto': {\\n      const { enabled, debugDescription, metrics } = await checkAutoThreshold(\\n        tools,\\n        getToolPermissionContext,\\n        agents,\\n        model,\\n      )\\n\\n      if (enabled) {\\n        logForDebugging(\\n          `Auto tool search enabled: ${debugDescription}` +\\n            (source ? ` [source: ${source}]` : ''),\\n        )\\n        logModeDecision..."
+ },
+ {
+  "file": "diegovisk-pi-nvidia-nim/models/registry.ts",
+  "cases": [
+   "qwen-chat-template",
+   "deepseek-v4",
+   "deepseek-nim",
+   "minimax-inline",
+   "thinking-budget",
+   "nemotron-3-super-effort",
+   "nemotron-system-detailed",
+   "nemotron-system-think",
+   "reasoning-effort",
+   "none"
+  ],
+  "text": "switch (thinkingFormat) {\\n    case \"qwen-chat-template\":\\n      return { thinkingFormat: \"qwen-chat-template\" };\\n    case \"deepseek-v4\":\\n    case \"deepseek-nim\":\\n      return {}; // Handled by before_provider_request handler\\n    case \"minimax-inline\":\\n      return {}; // Handled by before_provider_request handler\\n    case \"thinking-budget\":\\n      return {}; // Handled by before_provider_request handler\\n    case \"nemotron-3-super-effort\":\\n      return { supportsReasoningEffort: true }; ..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/swarm/inProcessRunner.ts",
+  "cases": [
+   "shutdown_request",
+   "new_message",
+   "aborted"
+  ],
+  "text": "switch (waitResult.type) {\\n        case 'shutdown_request':\\n          // Pass shutdown request to model for decision\\n          // Format as teammate-message for consistency with how tmux teammates receive it\\n          // The model will use approveShutdown or rejectShutdown tool\\n          logForDebugging(\\n            `[inProcessRunner] ${identity.agentId} received shutdown request - passing to model`,\\n          )\\n          currentPrompt = formatAsTeammateMessage(\\n            waitResult.r..."
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/ui/src/pages/home/components/providers.tsx",
+  "cases": [
+   "provider",
+   "credentials",
+   "models",
+   "verify"
+  ],
+  "text": "switch (step) {\\n      case \"provider\":\\n        return providerIdentityReady;\\n      case \"credentials\":\\n        return credentialReady;\\n      case \"models\":\\n        return modelsReady;\\n      case \"verify\":\\n        return true;\\n    }"
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/ui/src/pages/home/components/providers.tsx",
+  "cases": [
+   "provider",
+   "credentials",
+   "models",
+   "verify"
+  ],
+  "text": "switch (step) {\\n      case \"provider\":\\n        return true;\\n      case \"credentials\":\\n        return providerIdentityReady;\\n      case \"models\":\\n        return providerIdentityReady && credentialReady;\\n      case \"verify\":\\n        return providerIdentityReady && credentialReady && modelsReady;\\n    }"
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/ui/src/pages/home/components/onboarding.tsx",
+  "cases": [
+   "provider",
+   "credentials",
+   "models",
+   "verify"
+  ],
+  "text": "switch (step) {\\n      case \"provider\":\\n        return providerIdentityReady;\\n      case \"credentials\":\\n        return providerCredentialReady;\\n      case \"models\":\\n        return providerModelsReady;\\n      case \"verify\":\\n        return true;\\n    }"
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/ui/src/pages/home/components/onboarding.tsx",
+  "cases": [
+   "provider",
+   "credentials",
+   "models",
+   "verify"
+  ],
+  "text": "switch (step) {\\n      case \"provider\":\\n        return true;\\n      case \"credentials\":\\n        return providerIdentityReady;\\n      case \"models\":\\n        return providerIdentityReady && providerCredentialReady;\\n      case \"verify\":\\n        return providerIdentityReady && providerCredentialReady && providerModelsReady;\\n    }"
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/ui/src/pages/home/components/network-logs.tsx",
+  "cases": [
+   "time",
+   "status",
+   "stream",
+   "model",
+   "credential",
+   "tokens",
+   "duration"
+  ],
+  "text": "switch (columnId) {\\n    case \"time\":\\n      return t(\"\u65f6\u95f4\");\\n    case \"status\":\\n      return t(\"\u72b6\u6001\");\\n    case \"stream\":\\n      return t(\"Stream\");\\n    case \"model\":\\n      return t(\"\u6a21\u578b\");\\n    case \"credential\":\\n      return t(\"Credential\");\\n    case \"tokens\":\\n      return t(\"Token\");\\n    case \"duration\":\\n      return t(\"\u6301\u7eed\u65f6\u95f4\");\\n  }"
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/services/modelCatalogSync.ts",
+  "cases": [
+   "anthropic-api",
+   "openai-api",
+   "deepseek",
+   "xai",
+   "moonshot",
+   "zai",
+   "nvidia-router",
+   "ollama"
+  ],
+  "text": "switch (provider) {\\n    case 'anthropic-api': {\\n      const cred = await resolveApiKey('anthropic', PROFILE_IDS.anthropicApiKey);\\n      if (!cred) throw new Error('No Anthropic API key configured');\\n      return anthropicClient.listModels(cred.apiKey);\\n    }\\n    case 'openai-api': {\\n      const cred = await resolveApiKey('openai', PROFILE_IDS.openaiApiKey);\\n      if (!cred) throw new Error('No OpenAI API key configured');\\n      return openaiClient.listModels(cred.apiKey);\\n    }\\n    ca..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/integrations/discoveryService.ts",
+  "cases": [
+   "ollama",
+   "openai-compatible",
+   "custom"
+  ],
+  "text": "switch (discovery.kind) {\\n    case 'ollama': {\\n      const result = await probeOllamaModelCatalog({\\n        baseUrl: getRouteBaseUrl(routeId, options),\\n      })\\n      if (!result.reachable) {\\n        return null\\n      }\\n      return result.models.map(model => toOllamaModelEntry(model))\\n    }\\n\\n    case 'openai-compatible': {\\n      const discoveryBaseUrl = getRouteBaseUrl(routeId, options)\\n      const discoveryApiKey = getRouteDiscoveryApiKey(routeId, options)\\n      const discoveryHe..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/integrations/discoveryService.ts",
+  "cases": [
+   "ollama-generation",
+   "openai-compatible-models"
+  ],
+  "text": "switch (readinessKind) {\\n    case 'ollama-generation':\\n      return probeOllamaGenerationReadiness({\\n        baseUrl: getRouteBaseUrl(routeId, options),\\n        model: options?.model,\\n        timeoutMs: options?.timeoutMs,\\n      })\\n\\n    case 'openai-compatible-models': {\\n      if (routeId === 'atomic-chat') {\\n        return probeAtomicChatReadiness({\\n          baseUrl: getRouteBaseUrl(routeId, options),\\n        })\\n      }\\n\\n      const discovered = await runDiscovery(routeId, optio..."
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/router/rules.ts",
+  "cases": [
+   "analysis",
+   "code-review",
+   "marketing",
+   "writing",
+   "test",
+   "fix",
+   "implementation",
+   "refactor",
+   "refactoring"
+  ],
+  "text": "switch (taskKind) {\\n      case 'analysis':\\n      case 'code-review': {\\n        const reviewer = this.reg().getBest('code-review')\\n          || this.reg().getBest('analysis')\\n          || this.reg().getBest('reasoning')\\n          || this.fallback();\\n        return { model: reviewer, reason: `${taskKind} task \u2014 best reviewer`, promoted: false };\\n      }\\n      case 'marketing':\\n      case 'writing': {\\n        const writer = this.reg().getCheapest('marketing')\\n          || this.reg().get..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/providerProfiles.ts",
+  "cases": [
+   "anthropic",
+   "gemini",
+   "mistral",
+   "github",
+   "github-enterprise",
+   "bedrock",
+   "vertex",
+   "openai"
+  ],
+  "text": "switch (compatibilityMode) {\\n    case 'anthropic':\\n      if (route.vendorId === 'minimax') {\\n        const env =\\n          buildMiniMaxProfileEnv({\\n            model: getPrimaryModel(activeProfile.model),\\n            baseUrl: activeProfile.baseUrl,\\n            apiKey: activeProfile.apiKey,\\n            processEnv: process.env,\\n          }) ?? null\\n        return env\\n          ? { profile: 'minimax', env: applySupportedProfileCustomHeaders(activeProfile, env) }\\n          : null\\n      ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/inference/llama/llama-cpp-dgx-spark-protocol-qualification.test.ts",
+  "cases": [
+   "http://127.0.0.1:18081/health",
+   "http://127.0.0.1:18081/v1/models",
+   "http://127.0.0.1:18081/props",
+   "http://127.0.0.1:18081/metrics",
+   "http://127.0.0.1:18081/",
+   "http://127.0.0.1:18081/models/load",
+   "http://127.0.0.1:18081/slots",
+   "http://127.0.0.1:18081/cors-proxy",
+   "http://127.0.0.1:18081/tools"
+  ],
+  "text": "switch (url) {\\n        case \"http://127.0.0.1:18081/health\":\\n          healthProbes += 1;\\n          return new Response(\"{}\", { status: 200 });\\n        case \"http://127.0.0.1:18081/v1/models\":\\n          return jsonResponse({ data: [{ id: MODEL }], object: \"list\" });\\n        case \"http://127.0.0.1:18081/props\":\\n          return init?.method === \"POST\"\\n            ? jsonResponse({ error: {} }, 501)\\n            : jsonResponse(properties(plan.recipe.serve.contextSize));\\n        case \"http:..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/providerFlag.ts",
+  "cases": [
+   "anthropic",
+   "custom-anthropic",
+   "openai",
+   "gemini",
+   "mistral",
+   "github",
+   "bedrock",
+   "vertex",
+   "ollama",
+   "nvidia-nim",
+   "bankr",
+   "minimax",
+   "gitlawb-opengateway",
+   "nearai",
+   "xai",
+   "xiaomi-mimo",
+   "xiaomi-mimo-token",
+   "venice",
+   "atlas-cloud",
+   "fireworks",
+   "cloudflare"
+  ],
+  "text": "switch (provider) {\\n    case 'anthropic': {\\n      // Default \u2014 clear any custom native proxy contract so this explicit\\n      // provider flag cannot keep routing requests to a prior endpoint.\\n      // Preserve a first-party API key: it is the normal credential for this\\n      // provider and may have been supplied directly through the environment.\\n      const hadCustomAnthropicEndpoint =\\n        !isFirstPartyAnthropicBaseUrlForEnv(process.env)\\n      delete process.env.ANTHROPIC_BASE_URL\\n..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/bridge/bridgeMessaging.ts",
+  "cases": [
+   "initialize",
+   "set_model",
+   "set_max_thinking_tokens",
+   "set_permission_mode",
+   "interrupt"
+  ],
+  "text": "switch (request.request.subtype) {\\n    case 'initialize':\\n      // Respond with minimal capabilities \u2014 the REPL handles\\n      // commands, models, and account info itself.\\n      response = {\\n        type: 'control_response',\\n        response: {\\n          subtype: 'success',\\n          request_id: request.request_id,\\n          response: {\\n            commands: [],\\n            output_style: 'normal',\\n            available_output_styles: ['normal'],\\n            models: [],\\n            ..."
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/components/pipeline/StepConfigPanel.tsx",
+  "cases": [
+   "router",
+   "anthropic-cli",
+   "anthropic-api",
+   "openai-cli",
+   "openai-api",
+   "deepseek",
+   "xai",
+   "zai",
+   "google",
+   "moonshot",
+   "nvidia-router",
+   "ollama"
+  ],
+  "text": "switch (provider) {\\n    case 'router': return 'Smart Routing';\\n    case 'anthropic-cli': return 'Anthropic (CLI)';\\n    case 'anthropic-api': return 'Anthropic (API)';\\n    case 'openai-cli': return 'OpenAI (CLI)';\\n    case 'openai-api': return 'OpenAI (API)';\\n    case 'deepseek': return 'DeepSeek';\\n    case 'xai': return 'xAI (Grok)';\\n    case 'zai': return 'Z.AI (GLM)';\\n    case 'google': return 'Google';\\n    case 'moonshot': return 'Kimi';\\n    case 'nvidia-router': return 'NVIDIA';\\n..."
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/electron/bundled-plugins/claude-design/index.cjs",
+  "cases": [
+   "current_user_access",
+   "cowork_sysprompt_map",
+   "gated_messages",
+   "models",
+   "model_presets",
+   "model-presets",
+   "model_selector_config",
+   "model_selector_state",
+   "server_localizations",
+   "system_prompts"
+  ],
+  "text": "switch (match[1]) {\\n    case \"current_user_access\":\\n      return jsonResponse(200, currentUserAccessPayload(runtime.me));\\n    case \"cowork_sysprompt_map\":\\n      return jsonResponse(200, null);\\n    case \"gated_messages\":\\n      return jsonResponse(200, null);\\n    case \"models\":\\n    case \"model_presets\":\\n    case \"model-presets\":\\n      await ensureClaudeDesignGatewayModels(runtime);\\n      return jsonResponse(200, runtime.me.modelPresets || []);\\n    case \"model_selector_config\":\\n      a..."
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/electron/bundled-plugins/claude-design/index.cjs",
+  "cases": [
+   "always",
+   "image",
+   "long-context",
+   "model",
+   "model-prefix",
+   "thinking",
+   "web-search"
+  ],
+  "text": "switch (rule.type) {\\n    case \"always\":\\n      return true;\\n    case \"image\":\\n      return hasImageContent(body?.messages);\\n    case \"long-context\":\\n      return estimateTokenCount(body) > (rule.threshold || 200000);\\n    case \"model\":\\n      return Boolean(rule.model && requestedModel === rule.model);\\n    case \"model-prefix\":\\n      return Boolean(rule.pattern && requestedModel?.startsWith(rule.pattern));\\n    case \"thinking\":\\n      return Boolean(body?.thinking);\\n    case \"web-search\":..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/commands/provider/provider.tsx",
+  "cases": [
+   "gemini",
+   "mistral",
+   "codex",
+   "ollama",
+   "openai"
+  ],
+  "text": "switch (profile) {\\n    case 'gemini':\\n      {\\n        const geminiMetadata = getProviderPresetUiMetadata('gemini')\\n      return {\\n        providerLabel: geminiMetadata.label,\\n        modelLabel: getSafeDisplayValue(\\n          env.GEMINI_MODEL ?? DEFAULT_GEMINI_MODEL,\\n          process.env,\\n          env,\\n        ),\\n        endpointLabel: getSafeDisplayValue(\\n          env.GEMINI_BASE_URL ?? DEFAULT_GEMINI_BASE_URL,\\n          process.env,\\n          env,\\n        ),\\n        credenti..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/commands/provider/provider.tsx",
+  "cases": [
+   "choose",
+   "auto-goal",
+   "auto-detect",
+   "ollama-detect",
+   "openai-key",
+   "openai-base",
+   "openai-model",
+   "mistral-key",
+   "mistral-base",
+   "mistral-model",
+   "gemini-auth-method",
+   "gemini-key",
+   "gemini-access-token",
+   "gemini-model",
+   "codex-check",
+   "codex-oauth"
+  ],
+  "text": "switch (step.name) {\\n    case 'choose':\\n      return (\\n        <ProviderChooser\\n          onChoose={value => {\\n            if (value === 'auto') {\\n              setStep({ name: 'auto-goal' })\\n            } else if (value === 'ollama') {\\n              setStep({ name: 'ollama-detect' })\\n            } else if (value === 'openai') {\\n              setStep({\\n                name: 'openai-key',\\n                defaultModel: defaults.openAIModel,\\n              })\\n            } else if (val..."
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/components/council/AddPersonaModal.tsx",
+  "cases": [
+   "router",
+   "anthropic-cli",
+   "anthropic-api",
+   "openai-cli",
+   "openai-api",
+   "deepseek",
+   "xai",
+   "zai",
+   "google",
+   "moonshot",
+   "nvidia-router",
+   "ollama"
+  ],
+  "text": "switch (provider) {\\n    case 'router': return 'Smart Routing';\\n    case 'anthropic-cli': return 'Anthropic (CLI)';\\n    case 'anthropic-api': return 'Anthropic (API)';\\n    case 'openai-cli': return 'OpenAI (CLI)';\\n    case 'openai-api': return 'OpenAI (API)';\\n    case 'deepseek': return 'DeepSeek';\\n    case 'xai': return 'xAI (Grok)';\\n    case 'zai': return 'Z.AI (GLM)';\\n    case 'google': return 'Google';\\n    case 'moonshot': return 'Kimi';\\n    case 'nvidia-router': return 'NVIDIA';\\n..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/commands/model/model.tsx",
+  "cases": [
+   "manual",
+   "on-open",
+   "startup",
+   "background-if-stale"
+  ],
+  "text": "switch (options.catalog.discoveryRefreshMode) {\\n    case 'manual':\\n      return needsInitialDiscovery\\n    case 'on-open':\\n      return true\\n    case 'startup':\\n      return needsInitialDiscovery\\n    case 'background-if-stale':\\n    default:\\n      return options.stale || !options.hasCachedModels\\n  }"
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/permissions/permissionSetup.ts",
+  "cases": [
+   "settings",
+   "circuit-breaker",
+   "model"
+  ],
+  "text": "switch (reason) {\\n    case 'settings':\\n      base = 'auto mode disabled by settings'\\n      break\\n    case 'circuit-breaker':\\n      base = 'auto mode is unavailable for your plan'\\n      break\\n    case 'model':\\n      base = 'auto mode unavailable for this model'\\n      break\\n  }"
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/components/ProviderSettings.tsx",
+  "cases": [
+   "anthropic",
+   "anthropic-cli",
+   "anthropic-api",
+   "openai",
+   "openai-cli",
+   "openai-api",
+   "openai-oauth",
+   "gemini",
+   "google",
+   "xai",
+   "copilot",
+   "openrouter",
+   "groq",
+   "together",
+   "deepseek",
+   "moonshot",
+   "venice",
+   "xiaomi",
+   "ollama",
+   "bedrock"
+  ],
+  "text": "switch (providerId) {\\n    // Primary providers\\n    case 'anthropic':\\n    case 'anthropic-cli':\\n    case 'anthropic-api':\\n      return Bot;\\n    case 'openai':\\n    case 'openai-cli':\\n    case 'openai-api':\\n    case 'openai-oauth':\\n      return Cpu;\\n    case 'gemini':\\n    case 'google':\\n      return Sparkles;\\n    case 'xai':\\n      return Brain;\\n\\n    // OAuth/Device-code providers\\n    case 'copilot':\\n      return GitBranch;\\n\\n    // OpenAI-compatible providers\\n    case 'openrout..."
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/components/ProviderSettings.tsx",
+  "cases": [
+   "anthropic",
+   "openai",
+   "gemini",
+   "openai-oauth",
+   "copilot",
+   "openrouter",
+   "groq",
+   "together",
+   "deepseek",
+   "moonshot",
+   "venice",
+   "xiaomi",
+   "ollama",
+   "bedrock"
+  ],
+  "text": "switch (providerId) {\\n    case 'anthropic':\\n    case 'openai':\\n    case 'gemini':\\n      return 'primary';\\n    case 'openai-oauth':\\n    case 'copilot':\\n      return 'oauth';\\n    case 'openrouter':\\n    case 'groq':\\n    case 'together':\\n    case 'deepseek':\\n    case 'moonshot':\\n    case 'venice':\\n    case 'xiaomi':\\n      return 'openai-compatible';\\n    case 'ollama':\\n      return 'local';\\n    case 'bedrock':\\n      return 'cloud';\\n    default:\\n      return 'openai-compatible';\\n..."
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/components/ProviderSettings.tsx",
+  "cases": [
+   "anthropic",
+   "openai",
+   "openai-oauth",
+   "gemini",
+   "copilot",
+   "openrouter",
+   "groq",
+   "together",
+   "deepseek",
+   "moonshot",
+   "venice",
+   "xiaomi",
+   "ollama",
+   "bedrock"
+  ],
+  "text": "switch (providerId) {\\n    case 'anthropic':\\n      return 'Claude models with advanced reasoning';\\n    case 'openai':\\n      return 'GPT-4 and o1 models via API key';\\n    case 'openai-oauth':\\n      return 'OpenAI via OAuth authentication';\\n    case 'gemini':\\n      return 'Google Gemini with API key or OAuth';\\n    case 'copilot':\\n      return 'GitHub Copilot via device code login';\\n    case 'openrouter':\\n      return 'Access 100+ models via single API';\\n    case 'groq':\\n      return '..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/components/Settings/Config.tsx",
+  "cases": [
+   "theme",
+   "model",
+   "compactModel",
+   "teammateDefaultModel",
+   "showExternalIncludesDialog",
+   "outputStyle",
+   "language"
+  ],
+  "text": "switch (setting_0.id) {\\n        case 'theme':\\n          setShowSubmenu('Theme');\\n          setTabsHidden(true);\\n          return;\\n        case 'model':\\n          setShowSubmenu('Model');\\n          setTabsHidden(true);\\n          return;\\n        case 'compactModel':\\n          setShowSubmenu('CompactModel');\\n          setTabsHidden(true);\\n          return;\\n        case 'teammateDefaultModel':\\n          setShowSubmenu('TeammateModel');\\n          setTabsHidden(true);\\n          return;..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/components/ProviderManager.tsx",
+  "cases": [
+   "add",
+   "activate",
+   "edit",
+   "delete",
+   "logout-codex-oauth",
+   "logout-xai-oauth"
+  ],
+  "text": "switch (value) {\\n              case 'add':\\n                setScreen('select-preset')\\n                break\\n              case 'activate':\\n                if (canSwitchActiveProvider) {\\n                  setScreen('select-active')\\n                }\\n                break\\n              case 'edit':\\n                if (hasProfiles) {\\n                  setScreen('select-edit')\\n                }\\n                break\\n              case 'delete':\\n                if (hasSelectableProvide..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/components/ProviderManager.tsx",
+  "cases": [
+   "select-preset",
+   "select-ollama-model",
+   "select-atomic-chat-model",
+   "xai-oauth",
+   "codex-oauth",
+   "form",
+   "preset-model",
+   "aimlapi-api-key-choice",
+   "aimlapi-topup-email",
+   "aimlapi-topup-amount",
+   "aimlapi-topup-password",
+   "aimlapi-topup-method",
+   "aimlapi-topup-progress",
+   "preset-api-key",
+   "select-active",
+   "select-edit",
+   "select-delete",
+   "menu"
+  ],
+  "text": "switch (screen) {\\n    case 'select-preset':\\n      content = renderPresetSelection()\\n      break\\n    case 'select-ollama-model':\\n      content = renderOllamaSelection()\\n      break\\n    case 'select-atomic-chat-model':\\n      content = renderAtomicChatSelection()\\n      break\\n    case 'xai-oauth':\\n      content = (\\n        <XaiOAuthSetup\\n          onBack={() => setScreen('select-preset')}\\n          onConfigured={async (tokens, persistCredentials) => {\\n            const payload: Provid..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/model/model.ts",
+  "cases": [
+   "gpt-5.5",
+   "gpt-5.4",
+   "gpt-5.3-codex-spark"
+  ],
+  "text": "switch (model) {\\n    case 'gpt-5.5':\\n      return 'GPT-5.5'\\n    case 'gpt-5.4':\\n      return 'GPT-5.4'\\n    case 'gpt-5.3-codex-spark':\\n      return 'GPT-5.3 Codex Spark'\\n    case getModelStrings().opus48 + '[1m]':\\n      return 'Opus 4.8 (1M context)'\\n    case getModelStrings().opus48:\\n      return 'Opus 4.8'\\n    case getModelStrings().opus47 + '[1m]':\\n      return 'Opus 4.7 (1M context)'\\n    case getModelStrings().opus47:\\n      return 'Opus 4.7'\\n    case getModelStrings().opus46 +..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/model/model.ts",
+  "cases": [
+   "opusplan",
+   "sonnet",
+   "haiku",
+   "opus",
+   "best"
+  ],
+  "text": "switch (modelString) {\\n      case 'opusplan':\\n        return applyOneMTag(getDefaultSonnetModel()) // Sonnet is default, Opus in plan mode\\n      case 'sonnet':\\n        return applyOneMTag(getDefaultSonnetModel())\\n      case 'haiku':\\n        return applyOneMTag(getDefaultHaikuModel())\\n      case 'opus':\\n        return applyOneMTag(getDefaultOpusModel())\\n      case 'best':\\n        return applyOneMTag(getBestModel())\\n      default:\\n    }"
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/cli/llm-caller.ts",
+  "cases": [
+   "anthropic-api",
+   "openai-api",
+   "deepseek",
+   "xai",
+   "zai",
+   "moonshot",
+   "nvidia-router",
+   "google"
+  ],
+  "text": "switch (provider) {\\n    case 'anthropic-api': return process.env.ANTHROPIC_API_KEY;\\n    case 'openai-api': return process.env.OPENAI_API_KEY;\\n    case 'deepseek': return process.env.DEEPSEEK_API_KEY;\\n    case 'xai': return process.env.XAI_API_KEY;\\n    case 'zai': return process.env.ZAI_API_KEY;\\n    case 'moonshot': return process.env.MOONSHOT_API_KEY;\\n    case 'nvidia-router': return process.env.NVIDIA_API_KEY;\\n    case 'google': return process.env.GOOGLE_API_KEY;\\n    default: return un..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/model/contextWindowUpgradeCheck.ts",
+  "cases": [
+   "warning",
+   "tip"
+  ],
+  "text": "switch (context) {\\n    case 'warning':\\n      return `/model ${upgrade.alias}`\\n    case 'tip':\\n      return `Tip: You have access to ${upgrade.name} with ${upgrade.multiplier}x more context`\\n    default:\\n      return null\\n  }"
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/messages.ts",
+  "cases": [
+   "system",
+   "user",
+   "assistant",
+   "attachment"
+  ],
+  "text": "switch (message.type) {\\n        case 'system': {\\n          // local_command system messages need to be included as user messages\\n          // so the model can reference previous command output in later turns.\\n          // Context-collapse summaries take the same path so the <collapsed>\\n          // summary stays visible after its archived span is removed.\\n          //\\n          // Preserve isMeta: collapse-summary placeholders are created isMeta so\\n          // the snip-tag sweep (append..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/api/agentRouteSettings.ts",
+  "cases": [
+   "none",
+   "model-only",
+   "cross-provider",
+   "dangling"
+  ],
+  "text": "switch (current.kind) {\\n    case 'none':\\n      return 'Route: inherits parent model'\\n    case 'model-only':\\n      return `Route: ${current.model} (current provider)${viaDefault}`\\n    case 'cross-provider':\\n      return `Route: ${current.model} (cross-provider)${viaDefault}`\\n    case 'dangling':\\n      return `Route: ${current.routeKey} (unconfigured, inherits)${viaDefault}`\\n  }"
+ },
+ {
+  "file": "nirholas-three.ws/api/tts/synthesize.js",
+  "cases": [
+   "invalid_argument",
+   "invalid_key",
+   "not_configured",
+   "rate_limited",
+   "provider_unreachable",
+   "content_blocked",
+   "answered_instead_of_spoke"
+  ],
+  "text": "switch (err?.code) {\\n\t\t// Our own validation prose (\"text is required\"), already written for a\\n\t\t// caller and specific in a way a generic sentence would throw away.\\n\t\tcase 'invalid_argument':\\n\t\t\treturn err.message;\\n\t\tcase 'invalid_key':\\n\t\tcase 'not_configured':\\n\t\t\treturn (\\n\t\t\t\t`${provider.label} is temporarily unavailable: the provider rejected this ` +\\n\t\t\t\t\"deployment's credentials. Microsoft Edge and NVIDIA Magpie are free and unaffected.\"\\n\t\t\t);\\n\t\tcase 'rate_limited':\\n\t\t\treturn `$..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/api/errors.ts",
+  "cases": [
+   "localhost_resolution_failed",
+   "connection_refused",
+   "endpoint_not_found",
+   "vision_not_supported",
+   "model_not_found",
+   "auth_invalid",
+   "rate_limited",
+   "quota_exhausted",
+   "request_timeout",
+   "context_overflow",
+   "tool_call_incompatible",
+   "tool_stream_unsupported",
+   "malformed_provider_response",
+   "provider_unavailable",
+   "network_error",
+   "unknown"
+  ],
+  "text": "switch (options.category) {\\n    case 'localhost_resolution_failed':\\n    case 'connection_refused':\\n      return createAssistantAPIErrorMessage({\\n        content: isLocalhost\\n          ? 'Could not connect to the local OpenAI-compatible provider. Ensure the local server is running, then use OPENAI_BASE_URL=http://127.0.0.1:11434/v1 for Ollama.'\\n          : `Could not connect to the provider at ${options.host}. Verify OPENAI_BASE_URL is correct and that the host is reachable.`,\\n        erro..."
+ },
+ {
+  "file": "nirholas-three.ws/public/providers.js",
+  "cases": [
+   "price-low",
+   "price-high",
+   "networks"
+  ],
+  "text": "switch (state.sort) {\\n\t\t\t// Providers with no median price carry no comparable price signal, so\\n\t\t\t// they always sink to the bottom of both price sorts rather than\\n\t\t\t// masquerading as the cheapest (0) or most expensive.\\n\t\t\tcase 'price-low':\\n\t\t\t\tlist = sortByPrice(list, 'asc');\\n\t\t\t\tbreak;\\n\t\t\tcase 'price-high':\\n\t\t\t\tlist = sortByPrice(list, 'desc');\\n\t\t\t\tbreak;\\n\t\t\tcase 'networks':\\n\t\t\t\tlist = list.sort((a, b) => (b.networks?.length || 0) - (a.networks?.length || 0));\\n\t\t\t\tbreak;\\n\t\t\tdef..."
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/src/gateway/features/hosted-web-search/discovery.ts",
+  "cases": [
+   "brave",
+   "bing",
+   "google_cse",
+   "serper",
+   "serpapi",
+   "tavily",
+   "exa"
+  ],
+  "text": "switch (input.provider) {\\n    case \"brave\":\\n      return searchBrave(input);\\n    case \"bing\":\\n      return searchBing(input);\\n    case \"google_cse\":\\n      return searchGoogleCse(input);\\n    case \"serper\":\\n      return searchSerper(input);\\n    case \"serpapi\":\\n      return searchSerpApi(input);\\n    case \"tavily\":\\n      return searchTavily(input);\\n    case \"exa\":\\n      return searchExa(input);\\n  }"
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/src/gateway/features/hosted-web-search/discovery.ts",
+  "cases": [
+   "brave",
+   "bing",
+   "google_cse",
+   "serper",
+   "serpapi",
+   "tavily",
+   "exa",
+   "browser"
+  ],
+  "text": "switch (provider) {\\n    case \"brave\":\\n      return `https://search.brave.com/search?q=${encoded}`;\\n    case \"bing\":\\n      return `https://www.bing.com/search?q=${encoded}`;\\n    case \"google_cse\":\\n      return `https://www.google.com/search?q=${encoded}`;\\n    case \"serper\":\\n      return \"https://serper.dev\";\\n    case \"serpapi\":\\n      return \"https://serpapi.com\";\\n    case \"tavily\":\\n      return \"https://tavily.com\";\\n    case \"exa\":\\n      return \"https://exa.ai\";\\n    case \"browser\":..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/state/onboard-step-state.ts",
+  "cases": [
+   "preflight",
+   "gateway",
+   "provider_selection",
+   "inference",
+   "sandbox",
+   "openclaw",
+   "agent_setup",
+   "policies"
+  ],
+  "text": "switch (stepName) {\\n    case \"preflight\":\\n      return \"gateway\";\\n    case \"gateway\":\\n      return \"provider_selection\";\\n    case \"provider_selection\":\\n      return \"inference\";\\n    case \"inference\":\\n      return \"sandbox\";\\n    case \"sandbox\":\\n      return session.agent ? \"agent_setup\" : \"openclaw\";\\n    case \"openclaw\":\\n    case \"agent_setup\":\\n      return \"policies\";\\n    case \"policies\":\\n      return \"finalizing\";\\n    default:\\n      return null;\\n  }"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/x402/pipelines/live-feed-seeder.js",
+  "cases": [
+   "search_public_avatars",
+   "inspect_model",
+   "validate_model",
+   "optimize_model",
+   "tools/list"
+  ],
+  "text": "switch (tool) {\\n\t\tcase 'search_public_avatars':\\n\t\t\treturn { result_kind: 'avatars', result_count: Array.isArray(sc.avatars) ? sc.avatars.length : null };\\n\t\tcase 'inspect_model':\\n\t\t\treturn { result_kind: 'inspection', triangles: sc.counts?.totalTriangles ?? null, meshes: sc.counts?.meshes ?? null };\\n\t\tcase 'validate_model':\\n\t\t\treturn { result_kind: 'validation', errors: sc.numErrors ?? null, warnings: sc.numWarnings ?? null };\\n\t\tcase 'optimize_model':\\n\t\t\treturn { result_kind: 'optimizatio..."
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/voice-providers.js",
+  "cases": [
+   "edge",
+   "gemini",
+   "nvidia",
+   "openai"
+  ],
+  "text": "switch (providerId) {\\n\t\tcase 'edge': return EDGE_DEFAULT_VOICE;\\n\t\tcase 'gemini': return GEMINI_DEFAULT_VOICE;\\n\t\tcase 'nvidia': return OPENAI_DEFAULT_VOICE; // Magpie is addressed by OpenAI-style ids\\n\t\tcase 'openai': return OPENAI_DEFAULT_VOICE;\\n\t\tdefault: return null;\\n\t}"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/voice-providers.js",
+  "cases": [
+   "edge",
+   "gemini",
+   "nvidia",
+   "openai",
+   "elevenlabs"
+  ],
+  "text": "switch (providerId) {\\n\t\tcase 'edge': {\\n\t\t\tconst { voices } = await listEdgeVoices();\\n\t\t\treturn voices;\\n\t\t}\\n\t\tcase 'gemini':\\n\t\t\treturn GEMINI_VOICE_LIST;\\n\t\tcase 'nvidia':\\n\t\t\treturn NVIDIA_VOICE_LIST;\\n\t\tcase 'openai':\\n\t\t\treturn OPENAI_VOICE_LIST;\\n\t\tcase 'elevenlabs': {\\n\t\t\tif (!elevenKey) return [];\\n\t\t\tconst { voices } = await listElevenVoices(byok ? { apiKey: elevenKey } : {});\\n\t\t\treturn voices.map(normalizeElevenVoice);\\n\t\t}\\n\t\tdefault:\\n\t\t\treturn [];\\n\t}"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/voice-providers.js",
+  "cases": [
+   "edge",
+   "gemini",
+   "nvidia",
+   "openai"
+  ],
+  "text": "switch (providerId) {\\n\t\tcase 'edge': {\\n\t\t\tif (!EDGE_VOICE_RE.test(id)) return false;\\n\t\t\ttry {\\n\t\t\t\tconst { voices } = await listEdgeVoices();\\n\t\t\t\treturn voices.some((v) => v.id === id);\\n\t\t\t} catch {\\n\t\t\t\treturn true;\\n\t\t\t}\\n\t\t}\\n\t\tcase 'gemini':\\n\t\t\treturn GEMINI_VOICE_IDS.has(id);\\n\t\tcase 'nvidia':\\n\t\t\treturn NVIDIA_VOICE_IDS.has(id);\\n\t\tcase 'openai':\\n\t\t\treturn OPENAI_VOICE_IDS.has(id);\\n\t\tdefault:\\n\t\t\treturn true;\\n\t}"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/voice-providers.js",
+  "cases": [
+   "edge",
+   "gemini",
+   "nvidia",
+   "openai",
+   "elevenlabs"
+  ],
+  "text": "switch (provider) {\\n\t\tcase 'edge': {\\n\t\t\tconst voiceId = EDGE_VOICE_RE.test(String(opts.voiceId || ''))\\n\t\t\t\t? String(opts.voiceId)\\n\t\t\t\t: EDGE_DEFAULT_VOICE;\\n\t\t\t// Edge takes prosody as SSML strings; accept the numeric `speed` every\\n\t\t\t// other lane uses and convert, so one client control drives them all.\\n\t\t\tconst rate =\\n\t\t\t\topts.rate && EDGE_RATE_RE.test(opts.rate)\\n\t\t\t\t\t? opts.rate\\n\t\t\t\t\t: `${Math.round((clampSpeed(opts.speed) - 1) * 100) >= 0 ? '+' : ''}${Math.round((clampSpeed(opts.spe..."
+ },
+ {
+  "file": "nirholas-three.ws/api/erc8004/[action].js",
+  "cases": [
+   "application/json",
+   "model/gltf-binary",
+   "model/gltf+json",
+   "image/png",
+   "image/jpeg",
+   "image/webp"
+  ],
+  "text": "switch (ct) {\\n\t\tcase 'application/json':\\n\t\t\treturn 'json';\\n\t\tcase 'model/gltf-binary':\\n\t\t\treturn 'glb';\\n\t\tcase 'model/gltf+json':\\n\t\t\treturn 'gltf';\\n\t\tcase 'image/png':\\n\t\t\treturn 'png';\\n\t\tcase 'image/jpeg':\\n\t\t\treturn 'jpg';\\n\t\tcase 'image/webp':\\n\t\t\treturn 'webp';\\n\t\tdefault:\\n\t\t\treturn 'bin';\\n\t}"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/e2e/fixtures/phases/lifecycle.ts",
+  "cases": [
+   "dcode-rebuild-invalid-credential"
+  ],
+  "text": "switch (profile) {\\n      case \"dcode-rebuild-invalid-credential\":\\n        if (!options || !isDcodeInvalidCredentialRebuildOptions(options)) {\\n          throw new Error(\\n            \"dcode-rebuild-invalid-credential requires gateway/provider/credential/model options\",\\n          );\\n        }\\n        return await simulateDcodeInvalidCredentialRebuild(instance, options, {\\n          host: this.host,\\n          sandbox: this.sandbox,\\n          cleanup: this.cleanup,\\n          runtimeProvider..."
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/solana-attestations.js",
+  "cases": [
+   "threews.feedback.v1",
+   "threews.validation.v1",
+   "threews.task.v1",
+   "threews.accept.v1",
+   "threews.revoke.v1",
+   "threews.dispute.v1",
+   "threews.stake.v1",
+   "threews.unstake.v1",
+   "threews.review.v1"
+  ],
+  "text": "switch (p.kind) {\\n\t\tcase 'threews.feedback.v1':\\n\t\t\treturn Number.isInteger(p.score) && p.score >= 1 && p.score <= 5;\\n\t\tcase 'threews.validation.v1':\\n\t\t\t// Model (glTF/GLB schema) validations carry a content proof hash + URI;\\n\t\t\t// task validations carry a task_hash. Either form must declare passed.\\n\t\t\tif (p.subkind === SUBKIND_GLB_SCHEMA) {\\n\t\t\t\treturn typeof p.proof_hash === 'string' && p.proof_hash.length > 0\\n\t\t\t\t\t&& typeof p.passed === 'boolean';\\n\t\t\t}\\n\t\t\treturn typeof p.task_hash ===..."
+ },
+ {
+  "file": "Gitlawb-openclaude/vscode-extension/openclaude-vscode/src/state.js",
+  "cases": [
+   "ollama",
+   "gemini",
+   "mistral",
+   "codex",
+   "atomic-chat",
+   "openai"
+  ],
+  "text": "switch (profile.profile) {\\n    case 'ollama':\\n      return buildProviderState('Ollama', getDetail(profile.env, 'saved profile'), 'profile');\\n    case 'gemini':\\n      return buildProviderState('Gemini', getDetail(profile.env, 'saved profile'), 'profile');\\n    case 'mistral':\\n      return buildProviderState('Mistral', getDetail(profile.env, 'saved profile'), 'profile')\\n    case 'codex':\\n      return buildProviderState('Codex', getDetail(profile.env, 'saved profile'), 'profile');\\n    case ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/vscode-extension/openclaude-vscode/src/presentation.js",
+  "cases": [
+   "profile",
+   "env",
+   "shim",
+   "unknown"
+  ],
+  "text": "switch (providerState?.source) {\\n    case 'profile':\\n      return [detail, providerSourceLabel].filter(Boolean).join(' \u00b7 ');\\n    case 'env':\\n      return /^from environment$/i.test(detail)\\n        ? detail\\n        : [detail, providerSourceLabel].filter(Boolean).join(' \u00b7 ');\\n    case 'shim':\\n    case 'unknown':\\n      return detail;\\n    default:\\n      return [detail, providerSourceLabel].filter(Boolean).join(' \u00b7 ');\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/setup-nim-ollama.ts",
+  "cases": [
+   "continue",
+   "fallback",
+   "ready"
+  ],
+  "text": "switch (startup.kind) {\\n      case \"continue\":\\n        return \"retry-selection\";\\n      case \"fallback\":\\n        // Fallback crosses a provider boundary, so write a complete safe state\\n        // rather than merging over stale cloud/NIM/Ollama selection fields.\\n        applyOllamaFallbackState(state, startup.result);\\n        state.assertRouteCompatible?.();\\n        return \"selected\";\\n      case \"ready\":\\n        announceOllamaRoute();\\n        try {\\n          return await selectModel(gp..."
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/regen-provider.js",
+  "cases": [
+   "meshy",
+   "tripo"
+  ],
+  "text": "switch (name) {\\n\t\tcase 'meshy':\\n\t\t\treturn { name, instance: createMeshyRegenAdapter(key) };\\n\t\tcase 'tripo':\\n\t\t\treturn { name, instance: createTripoRegenAdapter(key) };\\n\t\tdefault:\\n\t\t\tthrow Object.assign(new Error(`unknown BYOK regen provider: ${name}`), {\\n\t\t\t\tcode: 'regen_provider_unknown',\\n\t\t\t\tstatus: 501,\\n\t\t\t});\\n\t}"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/regen-provider.js",
+  "cases": [
+   "replicate",
+   "gcp",
+   "huggingface"
+  ],
+  "text": "switch (canonicalProviderName(name)) {\\n\t\tcase 'replicate':\\n\t\t\treturn Boolean(process.env.REPLICATE_API_TOKEN);\\n\t\tcase 'gcp':\\n\t\t\t// The gcp adapter needs both the service URL (endpoint) and the auth\\n\t\t\t// key \u2014 requiring both here keeps a URL-only deploy out of the failover\\n\t\t\t// rotation instead of enumerating a provider whose constructor throws.\\n\t\t\treturn Boolean(process.env.GCP_RECONSTRUCTION_URL && process.env.GCP_RECONSTRUCTION_KEY);\\n\t\tcase 'huggingface':\\n\t\t\treturn Boolean(process.e..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/toolSearch.ts",
+  "cases": [
+   "tst",
+   "tst-auto",
+   "standard"
+  ],
+  "text": "switch (mode) {\\n    case 'tst':\\n      logModeDecision(true, mode, 'tst_enabled')\\n      return true\\n\\n    case 'tst-auto': {\\n      const { enabled, debugDescription, metrics } = await checkAutoThreshold(\\n        tools,\\n        getToolPermissionContext,\\n        agents,\\n        model,\\n      )\\n\\n      if (enabled) {\\n        logForDebugging(\\n          `Auto tool search enabled: ${debugDescription}` +\\n            (source ? ` [source: ${source}]` : ''),\\n        )\\n        logModeDecision..."
+ },
+ {
+  "file": "nirholas-three.ws/public/agent-passport.html",
+  "cases": [
+   "threews.feedback.v1",
+   "threews.validation.v1",
+   "threews.task.v1",
+   "threews.accept.v1",
+   "threews.revoke.v1",
+   "threews.dispute.v1"
+  ],
+  "text": "switch (row.kind) {\\n\t\t\t\t\tcase 'threews.feedback.v1':\\n\t\t\t\t\t\treturn `score ${p.score}/5${p.task_id ? ` for task ${p.task_id}` : ''}${p.source ? ` (${p.source})` : ''}`;\\n\t\t\t\t\tcase 'threews.validation.v1':\\n\t\t\t\t\t\tif (p.subkind === 'glb-schema')\\n\t\t\t\t\t\t\treturn `model validation ${p.passed ? '\u2713 passed' : '\u2717 failed'}${p.proof_hash ? ` (proof ${String(p.proof_hash).slice(0, 12)}\u2026)` : ''}`;\\n\t\t\t\t\t\treturn `validation ${p.passed ? '\u2713 passed' : '\u2717 failed'}${p.task_hash ? ` (task hash ${String(p.task_hash..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/swarm/inProcessRunner.ts",
+  "cases": [
+   "shutdown_request",
+   "new_message",
+   "aborted"
+  ],
+  "text": "switch (waitResult.type) {\\n        case 'shutdown_request':\\n          // Pass shutdown request to model for decision\\n          // Format as teammate-message for consistency with how tmux teammates receive it\\n          // The model will use approveShutdown or rejectShutdown tool\\n          logForDebugging(\\n            `[inProcessRunner] ${identity.agentId} received shutdown request - passing to model`,\\n          )\\n          currentPrompt = formatAsTeammateMessage(\\n            waitResult.r..."
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/pipeline.js",
+  "cases": [
+   "gcp",
+   "nvidia",
+   "replicate"
+  ],
+  "text": "switch (handle.provider) {\\n\t\tcase 'gcp': {\\n\t\t\treturn createGcpProvider().status(handle.extJobId);\\n\t\t}\\n\t\tcase 'nvidia': {\\n\t\t\tconst { createNvidiaProvider } = await import('../_providers/nvidia.js');\\n\t\t\treturn createNvidiaProvider().status({ taskId: handle.extJobId });\\n\t\t}\\n\t\tcase 'replicate':\\n\t\tdefault: {\\n\t\t\treturn createReplicateProvider().status(handle.extJobId);\\n\t\t}\\n\t}"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/print-store.js",
+  "cases": [
+   "paid",
+   "screening",
+   "submitted",
+   "printing",
+   "quality_check",
+   "shipped",
+   "delivered",
+   "rejected",
+   "canceled",
+   "refunded"
+  ],
+  "text": "switch (status) {\\n\t\tcase 'paid':          return 'Payment received. Your print is queued for screening.';\\n\t\tcase 'screening':     return 'Your model is being checked for printability and safety.';\\n\t\tcase 'submitted':     return 'Your print has been sent to the production floor.';\\n\t\tcase 'printing':      return 'Your print is on the printer.';\\n\t\tcase 'quality_check': return 'Your print is finished and in quality check.';\\n\t\tcase 'shipped':       return 'Your print has shipped, with its certi..."
+ },
+ {
+  "file": "nirholas-three.ws/src/widgets/talking-agent.js",
+  "cases": [
+   "wave",
+   "lookAt",
+   "playClip",
+   "remember"
+  ],
+  "text": "switch (action.type) {\\n\t\tcase 'wave':\\n\t\t\tsceneCtrl?.playAnimationByHint?.('wave', { duration: 1500 });\\n\t\t\treturn;\\n\t\tcase 'lookAt': {\\n\t\t\tconst target = action.target === 'model' ? 'center' : action.target;\\n\t\t\tsceneCtrl?.lookAt?.(target);\\n\t\t\treturn;\\n\t\t}\\n\t\tcase 'playClip':\\n\t\t\tif (typeof action.name === 'string') sceneCtrl?.playClipByName?.(action.name);\\n\t\t\treturn;\\n\t\tcase 'remember':\\n\t\t\tif (protocol && typeof action.content === 'string') {\\n\t\t\t\tprotocol.emit({\\n\t\t\t\t\ttype: ACTION_TYPES.R..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/providerProfiles.ts",
+  "cases": [
+   "anthropic",
+   "gemini",
+   "mistral",
+   "github",
+   "github-enterprise",
+   "bedrock",
+   "vertex",
+   "openai"
+  ],
+  "text": "switch (compatibilityMode) {\\n    case 'anthropic':\\n      if (route.vendorId === 'minimax') {\\n        const env =\\n          buildMiniMaxProfileEnv({\\n            model: getPrimaryModel(activeProfile.model),\\n            baseUrl: activeProfile.baseUrl,\\n            apiKey: activeProfile.apiKey,\\n            processEnv: process.env,\\n          }) ?? null\\n        return env\\n          ? { profile: 'minimax', env: applySupportedProfileCustomHeaders(activeProfile, env) }\\n          : null\\n      ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/providers.ts",
+  "cases": [
+   "nvidia-nim",
+   "nvidia-router",
+   "vllm-local",
+   "ollama-local",
+   "llama-cpp-local"
+  ],
+  "text": "switch (provider) {\\n    case \"nvidia-nim\":\\n      return \"NVIDIA Endpoints\";\\n    case \"nvidia-router\":\\n      return \"Model Router\";\\n    case \"vllm-local\":\\n      return \"Local vLLM\";\\n    case \"ollama-local\":\\n      return \"Local Ollama\";\\n    case \"llama-cpp-local\":\\n      return \"Local llama.cpp\";\\n    default:\\n      return provider;\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/providers.ts",
+  "cases": [
+   "nim-local",
+   "ollama",
+   "vllm",
+   "llama-cpp",
+   "routed"
+  ],
+  "text": "switch (providerKey) {\\n    case \"nim-local\":\\n      return \"nvidia-nim\";\\n    case \"ollama\":\\n      return \"ollama-local\";\\n    case \"vllm\":\\n      return \"vllm-local\";\\n    case \"llama-cpp\":\\n      return \"llama-cpp-local\";\\n    case \"routed\":\\n      return \"nvidia-router\";\\n    default:\\n      return providerKey;\\n  }"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/providerFlag.ts",
+  "cases": [
+   "anthropic",
+   "custom-anthropic",
+   "openai",
+   "gemini",
+   "mistral",
+   "github",
+   "bedrock",
+   "vertex",
+   "ollama",
+   "nvidia-nim",
+   "bankr",
+   "minimax",
+   "gitlawb-opengateway",
+   "nearai",
+   "xai",
+   "xiaomi-mimo",
+   "xiaomi-mimo-token",
+   "venice",
+   "atlas-cloud",
+   "apismart",
+   "concentrate",
+   "fireworks",
+   "longcat",
+   "cloudflare"
+  ],
+  "text": "switch (provider) {\\n    case 'anthropic': {\\n      // Default \u2014 clear any custom native proxy contract so this explicit\\n      // provider flag cannot keep routing requests to a prior endpoint.\\n      // Preserve a first-party API key: it is the normal credential for this\\n      // provider and may have been supplied directly through the environment.\\n      const hadCustomAnthropicEndpoint =\\n        !isFirstPartyAnthropicBaseUrlForEnv(process.env)\\n      delete process.env.ANTHROPIC_BASE_URL\\n..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/provider-selection-failure.ts",
+  "cases": [
+   "wsl-recorded-ollama-windows-host",
+   "recorded-provider-unavailable",
+   "unsupported-windows-host-ollama",
+   "hermes-provider-unavailable",
+   "requested-provider-unavailable"
+  ],
+  "text": "switch (input.reason.kind) {\\n    case \"wsl-recorded-ollama-windows-host\":\\n      input.writeError(\\n        `  Recorded provider '${input.reason.recordedProvider}' (WSL Ollama) is not available in this environment.`,\\n      );\\n      input.writeError(\\n        \"  Hint: Windows-host Ollama is reachable here; re-run with NEMOCLAW_PROVIDER=ollama to use it explicitly.\",\\n      );\\n      break;\\n    case \"recorded-provider-unavailable\":\\n      input.writeError(\\n        `  Recorded provider '${inpu..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/provider-key-fallback.ts",
+  "cases": [
+   "install-ollama",
+   "install-vllm",
+   "install-windows-ollama",
+   "start-windows-ollama",
+   "ollama"
+  ],
+  "text": "switch (providerKey) {\\n    case \"install-ollama\":\\n      return find(\"ollama\");\\n    case \"install-vllm\":\\n      return find(\"vllm\");\\n    case \"install-windows-ollama\":\\n      // Windows-host Ollama requests may arrive from NEMOCLAW_PROVIDER before\\n      // the dynamic menu knows whether Windows Ollama needs install,\\n      // start/restart, or is already reachable. Collapse only to later-state\\n      // entries that still point at the Windows host.\\n      return (\\n        find(\"start-window..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/permissions/permissionSetup.ts",
+  "cases": [
+   "settings",
+   "circuit-breaker",
+   "model"
+  ],
+  "text": "switch (reason) {\\n    case 'settings':\\n      base = 'auto mode disabled by settings'\\n      break\\n    case 'circuit-breaker':\\n      base = 'auto mode is unavailable for your plan'\\n      break\\n    case 'model':\\n      base = 'auto mode unavailable for this model'\\n      break\\n  }"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/model/model.ts",
+  "cases": [
+   "gpt-5.6-sol",
+   "gpt-5.6-terra",
+   "gpt-5.6-luna",
+   "gpt-5.5",
+   "gpt-5.4",
+   "gpt-5.3-codex-spark"
+  ],
+  "text": "switch (model) {\\n    case 'gpt-5.6-sol':\\n      return 'GPT-5.6 Sol'\\n    case 'gpt-5.6-terra':\\n      return 'GPT-5.6 Terra'\\n    case 'gpt-5.6-luna':\\n      return 'GPT-5.6 Luna'\\n    case 'gpt-5.5':\\n      return 'GPT-5.5'\\n    case 'gpt-5.4':\\n      return 'GPT-5.4'\\n    case 'gpt-5.3-codex-spark':\\n      return 'GPT-5.3 Codex Spark'\\n    case getModelStrings().opus48 + '[1m]':\\n      return 'Opus 4.8 (1M context)'\\n    case getModelStrings().opus48:\\n      return 'Opus 4.8'\\n    case getMo..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/model/model.ts",
+  "cases": [
+   "opusplan",
+   "sonnet",
+   "haiku",
+   "opus",
+   "best"
+  ],
+  "text": "switch (modelString) {\\n      case 'opusplan':\\n        return applyOneMTag(getDefaultSonnetModel()) // Sonnet is default, Opus in plan mode\\n      case 'sonnet':\\n        return applyOneMTag(getDefaultSonnetModel())\\n      case 'haiku':\\n        return applyOneMTag(getDefaultHaikuModel())\\n      case 'opus':\\n        return applyOneMTag(getDefaultOpusModel())\\n      case 'best':\\n        return applyOneMTag(getBestModel())\\n      default:\\n    }"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/model/contextWindowUpgradeCheck.ts",
+  "cases": [
+   "warning",
+   "tip"
+  ],
+  "text": "switch (context) {\\n    case 'warning':\\n      return `/model ${upgrade.alias}`\\n    case 'tip':\\n      return `Tip: You have access to ${upgrade.name} with ${upgrade.multiplier}x more context`\\n    default:\\n      return null\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/managed-startup-application.test.ts",
+  "cases": [
+   "openclaw",
+   "hermes",
+   "langchain-deepagents-code",
+   "pi"
+  ],
+  "text": "switch (agent) {\\n    case \"openclaw\":\\n      return {\\n        agent,\\n        webSearch: { enabled: false, provider: \"brave\" },\\n        otel: {\\n          enabled: false,\\n          endpointUrl: \"http://host.openshell.internal:4318\",\\n          serviceName: \"openclaw-gateway\",\\n          sampleRate: 1,\\n        },\\n        agentTimeoutSeconds: 900,\\n        heartbeatEvery: null,\\n        extraAgents: { agents: [], defaults: {}, main: {} },\\n        minimalBootstrap: true,\\n      };\\n    case ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/messages.ts",
+  "cases": [
+   "system",
+   "user",
+   "assistant",
+   "attachment"
+  ],
+  "text": "switch (message.type) {\\n        case 'system': {\\n          // local_command system messages need to be included as user messages\\n          // so the model can reference previous command output in later turns.\\n          // Context-collapse summaries take the same path so the <collapsed>\\n          // summary stays visible after its archived span is removed.\\n          //\\n          // Preserve isMeta: collapse-summary placeholders are created isMeta so\\n          // the snip-tag sweep (append..."
+ },
+ {
+  "file": "nirholas-three.ws/src/avatar-export.js",
+  "cases": [
+   "glb",
+   "usdz",
+   "vrm"
+  ],
+  "text": "switch (format) {\\n\t\tcase 'glb':\\n\t\t\treturn { blob: glbBlob, mime: 'model/gltf-binary', ext: 'glb' };\\n\t\tcase 'usdz': {\\n\t\t\tconst blob = await glbBlobToUsdzBlob(glbBlob);\\n\t\t\treturn { blob, mime: 'model/vnd.usdz+zip', ext: 'usdz' };\\n\t\t}\\n\t\tcase 'vrm': {\\n\t\t\tconst blob = await glbBlobToVrmBlob(glbBlob, meta || {});\\n\t\t\treturn { blob, mime: 'model/gltf-binary', ext: 'vrm' };\\n\t\t}\\n\t\tdefault:\\n\t\t\tthrow new Error(`exportAvatar: unsupported format \"${format}\"`);\\n\t}"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/experimental/portable-demo-lifecycle.test.ts",
+  "cases": [
+   "pgrep",
+   "curl"
+  ],
+  "text": "switch (command) {\\n        case \"pgrep\":\\n          return { status: 1 };\\n        case \"curl\":\\n          return ollamaStarted\\n            ? { status: 0, stdout: JSON.stringify({ models: [] }) }\\n            : { status: 7, stderr: \"connection refused\" };\\n        default:\\n          throw new Error(`Unexpected host command: ${command}`);\\n      }"
+ },
+ {
+  "file": "nirholas-three.ws/src/pinning/index.js",
+  "cases": [
+   "web3-storage",
+   "filebase",
+   "pinata",
+   "memory",
+   "null-dev"
+  ],
+  "text": "switch (provider) {\\n\t\tcase 'web3-storage':\\n\t\t\treturn new Web3StoragePinner(opts);\\n\t\tcase 'filebase':\\n\t\t\treturn new FilebasePinner(opts);\\n\t\tcase 'pinata':\\n\t\t\treturn new PinataPinner(opts);\\n\t\tcase 'memory':\\n\t\tcase 'null-dev':\\n\t\t\treturn new MemoryPinner(opts);\\n\t\tdefault:\\n\t\t\tthrow new Error(\\n\t\t\t\t`Unknown pinning provider \"${provider}\". Supported: ${PROVIDERS.join(', ')}`,\\n\t\t\t);\\n\t}"
+ },
+ {
+  "file": "nirholas-three.ws/src/erc8004/resolve-avatar.js",
+  "cases": [],
+  "text": "switch (type) {\\n\t\tcase INPUT_TYPES.AGENT_URI: {\\n\t\t\tconst results = await resolveByAgentURI(trimmed, ethProvider);\\n\t\t\treturn { type, results };\\n\t\t}\\n\t\tcase INPUT_TYPES.TX_HASH: {\\n\t\t\tconst results = await resolveByTxHash({\\n\t\t\t\ttxHash: trimmed,\\n\t\t\t\tchainIds,\\n\t\t\t\tethProvider,\\n\t\t\t\tonProgress,\\n\t\t\t});\\n\t\t\treturn { type, results };\\n\t\t}\\n\t\tcase INPUT_TYPES.ADDRESS: {\\n\t\t\tconst results = await resolveByAddress({\\n\t\t\t\taddress: trimmed,\\n\t\t\t\tchainIds,\\n\t\t\t\tethProvider,\\n\t\t\t\tonProgress,\\n\t\t\t});\\n\t..."
+ },
+ {
+  "file": "nirholas-three.ws/src/irl.js",
+  "cases": [
+   "hidden",
+   "dot",
+   "impostor",
+   "full"
+  ],
+  "text": "switch (band) {\\n\t\tcase 'hidden':\\n\t\t\tpin.group.visible = false;\\n\t\t\tcancelPinGLB(pin);\\n\t\t\tevictPinGLB(pin);\\n\t\t\tbreak;\\n\t\tcase 'dot':\\n\t\t\tpin.group.visible = true;\\n\t\t\t// Distance jumped out of the model bands \u2014 drop any queued load so it\\n\t\t\t// can't hold a slot ahead of a nearer pin (a dot needs no GLB at all).\\n\t\t\tcancelPinGLB(pin);\\n\t\t\tevictPinGLB(pin);\\n\t\t\thideImpostor(pin);\\n\t\t\tshowDot(pin);\\n\t\t\tbreak;\\n\t\tcase 'impostor':\\n\t\t\tpin.group.visible = true;\\n\t\t\t// Cancel an in-flight FULL-mode..."
+ },
+ {
+  "file": "nirholas-three.ws/robinhood/hood-traders/src/framework/llm.ts",
+  "cases": [
+   "openai",
+   "groq",
+   "openrouter"
+  ],
+  "text": "switch (provider) {\\n    case 'openai':\\n      return { url: 'https://api.openai.com/v1/chat/completions', extraHeaders: {} }\\n    case 'groq':\\n      return { url: 'https://api.groq.com/openai/v1/chat/completions', extraHeaders: {} }\\n    case 'openrouter':\\n      return {\\n        url: 'https://openrouter.ai/api/v1/chat/completions',\\n        extraHeaders: {\\n          'HTTP-Referer': 'https://github.com/nirholas/hood-traders',\\n          'X-Title': 'hood-traders',\\n        },\\n      }\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/channels/telegram/hooks/status-health-eval.ts",
+  "cases": [
+   "healthy",
+   "idle",
+   "token_rejected",
+   "unreachable",
+   "not_started",
+   "policy_gap",
+   "config_gap",
+   "probe_failed",
+   "unknown"
+  ],
+  "text": "switch (verdict) {\\n    case \"healthy\":\\n      return [\\n        \"Telegram is reachable, the token is valid, and inbound updates are being delivered.\",\\n      ];\\n    case \"idle\":\\n      return [\\n        \"Provider is polling and reachable, but no inbound update was seen. Send a message from an allowed account and re-run.\",\\n      ];\\n    case \"token_rejected\":\\n      return [\\n        \"Telegram rejected the token. Reset the credential and rebuild \u2014 this will not recover on its own.\",\\n      ];\\..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/applier/setup-applier.test.ts",
+  "cases": [
+   "profile",
+   "get"
+  ],
+  "text": "switch (args[1]) {\\n        case \"profile\":\\n          return EXACT_MESSAGING_PROFILE;\\n        case \"get\":\\n          return {\\n            status: 1,\\n            stderr: \"provider 'demo-telegram-bridge' not found\",\\n          };\\n        default:\\n          return {\\n            status: 1,\\n            stderr: \"provider rejected TELEGRAM_BOT_TOKEN=tokensecretvalue\",\\n          };\\n      }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/applier/setup-applier.test.ts",
+  "cases": [
+   "profile",
+   "get"
+  ],
+  "text": "switch (args[1]) {\\n            case \"profile\":\\n              return EXACT_MESSAGING_PROFILE;\\n            case \"get\":\\n              return { status: 1, stderr: \"provider 'demo-telegram-bridge' not found\" };\\n            default:\\n              return { status: null, stderr: \"transport closed\" };\\n          }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/applier/setup-applier.test.ts",
+  "cases": [
+   "profile",
+   "create"
+  ],
+  "text": "switch (args[1]) {\\n            case \"profile\":\\n              return EXACT_MESSAGING_PROFILE;\\n            case \"create\":\\n              return { status: 0 };\\n            default:\\n              lookups += 1;\\n              return lookups === 1\\n                ? { status: 1, stderr: \"provider 'demo-telegram-bridge' not found\" }\\n                : {\\n                    status: 0,\\n                    stdout:\\n                      \"Name: demo-telegram-bridge\\nType: generic\\nCredential keys: T..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/applier/setup-applier.test.ts",
+  "cases": [
+   "profile",
+   "get",
+   "create"
+  ],
+  "text": "switch (args[1]) {\\n          case \"profile\":\\n            return EXACT_MESSAGING_PROFILE;\\n          case \"get\": {\\n            const name = String(args[2]);\\n            const credentialKey = providers.get(name);\\n            return credentialKey\\n              ? {\\n                  status: 0,\\n                  stdout: `Name: ${name}\\nType: nemoclaw-mcp-v1\\nCredential keys: ${credentialKey}\\nConfig keys: <none>\\n`,\\n                }\\n              : { status: 1, stderr: `provider '${name}' ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/applier/setup-applier.test.ts",
+  "cases": [
+   "profile",
+   "get",
+   "create"
+  ],
+  "text": "switch (args[1]) {\\n          case \"profile\":\\n            return EXACT_MESSAGING_PROFILE;\\n          case \"get\": {\\n            const name = String(args[2]);\\n            const credentialKey = providers.get(name);\\n            return credentialKey\\n              ? {\\n                  status: 0,\\n                  stdout: `Name: ${name}\\nType: nemoclaw-mcp-v1\\nCredential keys: ${credentialKey}\\nConfig keys: <none>\\n`,\\n                }\\n              : { status: 1, stderr: `provider '${name}' ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/integrations/discoveryService.ts",
+  "cases": [
+   "ollama",
+   "openai-compatible",
+   "custom"
+  ],
+  "text": "switch (discovery.kind) {\\n    case 'ollama': {\\n      const result = await probeOllamaModelCatalog({\\n        baseUrl: getRouteBaseUrl(routeId, options),\\n      })\\n      if (!result.reachable) {\\n        return null\\n      }\\n      return result.models.map(model => toOllamaModelEntry(model))\\n    }\\n\\n    case 'openai-compatible': {\\n      if (discovery.mapModel) {\\n        const rawModels = await fetchOpenAICompatibleModelsRaw({\\n          baseUrl: getRouteBaseUrl(routeId, options),\\n        ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/integrations/discoveryService.ts",
+  "cases": [
+   "ollama-generation",
+   "openai-compatible-models"
+  ],
+  "text": "switch (readinessKind) {\\n    case 'ollama-generation':\\n      return probeOllamaGenerationReadiness({\\n        baseUrl: getRouteBaseUrl(routeId, options),\\n        model: options?.model,\\n        timeoutMs: options?.timeoutMs,\\n      })\\n\\n    case 'openai-compatible-models': {\\n      if (routeId === 'atomic-chat') {\\n        return probeAtomicChatReadiness({\\n          baseUrl: getRouteBaseUrl(routeId, options),\\n        })\\n      }\\n\\n      const discovered = await runDiscovery(routeId, optio..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/bridge/bridgeMessaging.ts",
+  "cases": [
+   "initialize",
+   "set_model",
+   "set_max_thinking_tokens",
+   "set_permission_mode",
+   "interrupt"
+  ],
+  "text": "switch (request.request.subtype) {\\n    case 'initialize':\\n      // Respond with minimal capabilities \u2014 the REPL handles\\n      // commands, models, and account info itself.\\n      response = {\\n        type: 'control_response',\\n        response: {\\n          subtype: 'success',\\n          request_id: request.request_id,\\n          response: {\\n            commands: [],\\n            output_style: 'normal',\\n            available_output_styles: ['normal'],\\n            models: [],\\n            ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/api/openaiShim/messageConversion.ts",
+  "cases": [
+   "text",
+   "image",
+   "tool_use",
+   "tool_result",
+   "thinking",
+   "redacted_thinking"
+  ],
+  "text": "switch (block.type) {\\n      case 'text':\\n        parts.push({ type: 'text', text: block.text ?? '' })\\n        break\\n      case 'image': {\\n        if (options?.supportsImageInputs === false) {\\n          throw new Error(\\n            'The active provider accepts text-only messages and does not support image inputs.',\\n          )\\n        }\\n        const source = block.source\\n        if (\\n          source?.type === 'base64' &&\\n          typeof source.media_type === 'string' &&\\n         ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/api/agentRouteSettings.ts",
+  "cases": [
+   "none",
+   "model-only",
+   "cross-provider",
+   "dangling"
+  ],
+  "text": "switch (current.kind) {\\n    case 'none':\\n      return 'Route: inherits parent model'\\n    case 'model-only':\\n      return `Route: ${current.model} (current provider)${viaDefault}`\\n    case 'cross-provider':\\n      return `Route: ${current.model} (cross-provider)${viaDefault}`\\n    case 'dangling':\\n      return `Route: ${current.routeKey} (unconfigured, inherits)${viaDefault}`\\n  }"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/api/errors.ts",
+  "cases": [
+   "localhost_resolution_failed",
+   "connection_refused",
+   "endpoint_not_found",
+   "vision_not_supported",
+   "model_not_found",
+   "auth_invalid",
+   "rate_limited",
+   "quota_exhausted",
+   "request_timeout",
+   "context_overflow",
+   "tool_call_incompatible",
+   "tool_stream_unsupported",
+   "malformed_provider_response",
+   "provider_unavailable",
+   "network_error",
+   "unknown"
+  ],
+  "text": "switch (options.category) {\\n    case 'localhost_resolution_failed':\\n    case 'connection_refused':\\n      return createAssistantAPIErrorMessage({\\n        content: isLocalhost\\n          ? 'Could not connect to the local OpenAI-compatible provider. Ensure the local server is running, then use OPENAI_BASE_URL=http://127.0.0.1:11434/v1 for Ollama.'\\n          : `Could not connect to the provider at ${options.host}. Verify OPENAI_BASE_URL is correct and that the host is reachable.`,\\n        erro..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/config.ts",
+  "cases": [
+   "nvidia-prod",
+   "nvidia-nim",
+   "openai-api",
+   "anthropic-prod",
+   "compatible-anthropic-endpoint",
+   "gemini-api",
+   "compatible-endpoint",
+   "hermes-provider",
+   "vllm-local",
+   "ollama-local",
+   "llama-cpp-local"
+  ],
+  "text": "switch (provider) {\\n    case \"nvidia-prod\":\\n    case \"nvidia-nim\":\\n      return {\\n        ...base,\\n        model: model || DEFAULT_CLOUD_MODEL,\\n        credentialEnv: DEFAULT_ROUTE_CREDENTIAL_ENV,\\n        providerLabel: \"NVIDIA Endpoints\",\\n      };\\n    case \"openai-api\":\\n      return {\\n        ...base,\\n        model: model || \"gpt-5.4\",\\n        credentialEnv: \"OPENAI_API_KEY\",\\n        providerLabel: \"OpenAI\",\\n      };\\n    case OPENROUTER_PROVIDER_NAME:\\n      return {\\n        ....."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/config.ts",
+  "cases": [
+   "openai-api",
+   "anthropic-prod",
+   "compatible-anthropic-endpoint",
+   "gemini-api",
+   "hermes-provider",
+   "compatible-endpoint",
+   "llama-cpp-local",
+   "ollama-local",
+   "nvidia-router",
+   "nvidia-prod",
+   "nvidia-nim"
+  ],
+  "text": "switch (provider) {\\n    case \"openai-api\":\\n      providerKey = \"openai\";\\n      primaryModelRef = `openai/${model}`;\\n      break;\\n    case \"anthropic-prod\":\\n    case \"compatible-anthropic-endpoint\":\\n      if (provider === \"compatible-anthropic-endpoint\" && inferenceApi === \"openai-completions\") {\\n        providerKey = MANAGED_PROVIDER_ID;\\n        primaryModelRef = `${MANAGED_PROVIDER_ID}/${model}`;\\n        inferenceCompat = {\\n          supportsStore: false,\\n        };\\n        break;\\..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n    case \"vllm-local\": {\\n      if (!configuredHostUrl) {\\n        const managed = recoveredManagedVllmBinding();\\n        if (managed.kind === \"unavailable\") return null;\\n        if (managed.binding) return managed.binding.baseUrl;\\n      }\\n      return `${hostUrl}:${VLLM_PORT}/v1`;\\n    }\\n    case \"ollama-local\":\\n      // Containers reach Ollama through the auth proxy, not directly.\\n      return `${hostUrl}:${getOllamaContainerPort()}/v1`;\\n    default:\\n      return ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n    case \"vllm-local\": {\\n      const managed = recoveredManagedVllmBinding();\\n      if (managed.kind === \"unavailable\") return null;\\n      return managed.binding\\n        ? (managed.binding.validationBaseUrl ?? managed.binding.baseUrl)\\n        : `http://127.0.0.1:${VLLM_PORT}/v1`;\\n    }\\n    case \"ollama-local\":\\n      return `http://${getResolvedOllamaHost()}:${OLLAMA_PORT}/v1`;\\n    default:\\n      return null;\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n    case \"vllm-local\": {\\n      const managed = recoveredManagedVllmBinding();\\n      if (managed.kind === \"unavailable\") return null;\\n      const managedBaseUrl = managed.binding\\n        ? (managed.binding.validationBaseUrl ?? managed.binding.baseUrl)\\n        : null;\\n      return managedBaseUrl\\n        ? `${managedBaseUrl}/models`\\n        : `http://127.0.0.1:${VLLM_PORT}/v1/models`;\\n    }\\n    case \"ollama-local\":\\n      return `http://${getResolvedOllamaHost()}:${OL..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n    case \"vllm-local\":\\n      return \"Local vLLM\";\\n    case \"ollama-local\":\\n      return \"Local Ollama\";\\n    default:\\n      return null;\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "ollama-local",
+   "vllm-local"
+  ],
+  "text": "switch (provider) {\\n      case \"ollama-local\":\\n        return (\\n          `${label} is selected for inference, but the host probe to ${endpoint} failed. ` +\\n          `Start Ollama and retry. (${result.message})`\\n        );\\n      case \"vllm-local\":\\n        return (\\n          `${label} is selected for inference, but the host probe to ${endpoint} failed. ` +\\n          `Start the local vLLM server and retry. (${result.message})`\\n        );\\n      default:\\n        return `${label} is sele..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n    case \"vllm-local\": {\\n      const managed = recoveredManagedVllmBinding();\\n      if (managed.kind === \"unavailable\") return null;\\n      const managedBaseUrl = managed.binding?.baseUrl.replace(/\\/v1\\/?$/, \"\") ?? null;\\n      const hostAlias = managed.binding?.validationBaseUrl\\n        ? `host.openshell.internal:${resolveManagedVllmBridgeHost()}`\\n        : \"host.openshell.internal:host-gateway\";\\n      return [\\n        ...(managedBaseUrl ? [\"docker\", \"--context\", \"def..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n      case \"vllm-local\":\\n        return {\\n          ok: false,\\n          message: `Local vLLM was selected, but nothing is responding on ${getLocalProviderHealthEndpoint(provider) ?? \"the configured endpoint\"}.`,\\n        };\\n      case \"ollama-local\":\\n        return {\\n          ok: false,\\n          message: `Local Ollama was selected, but nothing is responding on http://${getResolvedOllamaHost()}:${OLLAMA_PORT}.`,\\n        };\\n      default:\\n        return { ok: fals..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n      case \"vllm-local\":\\n        return {\\n          ok: false,\\n          message: `Local vLLM is responding on the host, but the Docker container reachability check failed for ${getContainerCheckUrl(provider)}. This may be a Docker networking issue \u2014 the sandbox uses a different network path and may still work.`,\\n          diagnostic: diagnostic.text,\\n        };\\n      case \"ollama-local\":\\n        return {\\n          ok: false,\\n          message: `Local Ollama is resp..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/local.ts",
+  "cases": [
+   "vllm-local",
+   "ollama-local"
+  ],
+  "text": "switch (provider) {\\n    case \"vllm-local\": {\\n      const managed = recoveredManagedVllmBinding();\\n      if (managed.kind === \"unavailable\") return null;\\n      const managedBaseUrl = managed.binding?.baseUrl.replace(/\\/v1\\/?$/, \"\") ?? null;\\n      return managedBaseUrl\\n        ? `${managedBaseUrl}/health`\\n        : `http://host.openshell.internal:${VLLM_PORT}/v1/models`;\\n    }\\n    case \"ollama-local\":\\n      return `http://host.openshell.internal:${getOllamaContainerPort()}/api/tags`;\\n  ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/uninstall/hermes-portable-uninstall.ts",
+  "cases": [
+   "prepared",
+   "sandboxes-retired",
+   "providers-retired",
+   "inference-retired"
+  ],
+  "text": "switch (phase) {\\n    case \"prepared\":\\n      return Object.freeze({ sandbox: true, provider: false, inference: false });\\n    case \"sandboxes-retired\":\\n      return Object.freeze({ sandbox: true, provider: true, inference: false });\\n    case \"providers-retired\":\\n    case \"inference-retired\":\\n      return Object.freeze({ sandbox: true, provider: true, inference: true });\\n    default:\\n      throw new Error(`Hermes Portable uninstall cannot revalidate resources in phase '${phase}'`);\\n  }"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/components/ConsoleOAuthFlow.tsx",
+  "cases": [
+   "idle",
+   "platform_setup",
+   "platform_setup_complete",
+   "waiting_for_login",
+   "creating_api_key",
+   "about_to_retry",
+   "success",
+   "error"
+  ],
+  "text": "switch (oauthStatus.state) {\\n    case 'idle': {\\n      const promptText =\\n        startingMessage ||\\n        'OpenClaude can be used with your Claude subscription or billed based on API usage through your Console account.'\\n\\n      // OPENAI_BASE_URL/OPENAI_MODEL in the environment signal an\\n      // OpenAI-compatible setup the user already has \u2014 offer to adopt it as\\n      // the active provider profile instead of walking them through login for\\n      // an account they may never have wante..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/snapshot-managed-clone-providers.test.ts",
+  "cases": [
+   "provider profile",
+   "provider get",
+   "provider create",
+   "provider delete"
+  ],
+  "text": "switch (args.slice(0, 2).join(\" \")) {\\n      case \"provider profile\": {\\n        const importing = args[2] === \"import\";\\n        profileExportResult =\\n          importing && profileImportResult.status === 0\\n            ? EXACT_MESSAGING_PROFILE\\n            : profileExportResult;\\n        return importing ? profileImportResult : profileExportResult;\\n      }\\n      case \"provider get\": {\\n        const name = args[2] ?? \"\";\\n        const binding = live.get(name);\\n        return binding\\n   ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/snapshot-hermes-managed-clone-broker.test.ts",
+  "cases": [
+   "provider get",
+   "provider create",
+   "provider delete"
+  ],
+  "text": "switch (args.slice(0, 2).join(\" \")) {\\n      case \"provider get\": {\\n        const name = args[2] ?? \"\";\\n        const binding = live.get(name);\\n        return binding\\n          ? {\\n              status: 0,\\n              stdout: providerMetadata(name, binding.type, binding.credential),\\n              stderr: \"\",\\n            }\\n          : { status: 1, stdout: \"\", stderr: `provider '${name}' not found` };\\n      }\\n      case \"provider create\": {\\n        const name = args[3] ?? \"\";\\n      ..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/components/Settings/Config.tsx",
+  "cases": [
+   "theme",
+   "model",
+   "compactModel",
+   "teammateDefaultModel",
+   "showExternalIncludesDialog",
+   "outputStyle",
+   "language"
+  ],
+  "text": "switch (setting_0.id) {\\n        case 'theme':\\n          setShowSubmenu('Theme');\\n          setTabsHidden(true);\\n          return;\\n        case 'model':\\n          setShowSubmenu('Model');\\n          setTabsHidden(true);\\n          return;\\n        case 'compactModel':\\n          setShowSubmenu('CompactModel');\\n          setTabsHidden(true);\\n          return;\\n        case 'teammateDefaultModel':\\n          setShowSubmenu('TeammateModel');\\n          setTabsHidden(true);\\n          return;..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/components/ProviderManager.tsx",
+  "cases": [
+   "add",
+   "activate",
+   "edit",
+   "delete",
+   "logout-codex-oauth",
+   "logout-xai-oauth"
+  ],
+  "text": "switch (value) {\\n              case 'add':\\n                setScreen('select-preset')\\n                break\\n              case 'activate':\\n                if (canSwitchActiveProvider) {\\n                  setScreen('select-active')\\n                }\\n                break\\n              case 'edit':\\n                if (hasProfiles) {\\n                  setScreen('select-edit')\\n                }\\n                break\\n              case 'delete':\\n                if (hasSelectableProvide..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/components/ProviderManager.tsx",
+  "cases": [
+   "select-preset",
+   "select-ollama-model",
+   "select-atomic-chat-model",
+   "xai-oauth",
+   "codex-oauth",
+   "form",
+   "preset-model",
+   "aimlapi-api-key-choice",
+   "aimlapi-configured",
+   "aimlapi-topup-email",
+   "aimlapi-signin-code",
+   "aimlapi-low-balance",
+   "aimlapi-topup-amount",
+   "aimlapi-topup-progress",
+   "aimlapi-done",
+   "preset-api-key",
+   "select-active",
+   "select-edit",
+   "select-delete",
+   "menu"
+  ],
+  "text": "switch (screen) {\\n    case 'select-preset':\\n      content = renderPresetSelection()\\n      break\\n    case 'select-ollama-model':\\n      content = renderOllamaSelection()\\n      break\\n    case 'select-atomic-chat-model':\\n      content = renderAtomicChatSelection()\\n      break\\n    case 'xai-oauth':\\n      content = (\\n        <XaiOAuthSetup\\n          onBack={() => setScreen('select-preset')}\\n          onConfigured={async (tokens, persistCredentials) => {\\n            const payload: Provid..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-compatible-provider.test.ts",
+  "cases": [
+   "provider:profile",
+   "inference:set",
+   "provider:get",
+   "provider:create"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n          case \"provider:profile\":\\n            return OPENAI_PROFILE_RESULT;\\n          case \"inference:set\":\\n            return providerCreated\\n              ? { status: 0, output: \"\", stdout: \"\", stderr: \"\" }\\n              : {\\n                  status: 1,\\n                  output: \"Error: provider 'compatible-endpoint' not found\",\\n                  stdout: \"\",\\n                  stderr: \"Error: provider 'compatible-endpoint' not found\",\\n             ..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-compatible-provider.test.ts",
+  "cases": [
+   "provider:profile",
+   "provider:get",
+   "provider:create"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"provider:profile\":\\n          return OPENAI_PROFILE_RESULT;\\n        case \"provider:get\": {\\n          const missingOutput = \"Error: provider 'compatible-endpoint' not found\";\\n          presentInspectionCount += providerCreated ? 1 : 0;\\n          const presentOutput = [\\n            \"Name: compatible-endpoint\",\\n            \"Id: 11111111-2222-4333-8444-555555555555\",\\n            \"Type: openai\",\\n            `Resource version: ${presentInspecti..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-compatible-provider.test.ts",
+  "cases": [
+   "provider:get"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"provider:get\": {\\n          const output = `provider lookup failed with credential ${storedCredential}`;\\n          return { status: 1, output, stdout: \"\", stderr: output };\\n        }\\n        default:\\n          return { status: 0, output: \"\", stdout: \"\", stderr: \"\" };\\n      }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-compatible-provider.test.ts",
+  "cases": [
+   "provider:profile",
+   "provider:get",
+   "provider:create",
+   "provider:delete",
+   "inference:set"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"provider:profile\":\\n          return OPENAI_PROFILE_RESULT;\\n        case \"provider:get\": {\\n          const missingOutput =\\n            \"Error: code: 'Some requested entity was not found', message: \\\"provider not found\\\"\";\\n          const presentOutput = [\\n            \"Name: compatible-endpoint\",\\n            \"Id: 11111111-2222-4333-8444-555555555555\",\\n            \"Type: openai\",\\n            \"Resource version: 1\",\\n            \"Credential k..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-compatible-provider.test.ts",
+  "cases": [
+   "provider:profile",
+   "provider:get",
+   "provider:update"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"provider:profile\":\\n          return OPENAI_PROFILE_RESULT;\\n        case \"provider:get\": {\\n          const output = [\\n            \"Name: compatible-endpoint\",\\n            \"Id: 11111111-2222-4333-8444-555555555555\",\\n            \"Type: openai\",\\n            `Resource version: ${providerVersion}`,\\n            \"Credential keys: COMPATIBLE_API_KEY\",\\n            \"Config keys: OPENAI_BASE_URL\",\\n          ].join(\"\\n\");\\n          return { status:..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-compatible-provider.test.ts",
+  "cases": [
+   "inference:set"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"inference:set\":\\n          return inferenceSetResults[inferenceSetCalls++] ?? providerCapture(args);\\n        default:\\n          return providerCapture(args);\\n      }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-route-api.ts",
+  "cases": [
+   "anthropic_messages",
+   "codex_responses"
+  ],
+  "text": "switch (model.api_mode) {\\n    case \"anthropic_messages\":\\n      return \"anthropic-messages\";\\n    case \"codex_responses\":\\n      return \"openai-responses\";\\n    case undefined:\\n    case null:\\n    case \"\":\\n      return \"openai-completions\";\\n    default:\\n      return null;\\n  }"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/commands/provider/provider.tsx",
+  "cases": [
+   "gemini",
+   "mistral",
+   "codex",
+   "ollama",
+   "openai"
+  ],
+  "text": "switch (profile) {\\n    case 'gemini':\\n      {\\n        const geminiMetadata = getProviderPresetUiMetadata('gemini')\\n      return {\\n        providerLabel: geminiMetadata.label,\\n        modelLabel: getSafeDisplayValue(\\n          env.GEMINI_MODEL ?? DEFAULT_GEMINI_MODEL,\\n          process.env,\\n          env,\\n        ),\\n        endpointLabel: getSafeDisplayValue(\\n          env.GEMINI_BASE_URL ?? DEFAULT_GEMINI_BASE_URL,\\n          process.env,\\n          env,\\n        ),\\n        credenti..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/commands/provider/provider.tsx",
+  "cases": [
+   "choose",
+   "auto-goal",
+   "auto-detect",
+   "ollama-detect",
+   "openai-key",
+   "openai-base",
+   "openai-model",
+   "mistral-key",
+   "mistral-base",
+   "mistral-model",
+   "gemini-auth-method",
+   "gemini-key",
+   "gemini-access-token",
+   "gemini-model",
+   "codex-check",
+   "codex-oauth"
+  ],
+  "text": "switch (step.name) {\\n    case 'choose':\\n      return (\\n        <ProviderChooser\\n          onChoose={value => {\\n            if (value === 'auto') {\\n              setStep({ name: 'auto-goal' })\\n            } else if (value === 'ollama') {\\n              setStep({ name: 'ollama-detect' })\\n            } else if (value === 'openai') {\\n              setStep({\\n                name: 'openai-key',\\n                defaultModel: defaults.openAIModel,\\n              })\\n            } else if (val..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/rebuild-resume-preflight.ts",
+  "cases": [
+   "compatible-endpoint",
+   "compatible-anthropic-endpoint",
+   "nvidia-router"
+  ],
+  "text": "switch (provider) {\\n    case \"compatible-endpoint\":\\n      return envName === \"COMPATIBLE_API_KEY\" ? envName : null;\\n    case \"compatible-anthropic-endpoint\":\\n      return envName === \"COMPATIBLE_ANTHROPIC_API_KEY\" ? envName : null;\\n    case \"nvidia-router\":\\n      return envName;\\n    default:\\n      return null;\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/agent/passthrough-ollama-recovery.ts",
+  "cases": [
+   "already-loaded",
+   "unreachable",
+   "missing-model",
+   "not-ollama"
+  ],
+  "text": "switch (reason) {\\n    case \"already-loaded\":\\n      proc.stderr.write(`  Ollama model '${model}' is already loaded.\\n`);\\n      break;\\n    case \"unreachable\": {\\n      const endpoint = boundedRecoveryEndpoint(result.endpoint, \"the saved local Ollama endpoint\");\\n      proc.stderr.write(\\n        `  Ollama at ${endpoint} was unreachable while checking '${model}'; continuing to ` +\\n          `OpenClaw dispatch. Restore Ollama access to ${endpoint}, confirm that it serves ` +\\n          `'${mode..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-https-pin-runtime.test.ts",
+  "cases": [
+   "provider:profile",
+   "provider:get",
+   "provider:update"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n      case \"provider:profile\": {\\n        const profile =\\n          options.providerType === \"anthropic\" ? ANTHROPIC_PROFILE_OUTPUT : OPENAI_PROFILE_OUTPUT;\\n        return {\\n          status: 0,\\n          output: profile,\\n          stdout: profile,\\n          stderr: \"\",\\n        };\\n      }\\n      case \"provider:get\": {\\n        const text = output();\\n        return { status: 0, stdout: text, stderr: \"\", output: text };\\n      }\\n      case \"provider:up..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-https-pin-runtime.test.ts",
+  "cases": [
+   "provider:update",
+   "inference:set"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"provider:update\":\\n          return {\\n            status: 1,\\n            stdout: \"\",\\n            stderr: \"provider update failed\",\\n            output: \"provider update failed\",\\n          };\\n        case \"inference:set\": {\\n          const result = inferenceSetResults[inferenceSetCalls++];\\n          return result ?? original(args, opts);\\n        }\\n        default:\\n          return original(args, opts);\\n      }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-reasoning-effort.test.ts",
+  "cases": [
+   "provider:get",
+   "provider:update",
+   "provider:profile"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n        case \"provider:get\": {\\n          const output = [\\n            \"Name: compatible-endpoint\",\\n            \"Id: 11111111-2222-4333-8444-555555555555\",\\n            \"Type: openai\",\\n            `Resource version: ${providerVersion}`,\\n            \"Credential keys: COMPATIBLE_API_KEY\",\\n            \"Config keys: OPENAI_BASE_URL\",\\n          ].join(\"\\n\");\\n          return { status: 0, output, stdout: output, stderr: \"\" };\\n        }\\n        case \"provide..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set.test-support.ts",
+  "cases": [
+   "provider:profile",
+   "provider:get",
+   "provider:create",
+   "provider:update",
+   "provider:delete"
+  ],
+  "text": "switch (`${args[0]}:${args[1]}`) {\\n      case \"provider:profile\": {\\n        const profile =\\n          options.type === \"anthropic\"\\n            ? ANTHROPIC_ENDPOINTLESS_PROFILE\\n            : OPENAI_ENDPOINTLESS_PROFILE;\\n        return {\\n          status: 0,\\n          output: profile,\\n          stdout: profile,\\n          stderr: \"\",\\n        };\\n      }\\n      case \"provider:get\": {\\n        if (!providerPresent) {\\n          const output =\\n            \"Error: code: 'Some requested enti..."
+ },
+ {
+  "file": "Gitlawb-openclaude/src/commands/model/model.tsx",
+  "cases": [
+   "manual",
+   "on-open",
+   "startup",
+   "background-if-stale"
+  ],
+  "text": "switch (options.catalog.discoveryRefreshMode) {\\n    case 'manual':\\n      return needsInitialDiscovery\\n    case 'on-open':\\n      return true\\n    case 'startup':\\n      return needsInitialDiscovery\\n    case 'background-if-stale':\\n    default:\\n      return options.stale || !options.hasCachedModels\\n  }"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/scripts/checks/generate-managed-startup-profile-fixture.mts",
+  "cases": [
+   "openclaw",
+   "hermes",
+   "langchain-deepagents-code",
+   "pi"
+  ],
+  "text": "switch (agent) {\\n    case \"openclaw\":\\n      return {\\n        ...common,\\n        agent,\\n        agentConfig: {\\n          agent,\\n          webSearch: { enabled: false, provider: \"brave\" },\\n          otel: {\\n            enabled: false,\\n            endpointUrl: \"http://host.openshell.internal:4318\",\\n            serviceName: \"openclaw-gateway\",\\n            sampleRate: 1,\\n          },\\n          agentTimeoutSeconds: 600,\\n          heartbeatEvery: MANAGED_STARTUP_E2E_OPENCLAW_HEARTBEAT_EV..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/scripts/bench/run.mts",
+  "cases": [
+   "--base-url",
+   "--model",
+   "--api-key-env",
+   "--samples",
+   "--warmup",
+   "--prompt",
+   "--max-tokens",
+   "--timeout-ms",
+   "--trace",
+   "--json",
+   "--report",
+   "--no-inference",
+   "-h",
+   "--help"
+  ],
+  "text": "switch (arg) {\\n      case \"--base-url\":\\n        options.baseUrl = value();\\n        break;\\n      case \"--model\":\\n        options.model = value();\\n        break;\\n      case \"--api-key-env\":\\n        options.apiKeyEnv = value();\\n        break;\\n      case \"--samples\":\\n        options.samples = toPositiveInt(value(), arg);\\n        break;\\n      case \"--warmup\":\\n        options.warmup = toNonNegativeInt(value(), arg);\\n        break;\\n      case \"--prompt\":\\n        options.prompt = value(..."
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/mcp-bridge-provider.test.ts",
+  "cases": [
+   "provider profile export",
+   "provider get alpha-mcp-fake",
+   "provider create --name",
+   "provider update alpha-mcp-fake",
+   "provider delete alpha-mcp-fake",
+   "sandbox provider list",
+   "sandbox provider attach",
+   "sandbox provider detach"
+  ],
+  "text": "switch (command) {\\n        case \"provider profile export\":\\n          commandFamilies.add(\"profile\");\\n          return {\\n            status: 0,\\n            stdout: profileOutput(args[3], args[3] === \"openai\"),\\n            stderr: \"\",\\n          };\\n        case \"provider get alpha-mcp-fake\":\\n          commandFamilies.add(\"get\");\\n          return providerExists\\n            ? { status: 0, stdout: providerOutput(), stderr: \"\" }\\n            : { status: 1, stdout: \"\", stderr: `provider '${ar..."
+ }
+]

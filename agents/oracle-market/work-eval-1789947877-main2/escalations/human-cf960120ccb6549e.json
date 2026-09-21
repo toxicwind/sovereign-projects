@@ -1,0 +1,10 @@
+{
+  "ts": 1789948056.7442465,
+  "question_id": "cf960120ccb6549e",
+  "question": "Will the weight loss drug shortage end before 2026? Resolution criterion: If semaglutide injections is listed as available on the FDA Drug Shortage list before Jan 1, 2026, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

@@ -1,0 +1,10 @@
+{
+  "ts": 1789948107.9164822,
+  "question_id": "4cada49ee5b73b82",
+  "question": "Will the EUR/USD open price be above 1.17719 at Nov 14, 2025 at 4pm EST? Resolution criterion: If the open price of the Euro/Dollar for November 14, 2025 is above 1.17719 at 4 PM EST, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

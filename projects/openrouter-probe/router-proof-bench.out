@@ -1,0 +1,65 @@
+[12:40:37] START trials=30 contenders=['A_intelligent', 'B_dumb_direct']
+[12:40:44] [3/180] A_intelligent t0: EXACT ok=True 1579.5ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=6.0 239.4ms | CODE ok=True 412.9ms
+[12:40:57] [6/180] A_intelligent t1: EXACT ok=True 295.8ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 309.6ms | CODE ok=True 512.7ms
+[12:41:03] [9/180] A_intelligent t2: EXACT ok=False 299.0ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=9.0 208.7ms | CODE ok=True 485.5ms
+[12:41:13] [12/180] A_intelligent t3: EXACT ok=True 290.8ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 252.7ms | CODE ok=True 547.7ms
+[12:41:30] [15/180] A_intelligent t4: EXACT ok=True 295.7ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=8.0 236.6ms | CODE ok=True 464.3ms
+[12:41:54] [18/180] A_intelligent t5: EXACT ok=True 295.1ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 208.2ms | CODE ok=True 322.1ms
+[12:42:04] [21/180] A_intelligent t6: EXACT ok=True 390.7ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=8.0 273.7ms | CODE ok=True 446.4ms
+[12:42:15] [24/180] A_intelligent t7: EXACT ok=True 293.3ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 198.6ms | CODE ok=True 532.9ms
+[12:42:24] [27/180] A_intelligent t8: EXACT ok=True 290.7ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=4.0 302.1ms | CODE ok=True 372.9ms
+[12:42:34] [30/180] A_intelligent t9: EXACT ok=True 297.0ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=9.0 241.9ms | CODE ok=True 374.2ms
+[12:42:51] [33/180] A_intelligent t10: EXACT ok=False 285.0ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 277.6ms | CODE ok=True 445.2ms
+[12:42:59] [36/180] A_intelligent t11: EXACT ok=True 291.2ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=8.0 255.4ms | CODE ok=True 511.2ms
+[12:43:14] [39/180] A_intelligent t12: EXACT ok=True 291.8ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 248.5ms | CODE ok=True 222.5ms
+[12:43:35] [42/180] A_intelligent t13: EXACT ok=False 302.2ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=8.0 1169.5ms | CODE ok=True 442.1ms
+[12:43:47] [45/180] A_intelligent t14: EXACT ok=True 297.3ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 191.1ms | CODE ok=True 516.7ms
+[12:43:57] [48/180] A_intelligent t15: EXACT ok=True 294.2ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 259.3ms | CODE ok=True 418.1ms
+[12:44:08] [51/180] A_intelligent t16: EXACT ok=True 298.6ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 199.3ms | CODE ok=True 431.0ms
+[12:44:17] [54/180] A_intelligent t17: EXACT ok=True 295.2ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=True score=7.0 260.4ms | CODE ok=True 360.0ms
+[12:45:01] [57/180] A_intelligent t18: EXACT ok=True 297.6ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 203.0ms | CODE ok=True 22139.3ms
+[12:45:43] [60/180] A_intelligent t19: EXACT ok=True 295.6ms /home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf | QUAL ok=False score=None 25507.4ms | CODE ok=False 16002.9ms
+[12:45:55] [63/180] A_intelligent t20: EXACT ok=False 8350.6ms None | QUAL ok=False score=None 3545.2ms | CODE ok=False 220.6ms
+[12:46:02] [66/180] A_intelligent t21: EXACT ok=False 236.8ms None | QUAL ok=False score=None 6594.6ms | CODE ok=False 293.1ms
+[12:46:04] [69/180] A_intelligent t22: EXACT ok=False 345.2ms None | QUAL ok=False score=None 473.3ms | CODE ok=False 608.6ms
+[12:46:06] [72/180] A_intelligent t23: EXACT ok=False 632.1ms None | QUAL ok=False score=None 638.4ms | CODE ok=False 542.0ms
+[12:46:07] [75/180] A_intelligent t24: EXACT ok=False 588.6ms None | QUAL ok=False score=None 625.2ms | CODE ok=False 555.4ms
+[12:46:09] [78/180] A_intelligent t25: EXACT ok=False 571.1ms None | QUAL ok=False score=None 461.5ms | CODE ok=False 708.9ms
+[12:46:16] [81/180] A_intelligent t26: EXACT ok=False 614.1ms None | QUAL ok=True score=10.0 4695.1ms | CODE ok=False 597.9ms
+[12:46:17] [84/180] A_intelligent t27: EXACT ok=False 539.2ms None | QUAL ok=False score=None 613.6ms | CODE ok=False 530.0ms
+[12:46:19] [87/180] A_intelligent t28: EXACT ok=False 549.2ms None | QUAL ok=False score=None 578.1ms | CODE ok=False 516.6ms
+[12:46:21] [90/180] A_intelligent t29: EXACT ok=False 433.5ms None | QUAL ok=False score=None 523.0ms | CODE ok=False 619.6ms
+[12:46:21] CONTENDER DONE: A_intelligent
+[12:46:31] [93/180] B_dumb_direct t0: EXACT ok=True 988.4ms cohere/north-mini-code:free | QUAL ok=False score=None 5591.4ms | CODE ok=False 4194.2ms
+[12:46:47] [96/180] B_dumb_direct t1: EXACT ok=True 826.7ms cohere/north-mini-code:free | QUAL ok=True score=8.0 2328.2ms | CODE ok=False 7162.8ms
+[12:46:59] [99/180] B_dumb_direct t2: EXACT ok=True 430.2ms cohere/north-mini-code:free | QUAL ok=False score=None 5613.9ms | CODE ok=False 5328.6ms
+[12:47:06] [102/180] B_dumb_direct t3: EXACT ok=True 669.2ms cohere/north-mini-code:free | QUAL ok=True score=10.0 3986.5ms | CODE ok=False 2080.0ms
+[12:47:21] [105/180] B_dumb_direct t4: EXACT ok=True 523.6ms cohere/north-mini-code:free | QUAL ok=True score=10.0 3463.2ms | CODE ok=False 3203.4ms
+[12:47:21] [108/180] B_dumb_direct t5: EXACT ok=False 79.2ms None | QUAL ok=False score=None 49.0ms | CODE ok=False 44.1ms
+[12:47:21] [111/180] B_dumb_direct t6: EXACT ok=False 44.7ms None | QUAL ok=False score=None 44.5ms | CODE ok=False 47.6ms
+[12:47:21] [114/180] B_dumb_direct t7: EXACT ok=False 43.4ms None | QUAL ok=False score=None 44.0ms | CODE ok=False 43.5ms
+[12:47:21] [117/180] B_dumb_direct t8: EXACT ok=False 43.7ms None | QUAL ok=False score=None 44.2ms | CODE ok=False 44.2ms
+[12:47:21] [120/180] B_dumb_direct t9: EXACT ok=False 42.9ms None | QUAL ok=False score=None 43.1ms | CODE ok=False 43.2ms
+[12:47:21] [123/180] B_dumb_direct t10: EXACT ok=False 43.8ms None | QUAL ok=False score=None 44.1ms | CODE ok=False 43.5ms
+[12:47:22] [126/180] B_dumb_direct t11: EXACT ok=False 44.8ms None | QUAL ok=False score=None 43.3ms | CODE ok=False 42.7ms
+[12:47:22] [129/180] B_dumb_direct t12: EXACT ok=False 43.6ms None | QUAL ok=False score=None 43.7ms | CODE ok=False 43.9ms
+[12:47:22] [132/180] B_dumb_direct t13: EXACT ok=False 43.6ms None | QUAL ok=False score=None 44.8ms | CODE ok=False 43.0ms
+[12:47:22] [135/180] B_dumb_direct t14: EXACT ok=False 43.7ms None | QUAL ok=False score=None 43.8ms | CODE ok=False 44.4ms
+[12:47:22] [138/180] B_dumb_direct t15: EXACT ok=False 43.1ms None | QUAL ok=False score=None 43.7ms | CODE ok=False 44.1ms
+[12:47:22] [141/180] B_dumb_direct t16: EXACT ok=False 42.8ms None | QUAL ok=False score=None 43.8ms | CODE ok=False 43.6ms
+[12:47:22] [144/180] B_dumb_direct t17: EXACT ok=False 45.3ms None | QUAL ok=False score=None 44.3ms | CODE ok=False 44.8ms
+[12:47:22] [147/180] B_dumb_direct t18: EXACT ok=False 44.9ms None | QUAL ok=False score=None 43.4ms | CODE ok=False 43.1ms
+[12:47:23] [150/180] B_dumb_direct t19: EXACT ok=False 43.3ms None | QUAL ok=False score=None 44.4ms | CODE ok=False 43.3ms
+[12:47:23] [153/180] B_dumb_direct t20: EXACT ok=False 44.7ms None | QUAL ok=False score=None 43.0ms | CODE ok=False 44.1ms
+[12:47:23] [156/180] B_dumb_direct t21: EXACT ok=False 42.7ms None | QUAL ok=False score=None 44.8ms | CODE ok=False 43.7ms
+[12:47:23] [159/180] B_dumb_direct t22: EXACT ok=False 43.1ms None | QUAL ok=False score=None 45.4ms | CODE ok=False 44.5ms
+[12:47:23] [162/180] B_dumb_direct t23: EXACT ok=False 43.4ms None | QUAL ok=False score=None 43.6ms | CODE ok=False 45.1ms
+[12:47:23] [165/180] B_dumb_direct t24: EXACT ok=False 43.2ms None | QUAL ok=False score=None 43.5ms | CODE ok=False 43.1ms
+[12:47:23] [168/180] B_dumb_direct t25: EXACT ok=False 44.8ms None | QUAL ok=False score=None 42.4ms | CODE ok=False 45.0ms
+[12:47:24] [171/180] B_dumb_direct t26: EXACT ok=False 43.1ms None | QUAL ok=False score=None 45.2ms | CODE ok=False 42.7ms
+[12:47:24] [174/180] B_dumb_direct t27: EXACT ok=False 43.3ms None | QUAL ok=False score=None 43.8ms | CODE ok=False 43.1ms
+[12:47:24] [177/180] B_dumb_direct t28: EXACT ok=False 44.1ms None | QUAL ok=False score=None 42.8ms | CODE ok=False 43.0ms
+[12:47:24] [180/180] B_dumb_direct t29: EXACT ok=False 43.1ms None | QUAL ok=False score=None 45.6ms | CODE ok=False 43.2ms
+[12:47:24] CONTENDER DONE: B_dumb_direct
+[12:47:24] FINISHED all contenders
+[12:47:24] SUMMARY: {"A_intelligent": {"exact": {"n": 30, "transport_ok_rate": 0.6667, "success_rate": 0.5667, "mean_score": 0.567, "scored_n": 30, "p50_latency_ms": 297.5, "p95_latency_ms": 1153.2, "models_serving_wins": {"/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf": 17}, "errors": {"http_503": 10}}, "quality": {"n": 30, "transport_ok_rate": 0.6667, "success_rate": 0.3, "mean_score": 7.7, "scored_n": 10, "p50_latency_ms": 275.6, "p95_latency_ms": 5739.8, "models_serving_wins": {"/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf": 8, "nvidia/nemotron-3-super-120b-a12b": 1}, "errors": {"http_503": 10}}, "code": {"n": 30, "transport_ok_rate": 0.6333, "success_rate": 0.6333, "mean_score": 0.633, "scored_n": 30, "p50_latency_ms": 498.4, "p95_latency_ms": 9120.6, "models_serving_wins": {"/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf": 19}, "errors": {"http_503": 11}}}, "B_dumb_direct": {"exact": {"n": 30, "transport_ok_rate": 0.1667, "success_rate": 0.1667, "mean_score": 0.167, "scored_n": 30, "p50_latency_ms": 43.7, "p95_latency_ms": 755.8, "models_serving_wins": {"cohere/north-mini-code:free": 5}, "errors": {"http_502": 25}}, "quality": {"n": 30, "transport_ok_rate": 0.1667, "success_rate": 0.1, "mean_score": 9.333, "scored_n": 3, "p50_latency_ms": 44.2, "p95_latency_ms": 4869.2, "models_serving_wins": {"cohere/north-mini-code:free": 3}, "errors": {"http_502": 25}}, "code": {"n": 30, "transport_ok_rate": 0.1667, "success_rate": 0.0, "mean_score": 0.0, "scored_n": 30, "p50_latency_ms": 44.0, "p95_latency_ms": 4818.1, "models_serving_wins": {}, "errors": {"http_502": 25}}}}

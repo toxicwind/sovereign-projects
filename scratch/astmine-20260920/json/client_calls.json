@@ -1,0 +1,40 @@
+[
+ {
+  "file": "Sateeshreddymaddi-Custom-Nvidia-Nim-Node/nodes/NvidiaNim/NvidiaNimEmbeddings.node.ts",
+  "headers": [
+   "Content-Type"
+  ],
+  "text": "fetch('https://integrate.api.nvidia.com/v1/embeddings', {\\n\t\t\t\tmethod: 'POST',\\n\t\t\t\theaders: {\\n\t\t\t\t\t'Content-Type': 'application/json',\\n\t\t\t\t\tAuthorization: `Bearer ${this.apiKey}`,\\n\t\t\t\t\tAccept: 'application/json',\\n\t\t\t\t},\\n\t\t\t\tbody: JSON.stringify({\\n\t\t\t\t\tinput: texts,\\n\t\t\t\t\tmodel: this.model,\\n\t\t\t\t\tinput_type: 'query',\\n\t\t\t\t}),\\n\t\t\t})"
+ },
+ {
+  "file": "tibbee-pi-nvidia-nim-provider/tools/probe_shipped_alive.ts",
+  "headers": [
+   "Content-Type"
+  ],
+  "text": "fetch(\"https://integrate.api.nvidia.com/v1/chat/completions\", {\\n      method: \"POST\",\\n      headers: { Authorization: `Bearer ${KEY}`, \"Content-Type\": \"application/json\" },\\n      body: JSON.stringify({\\n        model: id,\\n        messages: [{ role: \"user\", content: \"ping\" }],\\n        max_tokens: 4,\\n      }),\\n      signal: AbortSignal.timeout(60000),\\n    })"
+ },
+ {
+  "file": "tibbee-pi-nvidia-nim-provider/tools/probe_retry.ts",
+  "headers": [
+   "Content-Type"
+  ],
+  "text": "fetch(\"https://integrate.api.nvidia.com/v1/chat/completions\", {\\n        method: \"POST\",\\n        headers: { Authorization: `Bearer ${KEY}`, \"Content-Type\": \"application/json\" },\\n        body: JSON.stringify({ model: id, messages: [{ role: \"user\", content: \"ping\" }], max_tokens: 4 }),\\n        signal: AbortSignal.timeout(30000),\\n      })"
+ },
+ {
+  "file": "tibbee-pi-nvidia-nim-provider/tools/probe_patient.ts",
+  "headers": [
+   "Content-Type"
+  ],
+  "text": "fetch(\"https://integrate.api.nvidia.com/v1/chat/completions\", {\\n      method: \"POST\",\\n      headers: { Authorization: `Bearer ${KEY}`, \"Content-Type\": \"application/json\" },\\n      body: JSON.stringify({ model: id, messages: [{ role: \"user\", content: \"ping\" }], max_tokens: 4 }),\\n      signal: AbortSignal.timeout(120000),\\n    })"
+ },
+ {
+  "file": "rickeshtn-nim-code/tools/nim_proxy.py",
+  "headers": [],
+  "text": "os.environ.get(\"NIM_UPSTREAM\", \"https://integrate.api.nvidia.com\")"
+ },
+ {
+  "file": "rickeshtn-nim-code/bench/scripts/headless_agent.py",
+  "headers": [],
+  "text": "os.environ.get(\"NIM_URL\", \"https://integrate.api.nvidia.com/v1/chat/completions\")"
+ }
+]

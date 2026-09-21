@@ -1,0 +1,10 @@
+{
+  "ts": 1789948066.208744,
+  "question_id": "8dda6fa85f97175c",
+  "question": "Will the real ID deadline be delayed again? Resolution criterion: If the deadline for the requirement to start using real IDs for domestic flights has been extended past May 7, 2025, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

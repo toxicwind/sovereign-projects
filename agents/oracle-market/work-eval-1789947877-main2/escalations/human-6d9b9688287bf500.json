@@ -1,0 +1,10 @@
+{
+  "ts": 1789948098.455545,
+  "question_id": "6d9b9688287bf500",
+  "question": "Will Melissa become a Category 5 hurricane? Resolution criterion: If Melissa reaches maximum sustained winds of greater than or equal to 157 mph according to the NOAA's National Hurricane Center, then the market resolves to Yes.\nShould the event occur prior to December 01, 2025, the market will expire at the first 10:00 AM ET following the occurrence of the event.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

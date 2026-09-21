@@ -1,0 +1,10 @@
+{
+  "ts": 1789948087.9530764,
+  "question_id": "27cdf656f1ba2b11",
+  "question": "Will Trump say \"Zohran / Mamdani\" before Dec 1, 2025? Resolution criterion: If Zohran / Mamdani, or a plural or possessive form of Zohran / Mamdani, is stated by Donald Trump before Dec 1, 2025, then the market resolves to Yes.\nThe word or phrase must be stated by President Donald Trump in public statements, direct quotes published by Source Agencies, or written public statements on his personal social media accounts (Twitter/Truth Social). Official acts like Executive Orders or bills signed do not count. Grammatical inflections for plurals and possessives are included (e.g., \"immigrant\" includes \"immigrants\" and \"immigrant's\"), but other tense inflections, hyphenated compounds, and synonyms are not included. For phrases with slashes like \"Doge/Dogecoin,\" either word satisfies the criterion. If the word must be said a minimum number of times, all instances must occur after market issuance.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

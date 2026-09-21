@@ -1,0 +1,10 @@
+{
+  "ts": 1789948119.4037337,
+  "question_id": "eb331af0f444b24f",
+  "question": "Will a representative of the Andrew Cuomo party win the NYC Mayor race in 2025? Resolution criterion: If Andrew Cuomo (as an independent only) is sworn in pursuant to the NYC Mayoral election on Nov 4, 2025, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

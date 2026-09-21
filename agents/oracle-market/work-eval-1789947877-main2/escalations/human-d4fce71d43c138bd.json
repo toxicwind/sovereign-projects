@@ -1,0 +1,10 @@
+{
+  "ts": 1789948076.9934964,
+  "question_id": "d4fce71d43c138bd",
+  "question": "Will pump.fun announces an acquisition of any company in 2025? Resolution criterion: If pump.fun announces an acquisition of any company  after issuance and before Jan 1, 2026, then the market resolves to Yes.\nThe deal need not close; it needs only be announced.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

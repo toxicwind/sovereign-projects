@@ -1,0 +1,522 @@
+[
+ {
+  "file": "musistudio-claude-code-router/pnpm-lock.yaml",
+  "n": 911
+ },
+ {
+  "file": "h0rcrux-hermes-backup/config.yaml",
+  "n": 42
+ },
+ {
+  "file": "nirholas-three.ws/server/cloudbuild.yaml",
+  "n": 38
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/vision.test.js",
+  "n": 18
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-chat-api-openapi.yml",
+  "n": 18
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/_original/nvidia-nim-chat-completions-api-openapi.yml",
+  "n": 17
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/vision-lane-health.test.js",
+  "n": 10
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-vision-api-openapi.yml",
+  "n": 9
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-models-api-openapi.yml",
+  "n": 9
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-health-api-openapi.yml",
+  "n": 9
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-reranking-api-openapi.yml",
+  "n": 8
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-images-api-openapi.yml",
+  "n": 8
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-embeddings-api-openapi.yml",
+  "n": 8
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-completions-api-openapi.yml",
+  "n": 8
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-biology-api-openapi.yml",
+  "n": 8
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/_original/nvidia-nim-speech-api-openapi.yml",
+  "n": 7
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/_original/nvidia-nim-image-generation-api-openapi.yml",
+  "n": 7
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/apis.yml",
+  "n": 6
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/checks-2026-09-18T231945.yml",
+  "n": 6
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-tts-api-openapi.yml",
+  "n": 5
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/openapi/nvidia-nim-asr-api-openapi.yml",
+  "n": 5
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/changelog/nvidia-nim-changelog.yml",
+  "n": 4
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/api/openaiErrorClassification.test.ts",
+  "n": 3
+ },
+ {
+  "file": "NVIDIA-NemoClaw/managed-inference/recipes/vllm.nemotron-3-ultra-550b-a55b-nvfp4.station-arm64-single.v1.yaml",
+  "n": 3
+ },
+ {
+  "file": "NVIDIA-NemoClaw/managed-inference/recipes/vllm.deepseek-v4-flash-0731.spark-dual.v1.yaml",
+  "n": 3
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/api/openaiErrorClassification.test.ts",
+  "n": 3
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/conventions/nvidia-nim-conventions.yml",
+  "n": 3
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/cli/nvidia-nim-cli.yml",
+  "n": 3
+ },
+ {
+  "file": "nirholas-three.ws/workers/model-hunyuan3d/cloudbuild.yaml",
+  "n": 2
+ },
+ {
+  "file": "NVIDIA-NemoClaw/managed-inference/recipes/vllm.nemotron-3.5-lightning-30b-a3b-nvfp4.spark-single.v1.yaml",
+  "n": 2
+ },
+ {
+  "file": "NVIDIA-NemoClaw/managed-inference/recipes/vllm.deepseek-v4-flash.station-arm64-single.v1.yaml",
+  "n": 2
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/agents-embed.test.js",
+  "n": 2
+ },
+ {
+  "file": "nirholas-three.ws/robinhood/hood-traders/docker-compose.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/rules/nvidia-nim-jsonschema-spectral-rules.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/rate-limits/nvidia-nim-rate-limits.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/provenance.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/errors/nvidia-nim-problem-types.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/data-model/nvidia-nim-data-model.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/plans/nvidia-nim-plans-pricing.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/mcp/nvidia-nim-mcp.yml",
+  "n": 2
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/finops/nvidia-nim-finops.yml",
+  "n": 2
+ },
+ {
+  "file": "nirholas-three.ws/workers/okx-chat-bot/cloudbuild.yaml",
+  "n": 1
+ },
+ {
+  "file": "thispointon-kondi/kondi-search-mcp/docker-compose.yml",
+  "n": 1
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/api/openaiShim.ts",
+  "n": 1
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/api/errors.openaiCompatibility.test.ts",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/nemoclaw-blueprint/provider-profiles/tavily.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/nemoclaw-blueprint/provider-profiles/tavily-hermes-v1.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/nemoclaw-blueprint/provider-profiles/brave.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/agents/pi/manifest.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/agents/langchain-deepagents-code/manifest.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/channels/googlechat/provider-profile/openclaw.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/channels/googlechat/provider-profile/hermes.yaml",
+  "n": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/messaging/channels/discord/provider-profile/hermes.yaml",
+  "n": 1
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/api/openaiShim/providerCompatibility.ts",
+  "n": 1
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/api/errors.openaiCompatibility.test.ts",
+  "n": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/llm-free-chain-reachability.test.js",
+  "n": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/llm.test.js",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/well-known/nvidia-nim-well-known.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/security/nvidia-nim-vulnerability-disclosure.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/security/nvidia-nim-domain-security.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/conformance/nvidia-nim-conformance.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/lifecycle/nvidia-nim-lifecycle.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-18T231945.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-18T205255.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-17T233623.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-17T211151.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-16T225339.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-16T210549.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-15T230249.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-15T211329.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-14T225847.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-14T210656.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/packages/nvidia-nim-packages.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-14T064754.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-13T214537.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-12T221936.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-12T204651.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-12T080032.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-12T062655.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-10T222408.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-10T204815.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-08T232836.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-08T214843.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-07T213054.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-07T200636.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-06T224210.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-06T211804.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-06T011047.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-05T211839.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-05T195450.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-05T144739.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-05T072335.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-05T055819.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-04T224856.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-04T212454.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-04T062714.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-03T174231.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-03T161828.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-02T224043.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-02T211804.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-01T222808.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-01T210448.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-09-01T063623.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-31T223420.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-30T220315.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-30T203505.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-29T230545.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/authentication/nvidia-nim-authentication.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-29T213958.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-28T221322.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-27T140727.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-27T132314.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-27T123021.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-27T103455.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-27T094438.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-26T215308.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-25T154045.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-25T143147.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-25T133943.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-25T125852.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-24T171257.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-24T064859.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-21T110057.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-20T205517.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-20T191845.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-20T165047.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-19T114122.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-19T082702.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/kin/score-2026-08-19T080027.yml",
+  "n": 1
+ },
+ {
+  "file": "api-evangelist-nvidia-nim/agentic-access/nvidia-nim-agentic-access.yml",
+  "n": 1
+ }
+]

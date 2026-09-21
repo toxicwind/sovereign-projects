@@ -1,0 +1,2112 @@
+{
+ "started": "2026-09-21T12:40:37",
+ "finished": "2026-09-21T12:47:24",
+ "tokens": [
+  "BENCH-5BCBZN",
+  "BENCH-FMC7YP",
+  "BENCH-U5A5SW",
+  "BENCH-QJ9TUS",
+  "BENCH-D5VBFV",
+  "BENCH-2USFZY",
+  "BENCH-XTPNF5",
+  "BENCH-ZQZ4WW",
+  "BENCH-JFEFNA",
+  "BENCH-R3H8E8",
+  "BENCH-MENJJE",
+  "BENCH-AF9AZ3",
+  "BENCH-VWMZKR",
+  "BENCH-4TW4G7",
+  "BENCH-QUSX25",
+  "BENCH-JFC9XB",
+  "BENCH-Q9J88R",
+  "BENCH-M5VBXZ",
+  "BENCH-52Z7HJ",
+  "BENCH-X5NKVQ",
+  "BENCH-Y2ANCY",
+  "BENCH-2GJQWF",
+  "BENCH-YX6MQ8",
+  "BENCH-UXUP5S",
+  "BENCH-83VY9D",
+  "BENCH-QXR237",
+  "BENCH-TTSYD9",
+  "BENCH-C6XA93",
+  "BENCH-Z2SVXE",
+  "BENCH-8EMBFX"
+ ],
+ "summary": {
+  "A_intelligent": {
+   "exact": {
+    "n": 30,
+    "transport_ok_rate": 0.6667,
+    "success_rate": 0.5667,
+    "mean_score": 0.567,
+    "scored_n": 30,
+    "p50_latency_ms": 297.5,
+    "p95_latency_ms": 1153.2,
+    "models_serving_wins": {
+     "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf": 17
+    },
+    "errors": {
+     "http_503": 10
+    }
+   },
+   "quality": {
+    "n": 30,
+    "transport_ok_rate": 0.6667,
+    "success_rate": 0.3,
+    "mean_score": 7.7,
+    "scored_n": 10,
+    "p50_latency_ms": 275.6,
+    "p95_latency_ms": 5739.8,
+    "models_serving_wins": {
+     "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf": 8,
+     "nvidia/nemotron-3-super-120b-a12b": 1
+    },
+    "errors": {
+     "http_503": 10
+    }
+   },
+   "code": {
+    "n": 30,
+    "transport_ok_rate": 0.6333,
+    "success_rate": 0.6333,
+    "mean_score": 0.633,
+    "scored_n": 30,
+    "p50_latency_ms": 498.4,
+    "p95_latency_ms": 9120.6,
+    "models_serving_wins": {
+     "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf": 19
+    },
+    "errors": {
+     "http_503": 11
+    }
+   }
+  },
+  "B_dumb_direct": {
+   "exact": {
+    "n": 30,
+    "transport_ok_rate": 0.1667,
+    "success_rate": 0.1667,
+    "mean_score": 0.167,
+    "scored_n": 30,
+    "p50_latency_ms": 43.7,
+    "p95_latency_ms": 755.8,
+    "models_serving_wins": {
+     "cohere/north-mini-code:free": 5
+    },
+    "errors": {
+     "http_502": 25
+    }
+   },
+   "quality": {
+    "n": 30,
+    "transport_ok_rate": 0.1667,
+    "success_rate": 0.1,
+    "mean_score": 9.333,
+    "scored_n": 3,
+    "p50_latency_ms": 44.2,
+    "p95_latency_ms": 4869.2,
+    "models_serving_wins": {
+     "cohere/north-mini-code:free": 3
+    },
+    "errors": {
+     "http_502": 25
+    }
+   },
+   "code": {
+    "n": 30,
+    "transport_ok_rate": 0.1667,
+    "success_rate": 0.0,
+    "mean_score": 0.0,
+    "scored_n": 30,
+    "p50_latency_ms": 44.0,
+    "p95_latency_ms": 4818.1,
+    "models_serving_wins": {},
+    "errors": {
+     "http_502": 25
+    }
+   }
+  }
+ },
+ "records": [
+  {
+   "contender": "A_intelligent",
+   "trial": 0,
+   "ts": "2026-09-21T12:40:37",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 1579.5,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 239.4,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 4326.0,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 6.0,
+    "judge_score": 6.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 412.9,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 1,
+   "ts": "2026-09-21T12:40:44",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 295.8,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 309.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 11520.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 512.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 2,
+   "ts": "2026-09-21T12:40:57",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 299.0,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": false,
+    "score": 0.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 208.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 5252.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 9.0,
+    "judge_score": 9.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 485.5,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 3,
+   "ts": "2026-09-21T12:41:03",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 290.8,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 252.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 9143.6,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 547.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 4,
+   "ts": "2026-09-21T12:41:13",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 295.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 236.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 15513.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 8.0,
+    "judge_score": 8.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 464.3,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 5,
+   "ts": "2026-09-21T12:41:30",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 295.1,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 208.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 23729.9,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 322.1,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 6,
+   "ts": "2026-09-21T12:41:54",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 390.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 273.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 8442.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 8.0,
+    "judge_score": 8.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 446.4,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 7,
+   "ts": "2026-09-21T12:42:04",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 293.3,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 198.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 10263.1,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 532.9,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 8,
+   "ts": "2026-09-21T12:42:15",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 290.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 302.1,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 7825.4,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": 4.0,
+    "judge_score": 4.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 372.9,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 9,
+   "ts": "2026-09-21T12:42:24",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 297.0,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 241.9,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 9301.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 9.0,
+    "judge_score": 9.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 374.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 10,
+   "ts": "2026-09-21T12:42:34",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 285.0,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": false,
+    "score": 0.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 277.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 15728.1,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 445.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 11,
+   "ts": "2026-09-21T12:42:51",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 291.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 255.4,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 7406.1,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 8.0,
+    "judge_score": 8.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 511.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 12,
+   "ts": "2026-09-21T12:42:59",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 291.8,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 248.5,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 13760.2,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 222.5,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 13,
+   "ts": "2026-09-21T12:43:14",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 302.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": false,
+    "score": 0.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 1169.5,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 19917.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 8.0,
+    "judge_score": 8.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 442.1,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 14,
+   "ts": "2026-09-21T12:43:35",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 297.3,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 191.1,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 10430.3,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 516.7,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 15,
+   "ts": "2026-09-21T12:43:47",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 294.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 259.3,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 9196.4,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 418.1,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 16,
+   "ts": "2026-09-21T12:43:57",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 298.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 199.3,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 9718.1,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 431.0,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 17,
+   "ts": "2026-09-21T12:44:08",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 295.2,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 260.4,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 8409.0,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 7.0,
+    "judge_score": 7.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 360.0,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 18,
+   "ts": "2026-09-21T12:44:17",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 297.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 203.0,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "judge_latency_ms": 21719.5,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "judge_error": "unparseable_judge_output",
+    "judge_raw": ""
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 22139.3,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 19,
+   "ts": "2026-09-21T12:45:01",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 295.6,
+    "serving_model": "/home/toxic/models/EXAONE-4.0-1.2B-IQ4_XS.gguf",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 25507.4,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"connect_timeout\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 16002.9,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"connect_timeout\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 20,
+   "ts": "2026-09-21T12:45:43",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 8350.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 3545.2,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Provider returned error\\\",\\\"code\\\":429,\\\"metadata\\\":{\\\"raw\\\":\\\"poolside/laguna-xs-2.1:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\\\",\\\"provider_name",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 220.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Provider returned error\\\",\\\"code\\\":429,\\\"metadata\\\":{\\\"raw\\\":\\\"poolside/laguna-xs-2.1:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\\\",\\\"provider_name",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 21,
+   "ts": "2026-09-21T12:45:55",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 236.8,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Provider returned error\\\",\\\"code\\\":429,\\\"metadata\\\":{\\\"raw\\\":\\\"poolside/laguna-xs-2.1:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\\\",\\\"provider_name",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 6594.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Provider returned error\\\",\\\"code\\\":429,\\\"metadata\\\":{\\\"raw\\\":\\\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\\\",\\\"provider_name\\",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 293.1,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Provider returned error\\\",\\\"code\\\":429,\\\"metadata\\\":{\\\"raw\\\":\\\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\\\",\\\"provider_name\\",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 22,
+   "ts": "2026-09-21T12:46:02",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 345.2,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Provider returned error\\\",\\\"code\\\":429,\\\"metadata\\\":{\\\"raw\\\":\\\"google/gemma-4-31b-it:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\\\",\\\"provider_name\\",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 473.3,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 608.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 23,
+   "ts": "2026-09-21T12:46:04",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 632.1,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 638.4,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 542.0,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 24,
+   "ts": "2026-09-21T12:46:06",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 588.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 625.2,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 555.4,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 25,
+   "ts": "2026-09-21T12:46:07",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 571.1,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 461.5,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 708.9,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 26,
+   "ts": "2026-09-21T12:46:09",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 614.1,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 4695.1,
+    "serving_model": "nvidia/nemotron-3-super-120b-a12b",
+    "error": null,
+    "judge_latency_ms": 504.8,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 10.0,
+    "judge_score": 10.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 597.9,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"error\\\":{\\\"message\\\":\\\"Service temporarily overloaded\\\",\\\"type\\\":\\\"Service Unavailable\\\",\\\"code\\\":503}}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 27,
+   "ts": "2026-09-21T12:46:16",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 539.2,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 613.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 530.0,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 28,
+   "ts": "2026-09-21T12:46:17",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 549.2,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 578.1,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 516.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "A_intelligent",
+   "trial": 29,
+   "ts": "2026-09-21T12:46:19",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 433.5,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 523.0,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 619.6,
+    "serving_model": null,
+    "error": "http_503: {\"error\":\"{\\\"object\\\":\\\"error\\\",\\\"message\\\":\\\"Rate limit exceeded\\\",\\\"type\\\":\\\"rate_limited\\\",\\\"param\\\":null,\\\"code\\\":\\\"1300\\\",\\\"raw_status_code\\\":429}\",\"status\":503}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 0,
+   "ts": "2026-09-21T12:46:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 988.4,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 5591.4,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "empty"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 4194.2,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": 0.0,
+    "note": "empty"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 1,
+   "ts": "2026-09-21T12:46:31",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 826.7,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 2328.2,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "judge_latency_ms": 5773.9,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 8.0,
+    "judge_score": 8.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 7162.8,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": 0.0,
+    "note": "empty"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 2,
+   "ts": "2026-09-21T12:46:47",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 430.2,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 5613.9,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "empty"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 5328.6,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": 0.0,
+    "note": "empty"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 3,
+   "ts": "2026-09-21T12:46:59",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 669.2,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 3986.5,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "judge_latency_ms": 828.3,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 10.0,
+    "judge_score": 10.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 2080.0,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": 0.0,
+    "note": "empty"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 4,
+   "ts": "2026-09-21T12:47:06",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 523.6,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": true,
+    "score": 1.0
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 3463.2,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "judge_latency_ms": 7019.1,
+    "judge_model": "nex-agi/nex-n2.5-pro:free",
+    "success": true,
+    "score": 10.0,
+    "judge_score": 10.0
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 3203.4,
+    "serving_model": "cohere/north-mini-code:free",
+    "error": null,
+    "success": false,
+    "score": 0.0,
+    "note": "empty"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 5,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 79.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [\"OPENROUTER_API_KEY_1\"], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 49.0,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 6,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 44.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.5,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 47.6,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 7,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.0,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.5,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 8,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 9,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 42.9,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 10,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.5,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 11,
+   "ts": "2026-09-21T12:47:21",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 44.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.3,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 42.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 12,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.6,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.9,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 13,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.6,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.0,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 14,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 15,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 16,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 42.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.6,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 17,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 45.3,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.3,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 18,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 44.9,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 19,
+   "ts": "2026-09-21T12:47:22",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.3,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.3,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 20,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 44.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.0,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 21,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 42.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 44.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 22,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 45.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 44.5,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 23,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.6,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 45.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 24,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.5,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 25,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 44.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 42.4,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 45.0,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 26,
+   "ts": "2026-09-21T12:47:23",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 45.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 42.7,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 27,
+   "ts": "2026-09-21T12:47:24",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.3,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 43.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 28,
+   "ts": "2026-09-21T12:47:24",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 44.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 42.8,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.0,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  },
+  {
+   "contender": "B_dumb_direct",
+   "trial": 29,
+   "ts": "2026-09-21T12:47:24",
+   "exact": {
+    "type": "EXACT",
+    "latency_ms": 43.1,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   },
+   "quality": {
+    "type": "QUALITY",
+    "latency_ms": 45.6,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": null,
+    "judge_score": null,
+    "note": "transport_error"
+   },
+   "code": {
+    "type": "CODE",
+    "latency_ms": 43.2,
+    "serving_model": null,
+    "error": "http_502: {\"error\": \"keypool 'openrouter-free': no healthy key\", \"tried\": [], \"hint\": \"see /status for per-key states; keys revalidate on demand\"}",
+    "success": false,
+    "score": 0.0,
+    "note": "transport_error"
+   }
+  }
+ ]
+}

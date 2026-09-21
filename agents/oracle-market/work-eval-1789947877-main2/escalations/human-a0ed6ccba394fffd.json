@@ -1,0 +1,10 @@
+{
+  "ts": 1789948076.9928358,
+  "question_id": "a0ed6ccba394fffd",
+  "question": "Will Plasma FDV be above $4000000000 at 10:00 AM ET on Jan 1, 2027? Resolution criterion: If Plasma (XPL)'s fully diluted valuation (FDV) as displayed on CoinGecko is above 4000000000 at exactly 10:00 AM ET on the day after its launch, then the market resolves to Yes.\nThe FDV must be the value shown in the \"FDV\" field on the coin's main CoinGecko page, not calculated from other metrics. If no data is available at the specified time, the last FDV value shown before that time on the date will be used. If the coin is delisted from CoinGecko before the measurement date, the last recorded FDV will be used and the market will resolve immediately. Token migrations to new smart contract addresses are tracked continuously. If CoinGecko changes its FDV calculation methodology, the value displayed at the measurement time under the FDV label will be used regardless. Post-redenomination FDV values (after splits/reverse splits) will be used. All values are in USD as shown on CoinGecko. Values can be expressed in millions (M), billions (B), or trillions (T) format.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

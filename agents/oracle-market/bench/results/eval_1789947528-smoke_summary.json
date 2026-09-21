@@ -1,0 +1,226 @@
+{
+  "ts": 1789947528,
+  "tag": "smoke",
+  "rows_path": "/home/toxic/sovereign/agents/oracle-market/bench/results/eval_1789947528-smoke.jsonl",
+  "conditions": {
+    "git_sha": "4c5f2f603f",
+    "repo": "toxicwind/sovereign-projects",
+    "question_source": "2084Collective/kalshibench-v2 via datasets-server API",
+    "eval_set": "/home/toxic/sovereign/agents/oracle-market/bench/eval_questions.jsonl",
+    "sample_seed": 20260920,
+    "n_questions": 2,
+    "herd_panel": {
+      "oracle-judge-a": "nex-agi/nex-n2.5-mini:free",
+      "oracle-judge-b": "nex-agi/nex-n2.5-pro:free",
+      "oracle-judge-c": "poolside/laguna-s-2.1:free",
+      "oracle-judge-local": "beellama/gemma-96k"
+    },
+    "timeout_s": 90,
+    "budget_s": 240,
+    "concurrency": 2,
+    "oracle_work": "/home/toxic/sovereign/agents/oracle-market/work-eval-1789947528-smoke (SCRATCH: cold calibrators=identity, cold abstention gate=unanimity bar, eval verdicts isolated from production ledger)",
+    "judge_return": {
+      "live": 1,
+      "slots": 3,
+      "rate": 0.3333333333333333,
+      "cp_lo": 0.00840375866391696,
+      "cp_hi": 0.9057006759394426
+    },
+    "wall_s": 115.4
+  },
+  "caveats": [
+    "Questions resolved 2025-10/11, before herd judges' knowledge cutoff: judges may recall outcomes from training. This eval measures AGGREGATION fidelity (pooling+calibration+gating of judge posteriors), not forecasting skill on the unknown.",
+    "Absolute accuracy is NOT comparable to cutoff-filtered KalshiBench baselines; pooled-vs-single-judge deltas are the engine's value-add signal.",
+    "Cold-start gate: verdicts emit only on unanimous high-confidence (struct>=0.90, posterior>=0.85 or <=0.15); non-unanimous verdicts are withheld (status=escalate) by design, not by failure.",
+    "CP intervals use calibration.py's two-sided exact clopper_pearson -- the same function that gates emissions. (docs/oracle-core.md's 0.6366 for 13/15 used bench/judge_return.py's one-sided bisection; not the same convention.)"
+  ],
+  "n_rows": 2,
+  "n_emitted": 0,
+  "statuses": {
+    "escalate": 1,
+    "refused": 1
+  },
+  "tiers": {
+    "DEBATE": 1,
+    "none": 1
+  },
+  "overall": {
+    "n": 0,
+    "accuracy": null,
+    "brier": null,
+    "nll": null
+  },
+  "per_tier": {},
+  "calibration": {
+    "bins": [
+      {
+        "bin": [
+          0.0,
+          0.1
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.1,
+          0.2
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.2,
+          0.3
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.3,
+          0.4
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.4,
+          0.5
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.5,
+          0.6
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.6,
+          0.7
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.7,
+          0.8
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.8,
+          0.9
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      },
+      {
+        "bin": [
+          0.9,
+          1.0
+        ],
+        "count": 0,
+        "mean_predicted": null,
+        "empirical_rate": null,
+        "gap": null
+      }
+    ],
+    "ece": 0.0
+  },
+  "judge_stats": {
+    "oracle-judge-a": {
+      "live": 0,
+      "slots": 1,
+      "return_rate": 0.0,
+      "return_cp_lo": 0.0,
+      "return_cp_hi": 0.9750000000058208,
+      "mean_attempts": 3.0
+    },
+    "oracle-judge-b": {
+      "live": 0,
+      "slots": 1,
+      "return_rate": 0.0,
+      "return_cp_lo": 0.0,
+      "return_cp_hi": 0.9750000000058208,
+      "mean_attempts": 3.0
+    },
+    "oracle-judge-c": {
+      "live": 1,
+      "slots": 1,
+      "return_rate": 1.0,
+      "return_cp_lo": 0.024999999994179234,
+      "return_cp_hi": 1.0,
+      "n": 1,
+      "accuracy": 1.0,
+      "brier": 0.010000000000000002,
+      "nll": 0.10536051565782628,
+      "median_latency_s": 40.244126081466675,
+      "mean_attempts": 1.0
+    }
+  },
+  "aggregation_comparison": [
+    {
+      "name": "pooled_engine",
+      "n": 0,
+      "accuracy": null,
+      "brier": null,
+      "nll": null
+    },
+    {
+      "name": "mean_judge",
+      "n": 0,
+      "accuracy": null,
+      "brier": null,
+      "nll": null
+    },
+    {
+      "name": "hard_majority",
+      "n": 0,
+      "accuracy": null,
+      "brier": null,
+      "nll": null
+    }
+  ],
+  "cofailure_beta": {
+    "n": 0,
+    "cofailures": 0,
+    "beta": null,
+    "beta_cp_lo": 0.0,
+    "beta_cp_hi": 1.0,
+    "ceiling_1_minus_beta": null,
+    "ceiling_cp_lo": null,
+    "ceiling_cp_hi": null,
+    "cofailure_ids": []
+  },
+  "latency_per_tier": {},
+  "cost_per_tier": {}
+}

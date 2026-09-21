@@ -1,0 +1,136 @@
+{
+  "ts": 1789994925,
+  "rows_path": "bench/results/eval_1789948903-smoke2.jsonl",
+  "oracle_work": "/home/toxic/sovereign/agents/oracle-market/work-escal-1789994925",
+  "conditions": {
+    "policy_tier_source": "eval rows' policy_tier (route with gate_ok=True, disagreement-only)",
+    "debate_path": "escalation.debate_tier + engine re-aggregation (half-weight advocate finals), same as run_ask",
+    "n_debate_sample": 1,
+    "n_counter_sample": 0,
+    "seed": 20260920,
+    "concurrency": 4
+  },
+  "caveats": [
+    "Counterfactual debates run with EMPTY evidence text (judge claims were not persisted in eval rows); question, criteria, panel aliases, k/rounds/eps/timeouts match the production debate path exactly.",
+    "Debate is stochastic (temperature 0.2); one run per question.",
+    "Part 1 runs the debate live on policy-DEBATE rows (panel eval used allow_debate=False); Part 2 runs it on policy-AUTO/VOTE rows as the counterfactual."
+  ],
+  "part1_debate_escalated": {
+    "n": 1,
+    "dp_ge_05": {
+      "n": 1,
+      "rate": 1.0
+    },
+    "side_flip": {
+      "n": 1,
+      "rate": 0.0
+    },
+    "correct_flip": {
+      "n": 1,
+      "rate": 0.0
+    },
+    "improved": {
+      "n": 1,
+      "rate": 0.0
+    },
+    "worsened": {
+      "n": 1,
+      "rate": 0.0
+    },
+    "items": [
+      {
+        "eval_id": "EV002",
+        "label": 1,
+        "policy_tier": "DEBATE",
+        "p_vote": 0.8477443609022556,
+        "debate": {
+          "p": 0.5,
+          "status": "escalate",
+          "rounds": 3,
+          "converged": false,
+          "requests": 24,
+          "latency_s": 51.4,
+          "advocate_finals": [
+            {
+              "model": "oracle-judge-a",
+              "side": "YES",
+              "posterior": 0.85,
+              "rounds": [
+                0.85,
+                0.85,
+                0.85
+              ]
+            },
+            {
+              "model": "oracle-judge-b",
+              "side": "YES",
+              "posterior": 0.85,
+              "rounds": [
+                0.85,
+                0.85,
+                0.85
+              ]
+            },
+            {
+              "model": "oracle-judge-c",
+              "side": "NO",
+              "posterior": 0.15,
+              "rounds": [
+                0.15,
+                0.15,
+                0.15
+              ]
+            },
+            {
+              "model": "oracle-judge-a",
+              "side": "NO",
+              "posterior": 0.15,
+              "rounds": [
+                0.15,
+                0.15,
+                0.15
+              ]
+            }
+          ]
+        },
+        "error": null,
+        "wall_s": 52.3,
+        "dp": 0.3477,
+        "side_flip": false,
+        "correct_flip": false,
+        "improved": false,
+        "worsened": false
+      }
+    ]
+  },
+  "part2_counterfactual": {
+    "n_sampled": 0,
+    "dp_ge_05": {
+      "n": 0,
+      "rate": 0.0
+    },
+    "side_flip": {
+      "n": 0,
+      "rate": null
+    },
+    "correct_flip": {
+      "n": 0,
+      "rate": null
+    },
+    "improved": {
+      "n": 0,
+      "rate": null
+    },
+    "worsened": {
+      "n": 0,
+      "rate": null
+    },
+    "mean_counter_latency_s": null,
+    "items": []
+  },
+  "verdict_on_trigger": {
+    "escalation_precision_correct_flip": 0.0,
+    "nonescalated_counterfactual_correct_flip": null,
+    "interpretation": "If p1 >> p2, disagreement-triggered debate buys correctness that auto-resolution leaves on the table: the trigger is right. If p1 ~= p2, debate changes outcomes at the same rate whether or not the ladder fired: the trigger adds cost without discrimination."
+  }
+}
