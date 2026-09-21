@@ -17,3 +17,19 @@ api_listen = "127.0.0.1:25196"
 # mistral-embed for provider "mistral".)
 embedding_provider = "mistral"
 embedding_api_key_env = "MISTRAL_API_KEY"
+
+# Default model route for auto-spawned agents (2026-09-21 full audit).
+# The kernel OVERWRITES the auto-spawned "assistant" manifest from
+# config.default_model on EVERY boot (kernel.rs "Apply default_model to
+# restored agents"). Without this section the compiled default
+# (anthropic/claude-sonnet-4-20250514) clobbers the disk agent.toml route
+# and the assistant 500s on a revoked ANTHROPIC_API_KEY.
+# anthropic/claude-sonnet-4-20250514 PARKED 2026-09-20: stored
+# ANTHROPIC_API_KEY revoked (Anthropic 401). Restore provider="anthropic",
+# model="claude-sonnet-4-20250514", api_key_env="ANTHROPIC_API_KEY" once
+# Chris supplies a fresh key. Until then the herd-free route serves.
+[default_model]
+provider = "llama-swap"
+model = "nex-agi/nex-n2.5-mini:free"
+api_key_env = ""
+base_url = "http://127.0.0.1:25100/v1"

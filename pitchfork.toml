@@ -156,7 +156,6 @@ mise = true
 retry = true
 ready_http = "http://127.0.0.1:25145/"
 depends = ["shep"]
-env = { TAU_CODE_PORT = "25145" }
 auto = ["start"]
 
 [daemons.kimi-code]
@@ -280,6 +279,14 @@ mise = false
 retry = true
 auto = ["start"]
 
+[daemons.oracle-chat]
+run = "exec /home/toxic/sovereign/agents/oracle-market/bin/oracle_chat.py"
+dir = "/home/toxic/sovereign/agents/oracle-market"
+mise = false
+retry = true
+env = { ORACLE_CHANNEL = "/home/toxic/.shingle/squawk-root/bid-market" }
+auto = ["start"]
+
 [daemons.tau]
 port = 25111
 # P4 headless-TUI policy (2026-09-20): dist/omp acp is stdio-only (no --acp-port
@@ -376,12 +383,23 @@ boot_start = true
 env = { BROWSERLESS_PORT = "25130", WAYLAND_DISPLAY = "wayland-1", XDG_RUNTIME_DIR = "/run/user/1000", BROWSERLESS_CONNECTION_TIMEOUT = "900000" }
 auto = ["start"]
 
+[daemons.browser-keeper]
+port = 9223
+run = "exec /home/toxic/sovereign/projects/mesh/browserless/keeper/keeper.sh"
+dir = "."
+mise = false
+retry = true
+ready_cmd = "curl -sf http://127.0.0.1:9223/json/version > /dev/null"
+boot_start = true
+env = { WAYLAND_DISPLAY = "wayland-1", XDG_RUNTIME_DIR = "/run/user/1000" }
+auto = ["start"]
+
 [daemons.gemini-mcp]
 health_http = { url = "http://127.0.0.1:25202/health", interval = "30s", timeout = "5s", retries = 3 }
 env = { GEMINI_MCP_PORT = "25202" }
 port = 25202
-run = "exec /home/toxic/.awrawr-mcp-venv/bin/python /home/toxic/gemini-mcp/server.py"
-dir = "/home/toxic/gemini-mcp"
+run = "exec /home/toxic/.awrawr-mcp-venv/bin/python /home/toxic/sovereign/projects/mesh/gemini-mcp/server.py"
+dir = "/home/toxic/sovereign/projects/mesh/gemini-mcp"
 mise = false
 retry = true
 ready_http = "http://127.0.0.1:25202/health"
@@ -467,7 +485,12 @@ mise = false
 retry = true
 boot_start = true
 ready_http = "http://127.0.0.1:25148/health"
-env = { BUILDSRV_ROOT = "/home/toxic/buildsrv", BUILDSRV_PORT = "25148", BUILDSRV_WORKERS = "2" }
+# Build-cache env (2026-09-21): every buildsrv job inherits these. sccache/ccache/uv caches live on NVMe.
+# CARGO_INCREMENTAL=0 because sccache refuses incremental compilation outright.
+# CC/CXX intentionally NOT set: BASH_ENV rewrites them to clang for bash -lc jobs,
+# so CMAKE compiler launchers are the robust ccache path for CMake builds.
+# BUILDSRV_WORKERS stays 2 (16 logical CPUs; two Cargo builds already oversubscribe).
+env = { BUILDSRV_ROOT = "/home/toxic/buildsrv", BUILDSRV_PORT = "25148", BUILDSRV_WORKERS = "2", RUSTC_WRAPPER = "sccache", SCCACHE_DIR = "/home/toxic/.cache/sccache", CCACHE_DIR = "/home/toxic/.cache/ccache", CMAKE_C_COMPILER_LAUNCHER = "ccache", CMAKE_CXX_COMPILER_LAUNCHER = "ccache", UV_CACHE_DIR = "/home/toxic/.cache/uv", CARGO_INCREMENTAL = "0" }
 auto = ["start"]
 
 # buildsrv-watchdog - external liveness guard for buildsrv (2026-09-14):
@@ -530,7 +553,6 @@ dir = "/home/toxic/sovereign/projects/mesh/squawk-ws"
 mise = false
 retry = true
 boot_start = true
-env = { SQUAWK_WS_TOKEN_FILE = "/home/toxic/.squawk-ws-token" }
 ready_cmd = "find /home/toxic/sovereign/projects/mesh/squawk-ws/client-heartbeat -mmin -2 | grep -q ."
 depends = ["squawk-ws"]
 auto = ["start"]
@@ -556,14 +578,13 @@ boot_start = true
 ready_cmd = "p=$(pgrep -f '[s]orry-watchdog[.]py' | head -1); [ -n \"$p\" ] && pgrep -P \"$p\" -f 'inotifywait -m' >/dev/null"
 auto = ["start"]
 
-[daemons.forensics-srv]
-run = "exec /home/toxic/sovereign/forensics-srv/venv/bin/python /home/toxic/sovereign/forensics-srv/server.py"
-dir = "/home/toxic/sovereign/forensics-srv"
-mise = false
-retry = true
-boot_start = true
-ready_cmd = "curl -sf http://127.0.0.1:25160/health >/dev/null"
-auto = ["start"]
+# forensics-srv REMOVED 2026-09-21 (envhunt): double-supervised. The live
+# process on :25160 is owned by the systemd user unit
+# sovereign-forensics-srv.service (enabled, active, Restart=always; ppid chain
+# verified -> systemd --user). Pitchfork's copy sat "stopped" but carried
+# auto=["start"], so the next supervisor restart would wedge it on EADDRINUSE.
+# Single owner = systemd. To migrate to pitchfork: stop+disable the unit,
+# re-add this section, then `pitchfork start forensics-srv`.
 
 # pixel-adb-keepalive REMOVED 2026-09-20: superseded by phone-lane-keeper.service
 # (systemd user unit, active, event-driven, identity-validated healing,
@@ -718,7 +739,7 @@ dir = "/home/toxic/sovereign"
 mise = false
 retry = true
 boot_start = true
-ready_http = "http://127.0.0.1:25102/health"
+ready_http = "http://127.0.0.1:25109/health"
 auto = ["start"]
 
 # --- herd-deployer 2026-09-20: card-derived model request-contract enforcement.
