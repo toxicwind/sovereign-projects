@@ -1,0 +1,10 @@
+{
+  "ts": 1789949397.004666,
+  "question_id": "fb3059197f86b0aa",
+  "question": "Will Day 'N' Nite hit 1 Billion Spotify streams in 2025? Resolution date: September 18, 2025. Resolution criterion: If Day 'N' Nite has above 1 Billion total streams on Spotify by Dec 31, 2025 at 10 AM ET, then the market resolves to Yes.\nTotal stream count will be determined using the Spotify desktop app at 10 AM ET, based on the exact number displayed at that time. Any updates or changes after 10 AM ET will NOT be considered. The song can be found here: https://open.spotify.com/track/5wfllwdjglyQislkskYLBv?si=5d2ee67f6b6f4a6b&nd=1&dlsi=3cc99e65d8fe4d8a?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

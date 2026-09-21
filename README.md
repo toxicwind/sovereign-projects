@@ -102,6 +102,8 @@ Per-request strategy override: `X-Sovereign-Strategy: free` races local + free-t
 
 Never invent port numbers in app code — read them from env, `src/lib/ports.ts`, or `stack/lib-ports.sh`.
 
+Run `bin/port-audit` on yote any time ports look wrong: it diffs the live `ss -tlnp` listener table against `config/ports.env` and reports bind conflicts, unregistered listeners, and stale entries. `herd-keypool` listens on 25109 (override: `KEYPOOL_HOST`/`KEYPOOL_PORT`); `herd-model-guard` on 25101 (override: `MODEL_GUARD_HOST`/`MODEL_GUARD_PORT`) — a second instance on a taken port exits 98 with a clear message instead of a traceback.
+
 ## Project layout
 
 ```text

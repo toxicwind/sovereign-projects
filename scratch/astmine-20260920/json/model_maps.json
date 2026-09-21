@@ -1,0 +1,1208 @@
+[
+ {
+  "file": "diegovisk-pi-nvidia-nim/tests/unit/compaction-request.test.mjs",
+  "head": "const payload = {\\n\t\t\tmodel: \"minimaxai/minimax-m3\",\\n\t\t\tmessages: [\\n\t\t\t\t{\\n\t\t\t\t\trole: \"system\",\\n\t\t\t\t\tc",
+  "model_ids": [
+   "minimaxai/minimax-m3"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "diegovisk-pi-nvidia-nim/tests/unit/compaction-request.test.mjs",
+  "head": "const payload = {\\n\t\t\tmodel: \"minimaxai/minimax-m3\",\\n\t\t\treasoning_effort: \"high\",\\n\t\t\tthinking: { type",
+  "model_ids": [
+   "minimaxai/minimax-m3"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "tibbee-pi-nvidia-nim-provider/test/refactor-checks.ts",
+  "head": "const deepseekPayload = {\\n  model: \"deepseek-ai/deepseek-v4-flash-0731\",\\n  thinking: { type: \"enable",
+  "model_ids": [
+   "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "diegovisk-pi-nvidia-nim/tests/unit/before-provider-request.test.mjs",
+  "head": "const payload = {\\n\t\t\t\tmodel: \"bytedance/seed-oss-test\",\\n\t\t\t\tmessages: [{ role: \"user\", content: \"hi\"",
+  "model_ids": [
+   "bytedance/seed-oss-test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "diegovisk-pi-nvidia-nim/tests/unit/before-provider-request.test.mjs",
+  "head": "const payload = {\\n\t\t\t\tmodel: \"bytedance/seed-oss-test\",\\n\t\t\t\tmessages: [{ role: \"user\", content: \"hi\"",
+  "model_ids": [
+   "bytedance/seed-oss-test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "diegovisk-pi-nvidia-nim/tests/unit/before-provider-request.test.mjs",
+  "head": "const payload = {\\n\t\t\t\tmodel: \"bytedance/seed-oss-test\",\\n\t\t\t\treasoning_effort: \"high\",\\n\t\t\t\tthinking: ",
+  "model_ids": [
+   "bytedance/seed-oss-test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "diegovisk-pi-nvidia-nim/tests/unit/before-provider-request.test.mjs",
+  "head": "const payload = {\\n\t\t\t\tmodel: \"bytedance/seed-oss-test\",\\n\t\t\t\treasoning_effort: \"high\",\\n\t\t\t\tmessages: ",
+  "model_ids": [
+   "bytedance/seed-oss-test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/api-key-resolver.test.ts",
+  "head": "const model = { id: \"deepseek-ai/deepseek-v4-flash-0731\" };",
+  "model_ids": [
+   "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/api-key-resolver.test.ts",
+  "head": "const model = { id: \"deepseek-ai/deepseek-v4-flash-0731\" };",
+  "model_ids": [
+   "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/fallback-orchestrator.test.ts",
+  "head": "const fallbackModel = {\\n    id: \"deepseek-ai/deepseek-v4-flash-0731\",\\n    displayName: \"DeepSeek V4 ",
+  "model_ids": [
+   "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelStorage = {\\n      get: jest.fn(() => [\\n        {\\n          id: \"meta/muse-glimmer-30b\",\\n ",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelA = {\\n      id: \"meta/muse-glimmer-30b\",\\n      displayName: \"Vision Model A\",\\n      conte",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelB = {\\n      id: \"moonshotai/kimi-k3\",\\n      displayName: \"Vision Model B\",\\n      contextW",
+  "model_ids": [
+   "moonshotai/kimi-k3"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelStorage = {\\n      get: jest.fn(() => [\\n        {\\n          id: \"meta/muse-glimmer-30b\",\\n ",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelStorage = {\\n      get: jest.fn(() => [\\n        {\\n          id: \"meta/muse-glimmer-30b\",\\n ",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelStorage = {\\n      get: jest.fn(() => [\\n        {\\n          id: \"meta/muse-glimmer-30b\",\\n ",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelStorage = {\\n      get: jest.fn(() => [\\n        {\\n          id: \"meta/muse-glimmer-30b\",\\n ",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/mcp-compat.test.ts",
+  "head": "const modelStorage = {\\n      get: jest.fn((key: string) =>\\n        key === \"nvidia-nim.modelsCacheKe",
+  "model_ids": [
+   "meta/muse-glimmer-30b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/model-refresh.test.ts",
+  "head": "const curatedModel = {\\n      id: \"deepseek-ai/deepseek-v4-flash-0731\",\\n      displayName: \"DeepSeek ",
+  "model_ids": [
+   "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/model-refresh.test.ts",
+  "head": "const staleRuntimeModel = {\\n      ...curatedModel,\\n      id: \"vendor/removed-model\",\\n      displayNa",
+  "model_ids": [
+   "vendor/removed-model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "bauka0-nvidia-nim-provider/tests/extension.test.ts",
+  "head": "const globalState = {\\n      get: jest.fn((key: string, fallback?: unknown) =>\\n        key === \"nvidi",
+  "model_ids": [
+   "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "thispointon-kondi/testing/harness/run-all.ts",
+  "head": "const NIM = { model: 'nvidia/nemotron-3-nano-30b-a3b', provider: 'nvidia-router' };",
+  "model_ids": [
+   "nvidia/nemotron-3-nano-30b-a3b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/council/chat-council-gen.ts",
+  "head": "const gemini = { provider: 'google', model: 'models/gemini-2.5-flash' };",
+  "model_ids": [
+   "models/gemini-2.5-flash"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/support/status-flow-test-harness.ts",
+  "head": "const baseSandboxEntry = {\\n  name: \"alpha\",\\n  model: \"nvidia/nemotron\",\\n  provider: \"ollama-local\",\\n",
+  "model_ids": [
+   "nvidia/nemotron"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/state/registry.test.ts",
+  "head": "const configured = { name: \"alpha\", provider: \"nvidia-prod\", model: \"nvidia/test\" };",
+  "model_ids": [
+   "nvidia/test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/state/registry.test.ts",
+  "head": "const missingProvider = { name: \"beta\", provider: null, model: \"nvidia/test\" };",
+  "model_ids": [
+   "nvidia/test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/state/registry.test.ts",
+  "head": "const blankProvider = { name: \"delta\", provider: \"\", model: \"nvidia/test\" };",
+  "model_ids": [
+   "nvidia/test"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "Gitlawb-openclaude/src/commands/model/model.test.tsx",
+  "head": "const activeProfile = {\\n    id: 'openrouter-profile',\\n    name: 'OpenRouter',\\n    provider: 'openrou",
+  "model_ids": [
+   "custom/private-model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/x402/llm-proxy.js",
+  "head": "const OUTPUT_EXAMPLE = {\\n\tcontent: '1, 2, 3.',\\n\tmodel: 'llama-3.3-70b-versatile',\\n\tprovider: 'groq',",
+  "model_ids": [
+   "three-inference-receipt/v1",
+   "three-inference-response/v1"
+  ],
+  "n_ids": 2
+ },
+ {
+  "file": "stillhue-claudio/cli/src/utils/providerProfile.test.ts",
+  "head": "const processEnv = {\\n    GEMINI_API_KEY: 'gemini-live',\\n    GEMINI_MODEL: 'gemini-2.5-flash',\\n    OP",
+  "model_ids": [
+   "qwen/qwen3.5-397b-a17b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/widgets/[id]/[action].js",
+  "head": "const PROVIDERS = {\\n\tanthropic: {\\n\t\tenvKey: 'ANTHROPIC_API_KEY',\\n\t\tdefaultModel: PROVIDER_MODEL_DEFA",
+  "model_ids": [
+   "ibm/granite-3-8b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "Gitlawb-openclaude/src/utils/providerProfile.test.ts",
+  "head": "const processEnv = {\\n    GEMINI_API_KEY: 'gemini-live',\\n    GEMINI_MODEL: 'gemini-2.5-flash',\\n    OP",
+  "model_ids": [
+   "qwen/qwen3.5-397b-a17b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "thispointon-kondi/examples/harness/run-examples.ts",
+  "head": "const SUPER = { model: 'nvidia/nemotron-3-super-120b-a12b', provider: 'nvidia-router' };",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "thispointon-kondi/examples/harness/run-examples.ts",
+  "head": "const NANO = { model: 'nvidia/nemotron-3-nano-30b-a3b', provider: 'nvidia-router' };",
+  "model_ids": [
+   "nvidia/nemotron-3-nano-30b-a3b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/onboarding/validate-config-schemas.test.ts",
+  "head": "const validRouterPoolConfig = {\\n    routing: {\\n      method: \"fixture\",\\n      checkpoint: \"fixture\",",
+  "model_ids": [
+   "openai/fixture"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/onboarding/validate-config-schemas.test.ts",
+  "head": "const exactModelFixture = {\\n    id: \"fixture-openclaw-exact\",\\n    agent: \"openclaw\",\\n    description",
+  "model_ids": [
+   "fixture/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/onboarding/validate-config-schemas.test.ts",
+  "head": "const bad = {\\n      ...cloneObject(modelFamilyFixture),\\n      match: {\\n        ...asRecord(modelFami",
+  "model_ids": [
+   "fixture/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/onboarding/validate-config-schemas.test.ts",
+  "head": "const bad = {\\n      ...cloneObject(modelFamilyFixture),\\n      match: {\\n        ...asRecord(modelFami",
+  "model_ids": [
+   "provider/fixture"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/vite.config.js",
+  "head": "const MIME = {\\n\t\t\t\t\t'.html': 'text/html; charset=utf-8',\\n\t\t\t\t\t'.woff2': 'font/woff2',\\n\t\t\t\t\t// model-",
+  "model_ids": [
+   "font/woff2"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/onboarding/onboard.test.ts",
+  "head": "const session = {\\n      agent: \"hermes\",\\n      provider: \"hermes-provider\",\\n      model: \"moonshotai",
+  "model_ids": [
+   "moonshotai/kimi-k2.6"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "stillhue-claudio/claude-wrapper/scripts/test-provider-auto-router.js",
+  "head": "const nvidiaCfg = {\\n  active: 'nvidia',\\n  providers: {\\n    nvidia: {\\n      baseUrl: 'https://integra",
+  "model_ids": [
+   "nvidia/nemotron-3-nano-30b-a3b",
+   "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+   "nvidia/nemotron-3-super-120b-a12b",
+   "nvidia/nemotron-3-ultra-550b-a55b",
+   "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "n_ids": 5
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/onboarding/blueprint-runtime-identity-schema.test.ts",
+  "head": "const runtimeIdentity = {\\n  profile_path: \"provider-profiles/okta-runtime-v1.yaml\",\\n  provider_type:",
+  "model_ids": [
+   "provider-profiles/okta-runtime-v1.yaml"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/marketplace/[action].js",
+  "head": "const PREVIEW_PROVIDERS = {\\n\tanthropic: {\\n\t\tenvKey: 'ANTHROPIC_API_KEY',\\n\t\turl: 'https://api.anthrop",
+  "model_ids": [
+   "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/llm/anthropic.js",
+  "head": "const MODELS = {\\n\t// Anthropic (paid \u2014 host's key)\\n\t'claude-fable-5': { kind: 'anthropic', envKey: '",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b",
+   "nvidia/nemotron-3-ultra-550b-a55b",
+   "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "n_ids": 3
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/tools/toolExecution.test.ts",
+  "head": "const modelInput = {\\n      file_path: 'src/final.ts',\\n      old_string: 'before',\\n      new_string: ",
+  "model_ids": [
+   "src/final.ts"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/watsonx-forecast.js",
+  "head": "const FORECAST_MODELS = {\\n\t512: 'ibm/granite-ttm-512-96-r2',\\n\t1024: 'ibm/granite-ttm-1024-96-r2',\\n\t1",
+  "model_ids": [
+   "ibm/granite-ttm-1024-96-r2",
+   "ibm/granite-ttm-1536-96-r2",
+   "ibm/granite-ttm-512-96-r2"
+  ],
+  "n_ids": 3
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/tools/toolExecution.test.ts",
+  "head": "const modelInput = {\\n      file_path: 'src/final.ts',\\n      old_string: 'before',\\n      new_string: ",
+  "model_ids": [
+   "src/final.ts"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "stillhue-claudio/cli/src/commands/model/model.test.tsx",
+  "head": "const activeProfile = {\\n    id: 'openrouter-profile',\\n    name: 'OpenRouter',\\n    provider: 'openrou",
+  "model_ids": [
+   "custom/private-model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/forge-gameready.js",
+  "head": "const CONTENT_TYPE = {\\n\tglb: 'model/gltf-binary',\\n\tfbx: 'application/octet-stream',\\n};",
+  "model_ids": [
+   "application/octet-stream",
+   "model/gltf-binary"
+  ],
+  "n_ids": 2
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/helpers/rebuild-flow-generic-harness.ts",
+  "head": "const currentSandboxEntry = {\\n    name: \"alpha\",\\n    provider: \"ollama-local\",\\n    model: \"nvidia/ne",
+  "model_ids": [
+   "nvidia/nemotron"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/helpers/destroy-flow-test-harness.ts",
+  "head": "const sandboxEntry = {\\n  name: \"alpha\",\\n  agent: \"openclaw\",\\n  provider: \"ollama-local\",\\n  model: \"n",
+  "model_ids": [
+   "nvidia/nemotron"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/generation/generate-openclaw-tool-disclosure-config.test.ts",
+  "head": "const MANAGED_LLAMA_CPP_ENV = {\\n  ...BASE_ENV,\\n  NEMOCLAW_MODEL: \"nvidia/nemotron-3-super-120b-a12b\"",
+  "model_ids": [
+   "inference/nvidia/nemotron-3-super-120b-a12b",
+   "nvidia/nemotron-3-super-120b-a12b"
+  ],
+  "n_ids": 2
+ },
+ {
+  "file": "nirholas-three.ws/api/chat.js",
+  "head": "const PROVIDERS = {\\n\tanthropic: {\\n\t\tenvKey: 'ANTHROPIC_API_KEY',\\n\t\tdefaultModel: DEFAULT_ANTHROPIC_M",
+  "model_ids": [
+   "ibm/granite-3-8b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/chat.js",
+  "head": "const FALLBACK_SIBLINGS = {\\n\topenrouter: OPENROUTER_SIBLINGS,\\n\tgroq: ['llama-3.3-70b-versatile'],\\n\t/",
+  "model_ids": [
+   "nvidia/nemotron-3.5-lightning-30b-a3b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/brain/chat.js",
+  "head": "const PROVIDERS = {\\n\t'gpt-oss-120b': {\\n\t\tlabel: 'GPT-OSS 120B',\\n\t\tnetwork: 'OpenAI \u00b7 OpenRouter',\\n\t\t",
+  "model_ids": [
+   "anthropic/claude-fable-5",
+   "anthropic/claude-haiku-4.5",
+   "anthropic/claude-opus-4",
+   "anthropic/claude-opus-5",
+   "anthropic/claude-sonnet-4",
+   "anthropic/claude-sonnet-5",
+   "deepseek-ai/deepseek-v4-pro",
+   "deepseek/deepseek-r1",
+   "ibm-granite/granite-4.1-8b",
+   "meta-llama/llama-3.3-70b-instruct",
+   "minimaxai/minimax-m2.7",
+   "moonshotai/kimi-k2.6",
+   "nvidia/nemotron-3-super-120b-a12b",
+   "nvidia/nemotron-3-ultra-550b-a55b",
+   "nvidia/nemotron-3.5-lightning-30b-a3b",
+   "openai/gpt-5.3-codex",
+   "openai/gpt-5.4",
+   "openai/gpt-5.4-mini",
+   "openai/gpt-5.4-nano",
+   "openai/gpt-5.4-pro",
+   "openai/gpt-5.5",
+   "openai/gpt-5.5-pro",
+   "openai/gpt-5.6-luna",
+   "openai/gpt-5.6-sol",
+   "openai/gpt-5.6-terra",
+   "openai/o3",
+   "openai/o3-pro",
+   "qwen/qwen-2.5-72b-instruct",
+   "qwen/qwen3-coder",
+   "x-ai/grok-4.3",
+   "x-ai/grok-4.5"
+  ],
+  "n_ids": 31
+ },
+ {
+  "file": "NVIDIA-NemoClaw/oxlint.config.ts",
+  "head": "const legacyComplexityLimits = {\\n  \"src/lib/onboard/machine/handlers/provider-inference.ts\": 171,\\n  ",
+  "model_ids": [
+   "src/lib/actions/sandbox/process-recovery.ts",
+   "src/lib/actions/sandbox/status.ts",
+   "src/lib/actions/uninstall/run-plan.ts",
+   "src/lib/onboard.ts",
+   "src/lib/onboard/machine/handlers/provider-inference.ts",
+   "src/lib/onboard/setup-nim-flow.ts"
+  ],
+  "n_ids": 6
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/provider-keys.js",
+  "head": "const BYOK_PROVIDERS = {\\n\tanthropic: { label: 'Anthropic', prefix: 'sk-ant-', hint: 'console.anthrop",
+  "model_ids": [
+   "console.anthropic.com/settings/keys",
+   "elevenlabs.io/app/settings/api-keys",
+   "platform.openai.com/api-keys",
+   "platform.stability.ai/account/keys",
+   "platform.tripo3d.ai/api-keys",
+   "replicate.com/account/api-tokens",
+   "www.meshy.ai/settings/api"
+  ],
+  "n_ids": 7
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/config/config.test.ts",
+  "head": "const provider = {\\n    name: \"managed-vllm\",\\n    provider: \"vllm-local\",\\n    api: \"openai-completion",
+  "model_ids": [
+   "nvidia/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/sandbox/config-get.test.ts",
+  "head": "const SANDBOX_CONFIG = {\\n  model: { id: \"nvidia/nemotron-3\", temperature: 0.2 },\\n  provider: {\\n    /",
+  "model_ids": [
+   "nvidia/nemotron-3"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/sandbox/compose-sandbox-config-body.test.ts",
+  "head": "const config = {\\n      _nemoclaw_upstream: {\\n        provider: \"nvidia-prod\",\\n        model: \"nvidia",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/sandbox/compose-sandbox-config-body.test.ts",
+  "head": "const config = { model: { id: \"moonshotai/kimi-k2.6\" } };",
+  "model_ids": [
+   "moonshotai/kimi-k2.6"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/authoritative-rebuild-target.test.ts",
+  "head": "const target = {\\n  sandboxName: \"alpha\",\\n  provider: \"nvidia-prod\",\\n  model: \"nvidia/nemotron\",\\n  ta",
+  "model_ids": [
+   "nvidia/nemotron"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/authoritative-rebuild-target.test.ts",
+  "head": "const providerTarget = {\\n    sandboxName: \"alpha\",\\n    provider: \"compatible-endpoint\",\\n    model: \"",
+  "model_ids": [
+   "nvidia/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/station-express-resume.test.ts",
+  "head": "const boundUltraIntent = {\\n  ...ultraIntent,\\n  servedModel: \"nvidia/nemotron-3-ultra-550b-a55b\",\\n  c",
+  "model_ids": [
+   "nvidia/nemotron-3-ultra-550b-a55b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/e2e/support/hosted-inference.test.ts",
+  "head": "const conflicting = { ...config, model: \"ollama/model\" };",
+  "model_ids": [
+   "ollama/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-no-auth-compatible.test.ts",
+  "head": "const CONFIG = {\\n  agents: { defaults: { model: { primary: \"inference/model-a\" } } },\\n  models: { pr",
+  "model_ids": [
+   "inference/model-a"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-degraded-state.test.ts",
+  "head": "const entry = {\\n      name: \"alpha\",\\n      agent: \"openclaw\",\\n      provider: \"nvidia-prod\",\\n      m",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-set-degraded-state.test.ts",
+  "head": "const options = {\\n      provider: \"compatible-endpoint\",\\n      model: \"openai/gpt-5.4-mini\",\\n      e",
+  "model_ids": [
+   "openai/gpt-5.4-mini"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-get.test.ts",
+  "head": "const expected = {\\n      provider: \"compatible-endpoint\",\\n      model: \"custom/model\",\\n      endpoin",
+  "model_ids": [
+   "custom/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-get.test.ts",
+  "head": "const expected = {\\n      provider: \"compatible-endpoint\",\\n      model: \"custom/model\",\\n      endpoin",
+  "model_ids": [
+   "custom/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/inference-get.test.ts",
+  "head": "const deps = {\\n      ...createDeps(configuredRoute(\"nvidia-prod\", \"nvidia/model\")),\\n      getSandbox",
+  "model_ids": [
+   "nvidia/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/vllm.test.ts",
+  "head": "const gatedModel = {\\n      ...profile.defaultModel,\\n      id: \"nvidia/gated-host-local-model\",\\n     ",
+  "model_ids": [
+   "nvidia/gated-host-local-model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/vllm-serving-port.test.ts",
+  "head": "const model = {\\n      ...baseProfile.defaultModel,\\n      id: \"nvidia/fixed-local-profile\",\\n      fix",
+  "model_ids": [
+   "nvidia/fixed-local-profile"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/vllm-configured-port.test.ts",
+  "head": "const model = {\\n      id: \"test/model\",\\n      label: \"Test model\",\\n      envValue: \"test-model\",\\n   ",
+  "model_ids": [
+   "test/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/chat-models.js",
+  "head": "const MODEL_CATALOG = {\\n\t// \u2500\u2500 Anthropic (paid; host or BYOK key) \u2014 most reliable when keyed \u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+  "model_ids": [
+   "anthropic/claude-haiku-4.5",
+   "anthropic/claude-opus-5",
+   "anthropic/claude-sonnet-5",
+   "ibm-granite/granite-4.1-8b",
+   "nvidia/nemotron-3-super-120b-a12b",
+   "nvidia/nemotron-3-ultra-550b-a55b",
+   "nvidia/nemotron-3.5-lightning-30b-a3b",
+   "openai/gpt-oss-20b",
+   "qwen/qwen3.8-27b"
+  ],
+  "n_ids": 9
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/chat-models.js",
+  "head": "const PROVIDER_MODEL_DEFAULTS = {\\n\tanthropic: 'claude-sonnet-5',\\n\topenrouter: DEFAULT_FREE_MODEL,\\n\tg",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b",
+   "qwen/qwen3.8-27b"
+  ],
+  "n_ids": 2
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/rebuild-preflight-target-phase.test.ts",
+  "head": "const target = {\\n  sandboxName: \"alpha\",\\n  gatewayName: \"nemoclaw\",\\n  provider: \"compatible-endpoint",
+  "model_ids": [
+   "nvidia/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/resume/vllm-install-intent.test.ts",
+  "head": "const access = {\\n      loadSession: () => ({ vllmInstallModel: \"example/model\" }),\\n    };",
+  "model_ids": [
+   "example/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/resume/vllm-install-intent.test.ts",
+  "head": "const access = {\\n      loadSession: () => ({\\n        vllmInstallModel: \"example/model\",\\n        step",
+  "model_ids": [
+   "example/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/inference-invocation-probe.test.ts",
+  "head": "const input = {\\n  sandboxName: \"dcode-workspace\",\\n  provider: \"compatible-endpoint\",\\n  model: \"nvidi",
+  "model_ids": [
+   "nvidia/nemotron"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/rebuild-dcode-pre-delete-drift.test.ts",
+  "head": "const driftedEntry = { ...originalEntry, model: \"nvidia/changed-during-preflight\" };",
+  "model_ids": [
+   "nvidia/changed-during-preflight"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/actions/sandbox/rebuild-dcode-pre-delete-drift.test.ts",
+  "head": "const driftedEntry = { ...originalEntry, model: \"nvidia/changed-at-delete-edge\" };",
+  "model_ids": [
+   "nvidia/changed-at-delete-edge"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/config.test.ts",
+  "head": "const recorded = { provider: \"nvidia-prod\", model: \"nvidia/nemotron-3-super-120b-a12b\" };",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/config.test.ts",
+  "head": "const live = {\\n      provider: \"nvidia-prod\",\\n      model: \"nvidia/nemotron-3-nano-omni-30b-a3b-reas",
+  "model_ids": [
+   "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/inference/config.test.ts",
+  "head": "const live = { provider: \"openai\", model: \"nvidia/nemotron-3-super-120b-a12b\" };",
+  "model_ids": [
+   "nvidia/nemotron-3-super-120b-a12b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/managed-startup/provider-root-apply.test.ts",
+  "head": "const labels = {\\n        ...(providerId === \"docker\"\\n          ? { \"openshell.ai/managed-by\": \"opens",
+  "model_ids": [
+   "openshell.ai/managed-by",
+   "openshell.ai/sandbox-id",
+   "openshell.ai/sandbox-name",
+   "openshell.ai/sandbox-workspace"
+  ],
+  "n_ids": 4
+ },
+ {
+  "file": "NVIDIA-NemoClaw/src/lib/onboard/machine/handlers/provider-inference-authoritative-recovery.test.ts",
+  "head": "const recoveredSelection = {\\n      ...baseSelection,\\n      model: \"mock/channels-rebuild\",\\n      pro",
+  "model_ids": [
+   "mock/channels-rebuild"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/tools.test.ts",
+  "head": "const validInput = {\\n        model_id: 'meta/llama-3.1-405b-instruct',\\n      };",
+  "model_ids": [
+   "meta/llama-3.1-405b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/tools.test.ts",
+  "head": "const validInput = {\\n        model_id: 'meta/llama-3.1-405b-instruct',\\n        connection_profile: '",
+  "model_ids": [
+   "meta/llama-3.1-405b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/tools.test.ts",
+  "head": "const validInput = {\\n        model: 'nvidia/stable-diffusion-xl',\\n        prompt: 'A beautiful sunse",
+  "model_ids": [
+   "nvidia/stable-diffusion-xl"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/tools.test.ts",
+  "head": "const validInput = {\\n        model: 'meta/llama-3.2-90b-vision-instruct',\\n        image_url: 'https:",
+  "model_ids": [
+   "meta/llama-3.2-90b-vision-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/tools.test.ts",
+  "head": "const validInput = {\\n        model: 'nvidia/neva-22b',\\n        messages: [\\n          { role: 'user',",
+  "model_ids": [
+   "nvidia/neva-22b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const args = {\\n        model_id: 'meta/llama-3.1-405b-instruct',\\n      };",
+  "model_ids": [
+   "meta/llama-3.1-405b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'black-forest-labs/flux.1-schnell',\\n        created: Date.now(",
+  "model_ids": [
+   "black-forest-labs/flux.1-schnell"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'black-forest-labs/flux.1-schnell',\\n        created: Date.now(",
+  "model_ids": [
+   "black-forest-labs/flux.1-schnell"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const args = {\\n        prompt: 'A beautiful sunset',\\n        model: 'black-forest-labs/flux.1-schnel",
+  "model_ids": [
+   "black-forest-labs/flux.1-schnell"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'black-forest-labs/flux.1-kontext-dev',\\n        created: Date.",
+  "model_ids": [
+   "black-forest-labs/flux.1-kontext-dev"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const args = {\\n        prompt: 'Now the cat is holding pizza',\\n        model: 'black-forest-labs/flu",
+  "model_ids": [
+   "black-forest-labs/flux.1-kontext-dev"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const args = {\\n        prompt: 'Now the cat is holding pizza',\\n        model: 'black-forest-labs/flu",
+  "model_ids": [
+   "black-forest-labs/flux.1-kontext-dev"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'meta/llama-3.2-90b-vision-instruct',\\n        choices: [{\\n    ",
+  "model_ids": [
+   "meta/llama-3.2-90b-vision-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'meta/llama-3.2-90b-vision-instruct',\\n        choices: [{\\n    ",
+  "model_ids": [
+   "meta/llama-3.2-90b-vision-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'nvidia/neva-22b',\\n        choices: [{\\n          index: 0,\\n   ",
+  "model_ids": [
+   "nvidia/neva-22b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "david-eve-za-nvidia-nim-mcp/src/handlers.test.ts",
+  "head": "const mockResponse = {\\n        model: 'nvidia/neva-22b',\\n        choices: [{\\n          index: 0,\\n   ",
+  "model_ids": [
+   "nvidia/neva-22b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/agents/openclaw/runtime/nemoclaw-start-reconcile.test.ts",
+  "head": "const initial = {\\n      agents: {\\n        defaults: { model: { primary: \"anthropic/claude-sonnet-4-6",
+  "model_ids": [
+   "anthropic/claude-sonnet-4-6"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/agents/openclaw/openclaw-config-snapshot.test.ts",
+  "head": "const original = {\\n        models: {\\n          mode: \"merge\",\\n          providers: {\\n            nvi",
+  "model_ids": [
+   "moonshotai/kimi-k2"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/agents/openclaw/openclaw-config-snapshot.test.ts",
+  "head": "const original = {\\n        models: {\\n          mode: \"merge\",\\n          providers: {\\n            inf",
+  "model_ids": [
+   "moonshotai/kimi-k2"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/packages/guardian/test/guardian.test.js",
+  "head": "const blockResponse = {\\n\tmodel: 'ibm/granite-guardian-3-8b',\\n\tdecision: 'block',\\n\tflagged: ['jailbre",
+  "model_ids": [
+   "ibm/granite-guardian-3-8b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/automation/pull-requests/pr-review-advisor-finding-ledger.test.ts",
+  "head": "const blocker = {\\n  severity: \"P1\" as const,\\n  kind: \"security\" as const,\\n  summary: \"The fallback e",
+  "model_ids": [
+   "src/lib/example.ts"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/agents/hermes/hermes-gateway-wrapper.test.ts",
+  "head": "const settings = {\\n      model: \"meta/llama-3.1-8b-instruct\",\\n      baseUrl: \"https://inference.loca",
+  "model_ids": [
+   "meta/llama-3.1-8b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/agents/hermes/hermes-gateway-wrapper.test.ts",
+  "head": "const settings = {\\n        model: \"meta/llama-3.1-8b-instruct\",\\n        baseUrl: \"https://inference.",
+  "model_ids": [
+   "meta/llama-3.1-8b-instruct"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/scripts/verify-granite-guardian.mjs",
+  "head": "const payload = {\\n\t\t\tmodel_id: 'ibm/granite-guardian-3-8b',\\n\t\t\tchoices: [\\n\t\t\t\t{\\n\t\t\t\t\tmessage: { cont",
+  "model_ids": [
+   "ibm/granite-guardian-3-8b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/scripts/play-listing-translations.mjs",
+  "head": "const PROVIDERS = {\\n  nvidia: { envKey: 'NVIDIA_API_KEY', url: 'https://integrate.api.nvidia.com/v1/",
+  "model_ids": [
+   "nvidia/nemotron-3-ultra-550b-a55b",
+   "qwen/qwen3.8-27b"
+  ],
+  "n_ids": 2
+ },
+ {
+  "file": "nirholas-three.ws/tests/api-guardian.test.js",
+  "head": "const payload = { model_id: 'ibm/granite-guardian-3-8b', choices: [{ message: { content: text }, log",
+  "model_ids": [
+   "ibm/granite-guardian-3-8b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api-guardian.test.js",
+  "head": "const payload = {\\n\t\t\tmodel: 'ibm-granite/granite-guardian-3.3-8b',\\n\t\t\tchoices: [\\n\t\t\t\t{\\n\t\t\t\t\tmessage:",
+  "model_ids": [
+   "ibm-granite/granite-guardian-3.3-8b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api-guardian-assess.test.js",
+  "head": "const payload = {\\n\t\t\tmodel_id: 'ibm/granite-guardian-3-8b',\\n\t\t\tchoices: [{\\n\t\t\t\tmessage: { content: s",
+  "model_ids": [
+   "ibm/granite-guardian-3-8b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/scripts/nvidia-demo-serve.mjs",
+  "head": "const TYPES = {\\n\t'.html': 'text/html; charset=utf-8',\\n\t'.glb': 'model/gltf-binary',\\n\t'.gltf': 'model",
+  "model_ids": [
+   "application/json",
+   "model/gltf-binary",
+   "text/javascript"
+  ],
+  "n_ids": 3
+ },
+ {
+  "file": "nirholas-three.ws/tests/src/manifest-normalize.test.js",
+  "head": "const json = {\\n\t\t\tspec: 'agent-manifest/0.1',\\n\t\t\tname: 'Ada',\\n\t\t\tbody: { uri: 'model.glb', format: '",
+  "model_ids": [
+   "agent-manifest/0.1"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/sniper-stall.test.js",
+  "head": "const strategy = { ...healthy, decision_mode: 'llm', llm_strict_model: true, llm_model: 'moonshotai/",
+  "model_ids": [
+   "moonshotai/kimi-k3"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/sniper-stall.test.js",
+  "head": "const strategy = { ...healthy, decision_mode: 'llm', llm_strict_model: true, llm_model: 'x-ai/grok-4",
+  "model_ids": [
+   "x-ai/grok-4.3"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/sniper-stall.test.js",
+  "head": "const strategy = { ...healthy, decision_mode: 'llm', llm_strict_model: false, llm_model: 'openrouter",
+  "model_ids": [
+   "openrouter/auto"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/scripts/i18n-translate.mjs",
+  "head": "const PROVIDER_DEFAULT_MODEL = {\\n\tgemini: 'gemini-2.5-flash',\\n\tvertex: 'google/gemini-2.5-flash',\\n\tg",
+  "model_ids": [
+   "google/gemini-2.5-flash",
+   "nvidia/nemotron-3-ultra-550b-a55b",
+   "qwen/qwen3.8-27b"
+  ],
+  "n_ids": 3
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/reconstruct-finalize.test.js",
+  "head": "const rigJob = {\\n\t\tprovider: 'replicate',\\n\t\tparams: { name: 'Me', visibility: 'private', rig: { extJ",
+  "model_ids": [
+   "u/u1/selfie-x/m.glb"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/tests/system/docker-smoke.mjs",
+  "head": "const openRouterConfig = {\\n    ...configPayload.value,\\n    Providers: [\\n      {\\n        apiKey: \"tes",
+  "model_ids": [
+   "qwen/qwen3.5-122b-a10b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/openrouter-free-models.test.js",
+  "head": "const LIVE = {\\n\tdata: [\\n\t\t{ id: 'paid/model', context_length: 999999, supported_parameters: ['tools'",
+  "model_ids": [
+   "paid/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/ui/test/component/profiles.test.tsx",
+  "head": "const defaultOnlyDraft = { ...draft, model: \"kimi/k2\", availableModels: [] };",
+  "model_ids": [
+   "kimi/k2"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/okx-chat-bot.test.js",
+  "head": "const GATEWAY = {\\n\t\tOKX_BOT_ANTHROPIC_BASE_URL: 'https://openrouter.ai/api',\\n\t\tOKX_BOT_ANTHROPIC_AUT",
+  "model_ids": [
+   "anthropic/claude-sonnet-4.6"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/forge-prop.test.js",
+  "head": "const file = { name: 'model.glb', type: 'model/gltf-binary', size: 1024 };",
+  "model_ids": [
+   "model/gltf-binary"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/ibm-mcp.test.js",
+  "head": "const fc = {\\n\tforecast: vi.fn(async () => ({\\n\t\tmodel: 'ibm/granite-ttm-512-96-r2',\\n\t\ttimestamps: ['2",
+  "model_ids": [
+   "ibm/granite-ttm-512-96-r2"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/ibm-trust-layer-logic.test.js",
+  "head": "const base = {\\n\t\tdecision: 'block', model: 'ibm/granite-guardian-3-8b', latencyMs: 320,\\n\t\treasons: [",
+  "model_ids": [
+   "ibm/granite-guardian-3-8b"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/electron/test/unit/claude-design-chat.test.ts",
+  "head": "const body = { model: \"provider/model\", messages, ...context };",
+  "model_ids": [
+   "provider/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/electron/test/unit/claude-design-chat.test.ts",
+  "head": "const body = { model: \"provider/model\", system: instructions, messages, tools: [questionTool] };",
+  "model_ids": [
+   "provider/model"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/tests/api/avatar-og.test.js",
+  "head": "const avatar = {\\n\t\t\tid: 'a6',\\n\t\t\tname: 'Once',\\n\t\t\tthumbnail_url: null,\\n\t\t\tmodel_url: 'https://cdn.te",
+  "model_ids": [
+   "u/uid/once/123.glb"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/providers/provider-preset-utils.test.mjs",
+  "head": "const provider = {\\n    api_base_url: \"https://integrate.api.nvidia.com/v1\",\\n    capabilities: [\\n    ",
+  "model_ids": [
+   "z-ai/glm-5.2"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/providers/openrouter-compatibility.test.mjs",
+  "head": "const provider = {\\n  name: \"OpenRouter\", api_base_url: baseUrl,\\n  models: [\"minimax/minimax-m3\", \"op",
+  "model_ids": [
+   "minimax/minimax-m3",
+   "openrouter/minimax/minimax-m3"
+  ],
+  "n_ids": 2
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/gateway/upstream-header-sanitizer.test.mjs",
+  "head": "const upstreamRequest = {\\n    body: { model: \"provider-model\" },\\n    headers: {\\n      \"content-type\"",
+  "model_ids": [
+   "application/json"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/gateway/upstream-header-sanitizer.test.mjs",
+  "head": "const upstreamRequest = {\\n    body: { model: \"provider-model\" },\\n    headers: {\\n      authorization:",
+  "model_ids": [
+   "application/json"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/gateway/upstream-header-sanitizer.test.mjs",
+  "head": "const upstreamRequest = {\\n    body: { model: \"provider-model\" },\\n    headers: {\\n      \"content-type\"",
+  "model_ids": [
+   "application/json"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/gateway/upstream-executor.test.mjs",
+  "head": "const config = {\\n    Providers: [\\n      {\\n        apiKey: \"openrouter-key\",\\n        capabilities: [\\n",
+  "model_ids": [
+   "google/gemini-3.7-flash"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/gateway/meta-token-floor.test.mjs",
+  "head": "const request = {\\n        url: \"https://openrouter.ai/api/v1/responses\", headers: {},\\n        body: ",
+  "model_ids": [
+   "meta/muse-spark-1.3-contributor"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/gateway/meta-token-floor.test.mjs",
+  "head": "const body = { model: \"meta/muse-spark-1.3-contributor\", max_tokens: 1 };",
+  "model_ids": [
+   "meta/muse-spark-1.3-contributor"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/test/unit/agents/codex-app-model-catalog.test.mjs",
+  "head": "const profile = {\\n      agent: \"codex\",\\n      enabled: true,\\n      id: \"codex-main\",\\n      model: \"u",
+  "model_ids": [
+   "uuroute/gpt-5.6"
+  ],
+  "n_ids": 1
+ },
+ {
+  "file": "nirholas-three.ws/public/pay/index.html",
+  "head": "const BSC_TOOL_PRESETS = {\\n  validate_model:        { name: 'validate_model',        args: { url: 'h",
+  "model_ids": [
+   "tools/list"
+  ],
+  "n_ids": 1
+ }
+]

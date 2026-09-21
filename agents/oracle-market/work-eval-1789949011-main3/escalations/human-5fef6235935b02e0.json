@@ -1,0 +1,10 @@
+{
+  "ts": 1789949132.5956187,
+  "question_id": "5fef6235935b02e0",
+  "question": "Will there be more than 800 delays and cancellations at JFK on November 13, 2025? Resolution date: November 14, 2025. Resolution criterion: If FlightAware records that the total number of delays and cancellations at JFK International Airport is above 800 on November 13, 2025, then the market resolves to Yes.\nPlease note that at the Source Agency link, the Underlying is the sum at the top, and not the values embedded in the table below.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

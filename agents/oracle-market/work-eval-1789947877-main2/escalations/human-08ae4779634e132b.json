@@ -1,0 +1,10 @@
+{
+  "ts": 1789948098.453162,
+  "question_id": "08ae4779634e132b",
+  "question": "Will the **high temp in Miami** be >83\u00b0 on Nov 15, 2025? Resolution criterion: If the highest temperature recorded at Miami International Airport for November 15, 2025 as reported by the National Weather Service's Climatological Report (Daily), is greater than 83\u00b0, then the market resolves to Yes.\nNot all weather data is the same. While checking a source like AccuWeather or Google Weather may help guide your decision, the official and final value used to determine this market is the highest temperature as reported by the corresponding NWS Climatological Report (Daily) linked in the rules above. Preliminary NWS reporting and measurement methods may be subject to underlying rounding and conversion nuances. Traders should exercise caution when interpreting preliminary NWS data.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

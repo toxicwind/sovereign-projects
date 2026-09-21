@@ -67,3 +67,10 @@
 [squawk-relay] 2026-09-20 00:18 MDT - outbox seq-collision lesson (2x): ad-hoc re-injection scripts appended with self-computed seq, colliding with sink sequence; shadowed entries skipped by cursor logic. Repaired (artifact lines removed, cursor rewound, lost msgs relayed). RULE: outbox appends ONLY via sink (pause first); safe re-injection procedure recorded in squawk-relay/PAPERS.md.
 [squawk-relay] 2026-09-20 00:18 MDT - papers: squawk-relay/PAPERS.md added (transactional outbox pattern maps to sink/outbox/forwarder; MillWheel VLDB 2013 record-ID plus atomic dedup write maps to idempotency_key plus atomic seen-set commit). relay-status live: depth=0 lag=15s last_seq=41 dest=#fleet hops p50 msg-to-outbox 1.4s.
 [squawk-relay] 2026-09-20 00:18 MDT - relay agent spawn still blocked (daemon LLM path needs NVIDIA key refresh, worker 1); openfang-spawn.md is the ready-to-execute step. Pipeline (sink -> outbox -> forwarder) runs WITHOUT the agent.
+
+## pack-fix: audit and fix the swarm itself (2026-09-20, Chris directive)
+- [ ] hesitance-hunt: find + fix hesitance patterns in prompts/briefs/runner bodies (progress-watchdog body "no further investigation" is suspect #1); write hesitance-patterns.md; commit+push
+- [ ] runner-watch: full runner inventory (cron + systemd + pitchfork on yote); kill/fix fake-completed watchdogs (kimi-auto-canary-judge idle loop every 5m); dedupe overlapping watchdogs; resolve disabled audit-bridge-watch; identify "spindle"; write runner-audit.md; commit+push
+- [ ] orphan-sweep: yote process inventory, stale pids, dead /tmp (coordinate with kimi-unlock-audit), half-finished reorgs; adopt or clean; create missing files; write orphan-sweep.md; commit+push
+- [ ] fleet-social: fleet health — chat/collab/personas, work with fleet-voice, nudge silent agents
+- [ ] pack-fix: consolidate docs, verify all pushes via git ls-remote, close out

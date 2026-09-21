@@ -1,0 +1,10 @@
+{
+  "ts": 1789949053.5928895,
+  "question_id": "a36de7b153fdbe9a",
+  "question": "Will Yale drop in national university rankings? Resolution date: September 23, 2025. Resolution criterion: If Yale drops in the rankings, then the market resolves to Yes.\nAll that matters is the rank associated with the college/university -- even if a single university goes from being alone in first place to being tied for first place, that is not a drop in ranking. The 2026 Best National University Rankings are expected to be released in September 2025.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

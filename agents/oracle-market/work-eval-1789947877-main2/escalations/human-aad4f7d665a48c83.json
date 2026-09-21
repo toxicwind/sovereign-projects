@@ -1,0 +1,10 @@
+{
+  "ts": 1789948066.2143984,
+  "question_id": "aad4f7d665a48c83",
+  "question": "Will the USD/JPY open price be above 161.46900 at Nov 14, 2025 at 4pm EST? Resolution criterion: If the open price of the Dollar/Yen for November 14, 2025 is above 161.46900 at 4 PM EST, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

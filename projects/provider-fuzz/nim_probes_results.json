@@ -1,0 +1,15 @@
+{
+  "probe3": {
+    "with_header": {
+      "http": 404,
+      "ms": 105,
+      "body_head": "404 page not found\n"
+    },
+    "without_header": {
+      "http": 404,
+      "ms": 96,
+      "body_head": "404 page not found\n"
+    },
+    "verdict": "NO_OP"
+  }
+}

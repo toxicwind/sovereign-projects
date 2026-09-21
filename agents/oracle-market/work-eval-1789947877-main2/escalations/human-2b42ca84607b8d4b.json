@@ -1,0 +1,10 @@
+{
+  "ts": 1789948076.7965276,
+  "question_id": "2b42ca84607b8d4b",
+  "question": "Will TikTok be banned by December 31, 2025? Resolution criterion: If TikTok is banned before Jan 1, 2026, then the market resolves to Yes.\nThe ban must be in effect before Jan 1, 2026. \"Ban\" includes banning transactions with ByteDance/TikTok or making it illegal to maintain or distribute TIkTok.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

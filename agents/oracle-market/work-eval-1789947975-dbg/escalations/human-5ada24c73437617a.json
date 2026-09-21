@@ -1,0 +1,10 @@
+{
+  "ts": 1789948026.9547594,
+  "question_id": "5ada24c73437617a",
+  "question": "Will there be more than 1500 measles cases in 2025? Resolution criterion: If the number of measles in 2025 is above 1500, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

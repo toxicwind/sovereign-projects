@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily estate durability audit (anvil)
+
+[Timer]
+OnCalendar=*-*-* 04:30:00
+Persistent=true
+Unit=durability-audit.service
+
+[Install]
+WantedBy=timers.target

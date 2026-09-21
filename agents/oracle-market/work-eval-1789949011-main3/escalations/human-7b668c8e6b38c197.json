@@ -1,0 +1,10 @@
+{
+  "ts": 1789949044.546592,
+  "question_id": "7b668c8e6b38c197",
+  "question": "Will Joe Biden visit Nebraska before Nov 8, 2025? Resolution date: November 08, 2025. Resolution criterion: If Joe Biden has physically travelled to and been present within the geographic boundaries of Nebraska before Nov 8, 2025, then the market resolves to Yes.\nPhysical presence within the geographic boundaries is required - flying over without landing, airport layovers where the person remains in the airplane or airport, virtual appearances, presence in international waters, or presence solely within embassy/consulate grounds do NOT count as visits. For cities, official municipal boundaries apply. For states/provinces, official boundaries apply. For countries, internationally recognized borders apply. International airports are considered within their host jurisdiction. Evidence must be reported by at least one Source Agency and may include official announcements, news reports with specific location details, verified photographs/videos at identifiable locations, flight records showing arrival, completed official schedules, or social media posts from official accounts. Visits that began before market issuance do not count. For multiple locations with OR logic, visiting any single location satisfies the criterion. For AND logic, all locations must be visited.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

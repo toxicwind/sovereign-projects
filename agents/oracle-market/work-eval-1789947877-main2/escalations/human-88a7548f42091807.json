@@ -1,0 +1,10 @@
+{
+  "ts": 1789948066.2022645,
+  "question_id": "88a7548f42091807",
+  "question": "Will Domingos DaRosa win the election for the Mayor of Boston in 2025? Resolution criterion: If Domingos DaRosa wins the election for Mayor in Boston in 2025, then the market resolves to Yes.?",
+  "reason": "no live judges \u2014 nothing to aggregate",
+  "context": {
+    "verdict": 0.5
+  },
+  "status": "awaiting_human"
+}

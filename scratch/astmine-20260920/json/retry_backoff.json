@@ -1,0 +1,138 @@
+[
+ {
+  "file": "nirholas-three.ws/pages/three-live.html",
+  "text": "setTimeout(() => { sseRetryTimer = null; connectTrades(); }, delay)"
+ },
+ {
+  "file": "nirholas-three.ws/workers/okx-chat-bot/supervisor.js",
+  "text": "setTimeout(spawnDaemon, backoffMs)"
+ },
+ {
+  "file": "thispointon-kondi/mcp-connect-mvp/src/services/anthropicClient.ts",
+  "text": "setTimeout(resolve, backoffMs)"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/ollama-auth-proxy-handler-helpers.ts",
+  "text": "setTimeout(() => {\\n            retryTimer = undefined;\\n            tryConnect();\\n          }, 100)"
+ },
+ {
+  "file": "nirholas-three.ws/pages/playground.html",
+  "text": "setTimeout(() => {\\n\t\t\t\t\t\tif (settled) return;\\n\t\t\t\t\t\tif (!customElements.get('model-viewer')) {\\n\t\t\t\t\t\t\tshowError(\\n\t\t\t\t\t\t\t\t'The 3D viewer did not start',\\n\t\t\t\t\t\t\t\t'The model-viewer runtime could not be fetched from the CDN. Reload the page, or try again on a network that allows it.',\\n\t\t\t\t\t\t\t);\\n\t\t\t\t\t\t\treturn;\\n\t\t\t\t\t\t}\\n\t\t\t\t\t\tshowError(\\n\t\t\t\t\t\t\t'This model is taking too long',\\n\t\t\t\t\t\t\t'The downl..."
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/upstream-fetch.js",
+  "text": "setTimeout(r, retryAfterMs)"
+ },
+ {
+  "file": "nirholas-three.ws/api/_lib/db-retry.js",
+  "text": "setTimeout(r, bounded ? Math.min(backoff, left) : backoff)"
+ },
+ {
+  "file": "nirholas-three.ws/api/gpt-forge.js",
+  "text": "setTimeout(\\n\t\t\t\t\t\t() => reject(Object.assign(new Error(`reference image step exceeded its ${budget}ms budget`), { code: 'rate_limited', queued: true, retryAfter: 15 })),\\n\t\t\t\t\t\tMath.max(1_000, remaining()),\\n\t\t\t\t\t)"
+ },
+ {
+  "file": "nirholas-three.ws/pages/demo-economy.html",
+  "text": "setTimeout(() => {\\n\t\tif (settled) return;\\n\t\tstatusEl.textContent = 'Run timed out';\\n\t\tshowError('The run did not finish within 35 seconds. No payment was made. Retry to start a fresh run.');\\n\t\tfinish();\\n\t}, 35000)"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/e2e/live/agent-turn-latency-helpers.ts",
+  "text": "setTimeout(resolve, backoffSeconds * 1_000)"
+ },
+ {
+  "file": "NVIDIA-NemoClaw/test/e2e/fixtures/phases/runtime.ts",
+  "text": "setTimeout(resolve, retryDelayMs)"
+ },
+ {
+  "file": "stillhue-claudio/cli/src/services/mcp/useManageMCPConnections.ts",
+  "text": "setTimeout(resolve, backoffMs)"
+ },
+ {
+  "file": "nirholas-three.ws/src/walk.js",
+  "text": "setTimeout(pollOnce, backoff)"
+ },
+ {
+  "file": "nirholas-three.ws/packages/companion-sdk/src/client.js",
+  "text": "setTimeout(connect, retryMs)"
+ },
+ {
+  "file": "nirholas-three.ws/packages/ibm-x402-mcp/CATALOG.md",
+  "text": "**Anonymous callers pay per call** in USDC. An unpaid `tools/call` returns a 402 quoting the exact per-tool price (chat $0.02, code $0.025, embed $0.005, analyze $0.04, forecast $0.05), advertised on Base and Solana mainnet; x402-capable clients pay and retry automatically. Settlement runs after the tool succeeds."
+ },
+ {
+  "file": "nirholas-three.ws/tests/e2e/home-support.js",
+  "text": "setTimeout(resolve, (retryAfter + 1) * 1000)"
+ },
+ {
+  "file": "nirholas-three.ws/robinhood/hood-status/worker/src/feed.js",
+  "text": "setTimeout(() => this.#connect(), this.backoffMs)"
+ },
+ {
+  "file": "nirholas-three.ws/src/shared/failover-fetch.js",
+  "text": "setTimeout(r, backoffMs * 2 ** (i - 1))"
+ },
+ {
+  "file": "nirholas-three.ws/src/agents-live.js",
+  "text": "setTimeout(() => {\\n\t\t_retryTimer = null;\\n\t\tif (document.getElementById('al-roster-error') !== box) return;\\n\t\tif (document.hidden) { scheduleRosterRetry(box); return; }\\n\t\tretryRoster(box);\\n\t}, wait)"
+ },
+ {
+  "file": "nirholas-three.ws/src/avatar-rig.js",
+  "text": "setTimeout(async () => {\\n\t\t\tif (cancelled) return;\\n\t\t\tif (Date.now() - startedAt > POLL_TIMEOUT_MS) {\\n\t\t\t\tsetState({ phase: 'error', message: 'Rigging is taking longer than expected. Try again in a few minutes.' });\\n\t\t\t\treturn;\\n\t\t\t}\\n\t\t\tlet body;\\n\t\t\ttry {\\n\t\t\t\tconst r = await fetch(`/api/avatars/regenerate-status?jobId=${encodeURIComponent(jobId)}`, {\\n\t\t\t\t\tcredentials: 'include',\\n\t\t\t\t});\\n..."
+ },
+ {
+  "file": "stillhue-claudio/cli/src/commands/install-github-app/OAuthFlowStep.tsx",
+  "text": "setTimeout((nextState, setShowPastePrompt_0, setOAuthStatus_1) => {\\n        // Only show paste prompt when retrying to waiting_for_login\\n        setShowPastePrompt_0(nextState.state === 'waiting_for_login');\\n        setOAuthStatus_1(nextState);\\n      }, 500, oauthStatus.nextState, setShowPastePrompt, setOAuthStatus)"
+ },
+ {
+  "file": "nirholas-three.ws/src/create-review.js",
+  "text": "setTimeout(disarmReconnectRetry, 30_000)"
+ },
+ {
+  "file": "nirholas-three.ws/src/mission-control/focus.js",
+  "text": "setTimeout(() => {\\n\t\t\t\t\tif (mySeq !== seq || currentMint !== mint) return;\\n\t\t\t\t\tfetchCoin(mint, { retry: false }).then((coin) => {\\n\t\t\t\t\t\tif (mySeq !== seq || !coin) return;\\n\t\t\t\t\t\tcoinDetail = coin;\\n\t\t\t\t\t\tupdateHead(store.getRow(mint) || { mint });\\n\t\t\t\t\t});\\n\t\t\t\t}, after)"
+ },
+ {
+  "file": "nirholas-three.ws/src/forge.js",
+  "text": "setTimeout(loadHealth, healthRetryCount * 30_000)"
+ },
+ {
+  "file": "nirholas-three.ws/src/forge-studio/forge.js",
+  "text": "setTimeout(loadHealth, healthRetryCount * 30_000)"
+ },
+ {
+  "file": "nirholas-three.ws/src/irl.js",
+  "text": "setTimeout(() => {\\n\t\t_gpsRetryTimer = null;\\n\t\tinitGPS();\\n\t}, GPS_RETRY_MS)"
+ },
+ {
+  "file": "nirholas-three.ws/src/home-forge-controls.js",
+  "text": "setTimeout(loadHealth, healthRetry * 30_000)"
+ },
+ {
+  "file": "nirholas-three.ws/public/pumpfun.html",
+  "text": "setTimeout(connect, esBackoff)"
+ },
+ {
+  "file": "nirholas-three.ws/public/oracle-coin.js",
+  "text": "setTimeout(() => { if (deep.dataset.scaffold === mint) render(mint, { retry: retry + 1 }); }, 4000 + retry * 2000)"
+ },
+ {
+  "file": "nirholas-three.ws/public/mcp-studio-status.js",
+  "text": "setTimeout(function () { retry.disabled = false; }, 600)"
+ },
+ {
+  "file": "nirholas-three.ws/public/agenc/embed.js",
+  "text": "setTimeout(() => this._poll(taskPda, requestId), this._retryDelay())"
+ },
+ {
+  "file": "musistudio-claude-code-router/packages/core/src/observability/request-log-runtime.ts",
+  "text": "setTimeout(() => {\\n      this.admissionRetryTimer = undefined;\\n      this.drainAdmissionOperations();\\n    }, delayMs)"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/commands/install-github-app/OAuthFlowStep.tsx",
+  "text": "setTimeout((nextState, setShowPastePrompt_0, setOAuthStatus_1) => {\\n        // Only show paste prompt when retrying to waiting_for_login\\n        setShowPastePrompt_0(nextState.state === 'waiting_for_login');\\n        setOAuthStatus_1(nextState);\\n      }, 500, oauthStatus.nextState, setShowPastePrompt, setOAuthStatus)"
+ },
+ {
+  "file": "Gitlawb-openclaude/src/services/mcp/useManageMCPConnections.ts",
+  "text": "setTimeout(resolve, backoffMs)"
+ }
+]
