@@ -156,7 +156,7 @@ def handle(conn, addr):
             rhead, _, rrest = resp.partition(b"\r\n\r\n")
             cookie_hdr = ("Set-Cookie: %s=%s; Path=/; HttpOnly; "
                           "SameSite=Lax\r\n" % (COOKIE_NAME, cookie_value(token)))
-            resp = rhead + cookie_hdr.encode("latin1") + b"\r\n\r\n" + rrest
+            resp = rhead + b"\r\n" + cookie_hdr.encode("latin1") + b"\r\n" + rrest
         conn.sendall(resp)
         pipe(conn, up)
     except OSError:

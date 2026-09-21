@@ -1,26 +1,26 @@
 {
-  "ts": "2026-09-20T14:58:22.367083+00:00",
+  "ts": "2026-09-21T22:21:22.365323+00:00",
   "overall": "FAIL",
   "checks": [
     {
       "name": "supervisor",
       "status": "ok",
-      "detail": "active pid=1006 mem=19114795008B"
+      "detail": "active pid=189105 mem=21780557824B"
     },
     {
       "name": "daemons",
       "status": "fail",
-      "detail": "48/51 running; down: sovereign/beellama-fast sovereign/kimi-auto-shim; supervisor-stale (endpoint live): sovereign/toolcall-llm"
+      "detail": "75/76 running; down: sovereign/agent-viewer-gate"
     },
     {
       "name": "openfang_kernel",
       "status": "fail",
-      "detail": "openfang status rc=0 after 7ms"
+      "detail": "openfang status rc=0 after 16ms"
     },
     {
       "name": "agents",
       "status": "fail",
-      "detail": "not Running: shingle-pilot (query took 6ms)"
+      "detail": "not Running: shingle-pilot (query took 7ms)"
     },
     {
       "name": "audit_chain",
@@ -30,12 +30,12 @@
     {
       "name": "llama_swap",
       "status": "ok",
-      "detail": ":25100/v1/models ok in 17ms, 72 models"
+      "detail": ":25100/v1/models ok in 18ms, 110 models"
     },
     {
       "name": "kimi_auto",
       "status": "warn",
-      "detail": "state age=767s info=[kimi-k2 False -]"
+      "detail": "state age=87633s info=[mistral/ministral-3b-latest True 302]"
     },
     {
       "name": "provider_nvidia",
@@ -75,7 +75,7 @@
     {
       "name": "yote_ep",
       "status": "ok",
-      "detail": ":25102/health reachable (200) in 4ms"
+      "detail": ":25102/health reachable (200) in 5ms"
     },
     {
       "name": "meshub_ep",
@@ -84,18 +84,18 @@
     },
     {
       "name": "coyote_ep",
-      "status": "warn",
-      "detail": ":25143 code=000000 after 3ms (sovereign/coyote not in live pitchfork set)"
+      "status": "ok",
+      "detail": ":25143/health reachable in 5ms"
     },
     {
       "name": "memory",
       "status": "ok",
-      "detail": "total=63895MB used=14222MB avail=49673MB"
+      "detail": "total=63893MB used=31303MB avail=32590MB"
     },
     {
       "name": "gpu",
       "status": "ok",
-      "detail": "NVIDIA GeForce RTX 3090  6 %  11290 MiB  24576 MiB"
+      "detail": "NVIDIA GeForce RTX 3090  0 %  10153 MiB  24576 MiB"
     }
   ],
   "papers": [
