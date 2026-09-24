@@ -55,3 +55,22 @@ poetry.lock -text
 # Changelogs are append-mostly; auto-merge by unioning both sides.
 packages/*/CHANGELOG.md merge=union
 
+*.ts   merge=weave
+*.tsx  merge=weave
+*.js   merge=weave
+*.jsx  merge=weave
+*.rs   merge=weave
+*.py   merge=weave
+*.go   merge=weave
+*.json merge=suture
+*.toml merge=suture
+*.yaml merge=suture
+*.yml  merge=suture
+*.md   merge=suture
+crates/pi-builtins/src/bre.rs      -merge
+crates/pi-builtins/src/grep.rs     -merge
+crates/pi-builtins/src/sed.rs      -merge
+packages/ai/src/auth-storage.ts    -merge
+packages/ai/src/auth-storage/**    -merge
+crates/pi-builtins/src/bre.rs      -merge
+packages/coding-agent/src/debug/** -merge

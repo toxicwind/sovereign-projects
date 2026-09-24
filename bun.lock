@@ -65,12 +65,20 @@
         "vitest": "^4.1.0",
       },
     },
+    "packages/sovereign-utils": {
+      "name": "@sovereign/utils",
+      "version": "0.1.0",
+    },
     "packages/utils": {
       "name": "@oh-my-pi/pi-utils",
       "version": "1.0.0",
     },
     "services/_template": {
       "name": "@sovereign/template",
+      "version": "0.1.0",
+    },
+    "services/keypool": {
+      "name": "@sovereign/keypool",
       "version": "0.1.0",
     },
   },
@@ -187,7 +195,11 @@
 
     "@rollup/pluginutils": ["@rollup/pluginutils@5.4.0", "", { "dependencies": { "@types/estree": "^1.0.0", "estree-walker": "^2.0.2", "picomatch": "^4.0.2" }, "peerDependencies": { "rollup": "^1.20.0||^2.0.0||^3.0.0||^4.0.0" }, "optionalPeers": ["rollup"] }, "sha512-MfPp06CjRLfXQ3wY0R8vJDYBy/MvVcc9OulEfR0B8Iv9ko+GCNaRZ+EpJYFl27LhKsZK0o420sYCRHCjfCgeUg=="],
 
+    "@sovereign/keypool": ["@sovereign/keypool@workspace:services/keypool"],
+
     "@sovereign/template": ["@sovereign/template@workspace:services/_template"],
+
+    "@sovereign/utils": ["@sovereign/utils@workspace:packages/sovereign-utils"],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
