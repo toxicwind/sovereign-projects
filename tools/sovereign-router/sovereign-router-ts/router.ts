@@ -630,6 +630,10 @@ function startWarmStandby(): void {
           Accept: "application/json",
           "User-Agent": "SovereignRouter/3.2 warm-standby",
         };
+        // Keyed local backends (nim-proxy) need the client key on probes too.
+        const keyEnv = (conf as { key_env?: string }).key_env;
+        const keyVal = keyEnv ? process.env[keyEnv] : "";
+        if (keyVal) headers["Authorization"] = `Bearer ${keyVal}`;
         const r = await fetch(`${conf.base.replace(/\/+$/, "")}/models`, {
           headers,
           signal: AbortSignal.timeout(5000),
