@@ -284,20 +284,19 @@ export async function callOne(
       };
     }
     const data = await resp.arrayBuffer();
-    // 📒 ledger: record Gemini token usage for cost accounting.
+    // 📒 ledger: record token usage for cost accounting — ALL providers.
     // Best-effort — never throws, never touches the response path.
-    if (provider === "google" && /gemini/i.test(model)) {
-      try {
-        const usage = JSON.parse(new TextDecoder().decode(data))?.usage;
-        if (usage && (usage.prompt_tokens || usage.completion_tokens)) {
-          recordUsage({
-            model: String(model),
-            inputTokens: usage.prompt_tokens || 0,
-            outputTokens: usage.completion_tokens || 0,
-          });
-        }
-      } catch { /* accounting must never break serving */ }
-    }
+    try {
+      const usage = JSON.parse(new TextDecoder().decode(data))?.usage;
+      if (usage && (usage.prompt_tokens || usage.completion_tokens)) {
+        recordUsage({
+          provider: String(provider),
+          model: String(model),
+          inputTokens: usage.prompt_tokens || 0,
+          outputTokens: usage.completion_tokens || 0,
+        });
+      }
+    } catch { /* accounting must never break serving */ }
     state.record(model, provider, resp.status, lat, 0, STRATEGY);
     if (state.circuit.get(provider) === "half")
       state.circuit.set(provider, "closed");
