@@ -76,11 +76,7 @@ async function journalWrite(): Promise<string> {
   const b64 = Buffer.from(rec).toString("base64");
   const chunks: string[] = [];
   for (let i = 0; i < b64.length; i += 1200) chunks.push(b64.slice(i, i + 1200));
-  // Single printf, chunks as separate args: `printf '%s' 'c1' 'c2'` applies
-  // the format to each arg in turn. (The old form — `printf '%s' 'c1'`
-  // `printf '%s' 'c2'` joined by spaces — made the words `printf`/`%s`
-  // extra printf ARGUMENTS, corrupting every payload over ~900 bytes.)
-  const assemble = `printf '%s' ${chunks.map(c => `'${c}'`).join(" ")}`;
+  const assemble = chunks.map(c => `printf '%s' '${c}'`).join(" ");
   const cmd = `f=$(mktemp); ${assemble} > $f; mkdir -p ${MIRROR} && base64 -d $f > ${MIRROR}/${uuid}.json && [ -s ${MIRROR}/${uuid}.json ] && echo journaled ${uuid}; rm -f $f`;
   const out = await $`${YOTE_CONN} exec ${cmd}`.text();
   if (!out.includes("journaled")) throw new Error("journal: no 'journaled' in output: " + out.slice(0, 200));
@@ -89,28 +85,8 @@ async function journalWrite(): Promise<string> {
 
 async function journalDelete(): Promise<void> {
   if (!UUID_RE.test(uuid)) return;
-  try {
-    // NOTE: yote-conn's exec takes the remote command as ONE argv element
-    // (it parses fixed positionals after it) — pass a single string, never
-    // split words, or it throws ValueError and the record lingers.
-    const rmCmd = `rm -f ${MIRROR}/${uuid}.json`;
-    await $`${YOTE_CONN} exec ${rmCmd}`.text();
-  } catch { /* the flusher's uuid check covers a missed delete */ }
-}
-
-// pathA (`squawk send`) generates its own frontmatter WITHOUT our uuid, so
-// the mirror-flusher couldn't correlate a pathA-delivered message with its
-// journal record (→ duplicate post on the next sweep). Stamp our uuid into
-// the delivered file right after the win, before journalDelete.
-const FNAME_RE = /^[A-Za-z0-9_.-]+\.md$/;
-async function stampUuid(channel: string, fname: string, theUuid: string): Promise<void> {
-  if (!UUID_RE.test(theUuid) || !FNAME_RE.test(fname)) return;
-  if (!/^[a-z0-9_-]{1,40}$/.test(channel)) return;
-  try {
-    // Idempotent: only insert when no uuid line is present yet.
-    const cmd = `grep -q '^uuid: ' ${SQUAWK_ROOT}/${channel}/${fname} || sed -i 's/^status: discussion$/status: discussion\\nuuid: ${theUuid}/' ${SQUAWK_ROOT}/${channel}/${fname}`;
-    await $`${YOTE_CONN} exec ${cmd}`.text();
-  } catch { /* worst case the flusher posts a reader-deduped duplicate */ }
+  try { await $`${YOTE_CONN} exec rm -f ${MIRROR}/${uuid}.json`.text(); }
+  catch { /* the flusher's uuid check covers a missed delete */ }
 }
 
 // Path A: squawk CLI (seq_alloc + flock + verify)
@@ -129,9 +105,7 @@ async function pathB(): Promise<string> {
   // chunk the base64 to dodge the ~1600-char exec mangling limit
   const chunks: string[] = [];
   for (let i = 0; i < b64.length; i += 1200) chunks.push(b64.slice(i, i + 1200));
-  // Single printf, chunks as separate args (see journalWrite note — the old
-  // joined-printfs form corrupted every payload over ~900 bytes).
-  const assemble = `printf '%s' ${chunks.map(c => `'${c}'`).join(" ")}`;
+  const assemble = chunks.map(c => `printf '%s' '${c}'`).join(" ");
   const cmd = `f=$(mktemp); ${assemble} > $f; base64 -d $f > $f.dec; mkdir -p ${SQUAWK_ROOT}/${channel} && cat $f.dec > ${SQUAWK_ROOT}/${channel}/${fname} && [ -s ${SQUAWK_ROOT}/${channel}/${fname} ] && echo published ${fname}; rm -f $f $f.dec`;
   const out = await $`${YOTE_CONN} exec ${cmd}`.text();
   if (!out.includes("published")) throw new Error("pathB: no 'published' in output: " + out.slice(0, 200));
@@ -155,16 +129,7 @@ async function flush(): Promise<void> {
     try {
       const m = JSON.parse(await readFile(join(OUTBOX, f), "utf8"));
       // re-race; if it still fails, leave it spooled
-      const winner = await Promise.any([
-        // pathA (squawk send) doesn't carry our uuid — stamp it into the
-        // delivered file so the record stays correlatable.
-        pathAFor(m).then(async v => {
-          const pm = v.match(/published\s+(\S+\.md)/);
-          if (pm) await stampUuid(m.channel, pm[1], m.uuid);
-          return v;
-        }),
-        pathBFor(m),
-      ]);
+      const winner = await Promise.any([pathAFor(m), pathBFor(m)]);
       await unlink(join(OUTBOX, f));
       ok++;
       console.log(`flushed ${f}: ${winner}`);
@@ -193,9 +158,7 @@ async function pathBFor(m: any): Promise<string> {
   const b64 = Buffer.from(fm).toString("base64");
   const chunks: string[] = [];
   for (let i = 0; i < b64.length; i += 1200) chunks.push(b64.slice(i, i + 1200));
-  // Single printf, chunks as separate args (see journalWrite note — the old
-  // joined-printfs form corrupted every payload over ~900 bytes).
-  const assemble = `printf '%s' ${chunks.map(c => `'${c}'`).join(" ")}`;
+  const assemble = chunks.map(c => `printf '%s' '${c}'`).join(" ");
   const cmd = `f=$(mktemp); ${assemble} > $f; base64 -d $f > $f.dec; mkdir -p ${SQUAWK_ROOT}/${m.channel} && cat $f.dec > ${SQUAWK_ROOT}/${m.channel}/${fname} && [ -s ${SQUAWK_ROOT}/${m.channel}/${fname} ] && echo published ${fname}; rm -f $f $f.dec`;
   const out = await $`${YOTE_CONN} exec ${cmd}`.text();
   if (!out.includes("published")) throw new Error("no published");
@@ -210,16 +173,9 @@ async function pathBFor(m: any): Promise<string> {
 const results = await Promise.allSettled([journalWrite(), pathA(), pathB()]);
 const [jRes, aRes, bRes] = results;
 const journaled = jRes.status === "fulfilled";
-const aWon = aRes.status === "fulfilled";
-const bWon = bRes.status === "fulfilled";
 const winners = [aRes, bRes].filter(r => r.status === "fulfilled") as PromiseFulfilledResult<string>[];
 if (winners.length > 0) {
   console.log(`posted (${winners.length}/2 paths won): ${winners[0].value}`);
-  if (aWon) {
-    // Stamp our uuid into pathA's file so the mirror-flusher can correlate.
-    const m = (aRes as PromiseFulfilledResult<string>).value.match(/published\s+(\S+\.md)/);
-    if (m) await stampUuid(channel, m[1], uuid);
-  }
   if (winners.length === 2) {
     // Both landed: keep Path A's canonical seq-based file, delete Path B's
     // timestamp file. Extract B's filename from its "published <fname>" output.

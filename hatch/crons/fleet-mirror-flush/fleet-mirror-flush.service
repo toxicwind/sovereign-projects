@@ -6,5 +6,5 @@ Description=Fleet mirror flush (complete yote-journaled fleet messages)
 
 [Service]
 Type=oneshot
-ExecStart=/home/toxic/.local/share/mise/shims/bun /home/toxic/hatch/crons/fleet-mirror-flush/flush.ts
+ExecStart=/home/toxic/hatch/crons/fleet-mirror-flush/flush.sh
 Nice=10
