@@ -1,0 +1,38 @@
+name: Sovereign Projects Monorepo CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-workspace:
+    name: Validate Sovereign Monorepo Workspace & Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Verify Topology Structure
+        run: |
+          for dir in tau qed herd mesh yote openfang shell; do
+            if [ ! -d "$dir" ]; then
+              echo "❌ Missing core workspace directory: $dir"
+              exit 1
+            fi
+            echo "✅ Workspace $dir present"
+          done
+
+      - name: Validate Shell Script Syntax
+        run: |
+          find . -maxdepth 3 -name "*.sh" -not -path "*/node_modules/*" -not -path "*/target/*" -exec bash -n {} +
