@@ -144,7 +144,7 @@ Two boxes, one swarm. Run heavy work on yote; keep hatch light.
 | readme-deconfusion (bedrock/codex) | README inventory + deconfusion + deeplinking for every repo except the sovereign-projects master README (Scribe's lane); permanent re-runnable link-check script | Bedrock | DONE (2026-09-20) — sovereign-projects `88a9b8514a9795ae0bd930db08d37c5081b9c4ee` (4 READMEs fixed + KB deeplinks + projects/ops/bin/readme-linkcheck.sh, remote ref verified); nvidia-alive `5014cb91941043a1f07a89bad6537f4f7ccd93ca` (alive/README) + `19a918ca1d2b` (root README); hatch-docs `6ebdf3da99d06bcd23b3cc91efb621efead72b5e` (root README). Scribe verification findings posted fleet seq 11414; master README untouched (Scribe's lane). |
 | daemon-repair | Post-kernel-cutover yote daemon repair (Ember crew): evicted 76 stale pitchfork registrations (herd-healer / wt-kimi-failfast / wt-port-guard-20260920 / sovereign-phase3-rename port-race duplicates that stole ports and errored the canonical sovereign daemons), restarted sovereign/sovereign-chat; verified herd :25100, keypool :25109, model-guard :25101, kimi-auto-shim :25153, toolcall-llm :25152, beellama :25122 all /health 200, squawk-feed /seq advancing, herd /v1/models serving, 0 errored daemons | ember-wrenchwright (Ember's crew) | DONE (2026-09-20) -- operational state fix, no repo file changes; stale worktrees remain on disk (deregistered, will not auto-start) |
 | kimi-unlock-audit | Kimi tooling decoupled from Kimi models: router-config-only routing (zero selection/ranking/probing/timers in Kimi-named code); resolver+state.json retired; Kimi /tmp audit; deduplicated super-ralph feed | Ember | DONE (2026-09-20) -- toxicwind/kimi-auto@ab91ebb090c (v3.0 router-config cutover) + sovereign-projects@5fa02571292b (cutover) + @1cbe5cb3f597a (honest /health), all verified via git ls-remote; live proofs: model kimi-auto -> ministral-14b-latest exact UNLOCK-PROOF-7X3Q on :25100+:25153, SSE verbatim, 508 self-loop, 503-when-unroutable health; feed via fleet seq 11575/11595/11613 |
-| anvil | Durability sweep: kill recurring monkey-patches; permanent audit (ops/durability/), OpenFang launcher typo fix + TOML wiring | Bedrock | DONE (2026-09-20) -- commit f69a3a4ab6be41028d365e7b3dc23f57b1623b22 |
+| anvil | ASTMatrix Go->TypeScript live conversion: flock/ts/astmatrix Bun sidecar (strategies, racing, ELO, circuits, rate limiting, health DB, UI), imports @ranch/roost directly | Ember | DONE (2026-09-30) -- commits d7201ad4840c + db9118fac806 |
 | guidellm-eval | GuideLLM fork pluggable scoring + deterministic instruction-following eval; provider-free OpenRouter quality-first ranking (9 ranked + 1 fallback tier) | Ember (subagent) | DONE (2026-09-20) -- toxicwind/guidellm 94952a7d051fb88a0f9b4a12d0642dbb265fc7d4 (malformed-thinking + thinking tag + expected-note); toxicwind/sovereign-projects c5192a0d6e16fadd17c5226fd137282b43b09ada (final clean run 20260920-170706: 9 ranked + 1 fallback, ranking_lib tier contract, 8 lib tests; GuideLLM suite: 292 benchmark + 623 scoring/schemas pass) |
 | suture | Watchdog surgery (5 cases): Hearth/progress-watchdog dedup + honest pulse; verifiable swarm pause; atomic run ledgers; oracle intake per-request triage (killed false "stalled 24,206s"); super-ralph vs omp-router doc correction | Suture (Bedrock crew) | DONE (2026-09-20) -- commits aabb87bc3b (surgery) + 1999fb3643 (+x restore), remote ref verified via ls-remote |
 | zed-qed | QED maximal readiness (projects/qed): zed fork 241 crates + zedra remote substrate — schema-normalizer dedup across 3 providers, nullable-recursion fix, zedra workspace repair (7 crates resolve), settings_ui autonomous_edits fix, README/AUDIT deconfusion | Ember (zed-qed) | DONE 2026-09-20 — commits a87f5e5189 (normalizer+zedra+docs), d77c1ce7fd (ZED_SYNC.md), 7ac0dc03b6 (README link), f42ca9e4e4 (rustfmt), db4179319a (settings_ui fix). PROOF: cargo check --package zed EXIT 0; 5/5 normalizer tests pass; zedra workspace check clean; bun check clean |
@@ -161,6 +161,7 @@ Two boxes, one swarm. Run heavy work on yote; keep hatch light.
 | kimi-web-ui-dedup | Kimi web UI dedup | Ember | DONE -- sovereign-projects `06f0a5c08204bff901af0377c4da5b58e8d2b098` (ancestor of origin/main, verified 2026-09-21) |
 | stall-slayer-q8 | Stall Slayer Q8 | Ember | DONE -- sovereign-projects `d5b6a816defe098b6971111a2ad75c6237d54d2f` (ancestor of origin/main, verified 2026-09-21) |
 | estate-reconcile-watch-reg | Register estate-reconcile watch as a Pitchfork daemon (WS2 gap close) | register-pitchfork | DONE (2026-09-21) -- sovereign-projects b6b4c5a1634 (pitchfork.toml [daemons.estate-reconcile-watch] entry) + nim-probe live toml appended; pitchfork start/stop/start verified: PID 891181 -> stop -> PID 892919 running, inotifywait watch live on 3 manifest dirs; synthetic herd-keypool.py drift detected in ~8s, ALERT (unsigned-HEAD rule, no untrusted restore), drift reverted, check OK 4/4; remote ref verified |
+| warden-fix-torque | Fix ferrous-warden self-alert loop: bless herd rebuild, self-watch exclusion, breaker dedupe key | Torque (Ember crew) | DONE (2026-09-30) |
 | yote-console-fix | yote console black-screen fix (post-kernel-switch): bore flavor had no nvidia driver -> sddm couldn't render on RTX 3090 (black DP-1/DP-2) and `Conflicts=getty@tty1.service` killed the console fallback; installed `linux-cachyos-bore-nvidia-open 7.2.6-1`, `mkinitcpio -p linux-cachyos-bore`, modprobed nvidia_drm, restarted sddm -- greeter active; all three 7.2.6 flavors now covered | Ember | DONE (2026-09-20) -- operational fix, no repo changes; PER-KERNEL RULE recorded in §1 |
 | kb-scribe | Fleet KB update: 9 verified DONE rows added (all SHAs ancestor-checked vs origin/main), tau-hyperfix SHA corrected (a356d831ee06 is local-only, not canonical), boot-incident + per-kernel-nvidia + compaction-trigger + /mnt/8TB notes added, §2 table consolidated (dup dashboard-max dropped, misplaced tail rows moved in) | kb-scribe (Ember's crew) | DONE (2026-09-21) -- pushed in this commit (SHA reported to fleet) |
 | lane-oracle-connector | Oracle intake adoption (verified complete, zero oracle code changes) + yote-connector canonicalization: yote-conn promoted to the single canonical operator path | lane-oracle-connector (Ember's crew) | DONE (2026-09-20) -- sovereign-projects main `0f4f3bdadf032d8030db2bcab928efbf93dbb739` (ls-remote verified): (A) oracle adoption PROVEN live — `agents/oracle-market/docs/ADOPTION-PROOF.md`: intake unit test OK (6 routes), live TASK (ledger settled, winner bidder-scout), live REJECT, live DIRECT; ORACLE_INTAKE=1 in running process env; no oracle source touched. (B) canonicalization — bg-tail finished end-to-end (`bg-status.py` offset args -> `stdout_b64/stdout_soff`, daemon `GET /bg/<handle>?soff=&eoff=`, CLI resume/negative-offset/tails-fallback; fixed empty-chunk resume + stdout ordering bugs caught in live test); `/exec-bg` `timeout_s` + `workdir` now forwarded to bg-run.py (both silently dropped before — workdir ran in /home/toxic regardless); `projects/bridge/hatch/yote-conn` updated to the live CLI (169->222 lines) and added to `deploy-cell.py` FILES with chmod 755; `bexec` -> thin `yote-conn exec` shim (adopted as `hatch/bin/bexec`); `fleet-classify` -> yote-conn transport (raw exec.py fallback kept); `swarm-{eject,resume,watchdog}` DELIBERATELY keep raw exec.py (emergency path when 18301 is down — commented); bridge README canonical-path policy section. Deployed: daemon restarted via deploy-yote-connector, health ok (transport ws); live-tested bg-tail resume, workdir (/tmp file created), timeout (state=timeout, exit -1), bg-kill (SIGTERM, exit -15). |
@@ -206,15 +207,23 @@ Two boxes, one swarm. Run heavy work on yote; keep hatch light.
 | kestrel | Mistral key proof + GuideLLM audit of Mistral chat models via corral (direct Mistral API, not herd/flock); pattern-borrow useful Mistral integrations | kestrel (Ember crew) | RUNNING (2026-09-29) |
 | flock-free-directive | Flock :25193 literal "free" routing directive repair: was 404 (serves_model filtered before Strategy::Free ran), then Hybrid admitted paid providers, then migrate_v1 dropped free_tier so Strategy::Free selected zero candidates (502). Fix: "free" skips model scoping + forces Strategy::Free + model_map["free"] resolves a real upstream model (never wildcard "*"); migrate_v1 keeps free_tier=true; provider IDs refreshed to live catalog (nvidia nemotron-3-ultra-550b-a55b, llama-3.1-nemotron-70b-instruct; groq/cerebras bare IDs). flock-run.sh wrapper loads GROQ/CEREBRAS/NVIDIA keys from ~/.secrets into the daemon env (pitchfork.toml run= now points at the wrapper). NIM_PROXY_BYPASS workaround removed from bidder.py. | Sable (Ember's crew) | DONE (2026-09-30) -- toxicwind/flock commit `996956a3` (origin/main verified via git ls-remote); deployed binary live on :25193; E2E: POST /v1/chat/completions {"model":"free"} -> 200 real completion from nvidia/nemotron-3-ultra-550b-a55b; suite 387 passed (258 unit + 121 e2e + 8) |
 | corvid | ROUTING AUDIT: agent cognition vs tool-call vs heavy-compute placement across hatch+yote; exec-lane routing; cell cron/worker heavy-compute  | corvid (Ember crew) | DONE (2026-09-30) — 1cdeac68f6 |
-| fennec-cell-files | CELL-FILES stream: mise.toml hot-reload audit (up-cellfiles-ui forensics; stream D repaired the parse break as 1cdeac68f6), pitchfork bun --hot for kimi-audit-dash/windmill/bench-radar, hatch/README cell-files row, findings UX redesign in Deuz-SDK (3-class triage, workload grouping, WHY strings) | Fennec (Ember crew) | RUNNING (2026-09-30) |
+| fennec-cell-files | CELL-FILES stream: mise.toml hot-reload audit (up-cellfiles-ui forensics; stream D repaired the parse break as 1cdeac68f6), pitchfork bun --hot for kimi-audit-dash/windmill/bench-radar, hatch/README cell-files row, findings UX redesign in Deuz-SDK (3-class triage, workload grouping, WHY strings) | Fennec (Ember crew) | DONE (2026-09-30) — sovereign 28768b51d8, deuz-sdk de219698 |
 | pinto | move Oracle into the ranch with western theme; fix bidder-forge/bidder-scout daemons | ember | RUNNING (2026-09-30) |
 | canyon | merge origin/main into forge/gate-retire-final, conflict-free, branch-safe | Ember (main agent) | DONE (2026-09-30) -- merge b9a27e845c pushed, remote ref 50086eafe7 verified via ls-remote |
+| sparrow | Pitchfork D2 live migration: 81-daemon monolith to 79 project-owned pitchfork.d fragments across 30 projects. Composer with fail-closed ownership conflicts, splitter, orphan-watch. Retired bidder-forge and bidder-scout. flicker and flicker-agent verified live on :25148 and migrated with ranch/flicker. | Sparrow (Ember crew) | DONE (2026-09-30) -- sovereign-projects main 54c3772440 (composer, splitter, orphan-watch, parent/projects/attribution, docs, composed pitchfork.toml); ranch main 4c7a68b (15 daemon fragments, 7 projects). Verified: composed output parse-equal to monolith (0 mismatched, only 2 retirements removed), cutover with zero daemon restarts, orphan-watch 0 orphans (74 running). Remote refs verified via git ls-remote. |
+| brass-fork-research | Fork-candidate research for the brand build daemon: ffs sweep of the bridge, GitHub-wide ranked recon (recency+relevance over stars), deep evaluation of woodpecker/buildbot/laminar + alternatives; ranked shortlist doc at ranch/branding/docs/fork-research.md | Brass (Ember's crew) | DONE (2026-09-30) -- ranch 5f58f52 fork-research.md committed+pushed, origin/main verified |
+| quarry-hashline | stream A: hashline first-class edit tool — skill, project docs, daemon, KB rule 18, gatehouse MCP registration | f75585bc-fd3c-4e54-9814-6c4cf7f53b51 | DONE (2026-09-30) -- sovereign-projects ff7b6fbe375d |
+| ripple | Portainer replacement research: pattern-borrow + paper-search + web recon; ranked agentic control-plane shortlist | parent orchestrator (Ember crew) | DONE (2026-09-30) — e97c964619 |
 | brand-move | buildsrv -> ranch/branding relocate + western rename (CLI brand, port 25148, faithful move; ranch brand/ taken by Hooksmith git-hooks iron) | Brander (Ember's crew) | DONE 2026-09-30 -- ranch 548139a (move) + db3e2b8 (status null-sort fix), sovereign 8920c03f8b (refs rename) + 2d1b3f0282 (cutover+deletion), all remote refs verified via ls-remote. E2E: smoke job succeeded, resubmit CACHED, brand status/health clean. |
 <!-- KB-ROLLUP:END -->
 
 
 | stream-e | document the #yolo exec-policy bypass in the fleet KB | Ember (spawned subagent) | DONE (2026-09-30) — 2c83dd09a714a44d0eccee38bdea3ae257065a81 |
 
+
+| rhyx | brand hyper-race focus core: three-path focus-window racer + mock compositor + tests + native C++ verification | ember | DONE (2026-09-30) - toxicwind/brand@547a87811a1cd94e6068cf426ccca587e817b60d |
+
+| quill | bedrock timeline refinement: enumerate uncertainties, gather primary evidence, settle contested points by debate, land verified corrections | Quill (Ember's crew) | DONE (2026-09-30) — fb5baa3 |
 Retired/completed crews stay listed here with status DONE and their final commit SHAs — history is how we avoid redoing work.
 ## 3. Repo index (canonical remotes)
 
@@ -433,3 +442,44 @@ yote-conn exec "#yolo rm -rf ~/.cache/bun ~/.npm"
   normal commands — do not prefix routinely.
 - Do NOT weaken, remove, or edit the denylist itself (`_DEFAULT_DENY`,
   `awrawr_ws_exec.py`) — document the bypass, never touch the policy.
+
+## 10. Fleet -> OpenFang join (fleet-join, 2026-09-30)
+
+### What it is
+Any squawk fleet agent can become a first-class OpenFang agent. The join is
+mechanical: `sovereign/bin/fleet-join` (Bun) renders `agent.toml` + `system.md`
+from the fleet identity, writes them to `sovereign/agents/<name>/` (canonical,
+git) and `~/.openfang/agents/<name>/` (live), then hyper-races activation:
+`POST /api/agents {manifest_toml}` vs `POST /api/agents {template}` —
+first 201 wins, loser deduped, verified via `GET /api/agents`. If the API is
+down, the kernel auto-spawns the agent from disk on next boot (idempotent).
+
+### Trigger protocol
+When a fleet agent says "I want to join OpenFang" (or a coordinator decides
+one should), the coordinator runs:
+
+```
+bun /home/toxic/sovereign/bin/fleet-join --name <name> --species <species> \
+    --personality <plain words> --lane <lane> --task <plain words> \
+    --sigil <emoji>
+```
+
+- `--name`: lowercase letters, digits, hyphens. Must not collide with an
+  existing `sovereign/agents/<name>/`.
+- Fleet identity maps: name -> `name` + `[persona].name`; species +
+  personality + lane/task -> `[persona].role` + `description`; lane/task ->
+  `tags`. Species has no native OpenFang field — it folds into role/prompt.
+- Model default: herd free-tier via llama-swap :25100
+  (`openrouter-free/inclusionai/ling-3.0-flash-sante:free`, Ling-first per
+  Chris 2026-09-17; verified live). Override with `--model`.
+- Flags: `--dry-run` (render only), `--no-activate` (files only, kernel
+  picks up on boot), `--no-commit` (skip git commit).
+- The script commits to sovereign-projects main; push + verify the remote ref
+  after (fetch-first, never force-push).
+
+### Notes
+- The joined agent keeps its fleet persona (species, personality, sigil) and
+  narrates in squawk as Ember's crew.
+- OpenFang API: `http://127.0.0.1:25196`. Uninstall:
+  `DELETE /api/agents/{id}/uninstall` (removes the live dir too).
+- Spec: `docs/fleet-openfang-join-spec.md` (Sorrel, 2026-09-30).
