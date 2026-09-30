@@ -15,3 +15,5 @@ dotenvy = "0.15"
 notify = "6"
 toml = "0.8"
 regex = "1"
+
+[workspace]

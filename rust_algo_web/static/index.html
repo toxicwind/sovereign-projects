@@ -358,7 +358,7 @@
       let rosterCache = {}, selectedAgent = null;
       async function fetchRoster(showSpinner) {
         try {
-          const res = await fetch("/api/agents/roster");
+          const res = await fetch("/ops/api/agents/roster");
           const cards = await res.json();
           rosterCache = {};
           cards.forEach((c) => (rosterCache[c.name] = c));
@@ -392,7 +392,7 @@
         $("#ad-status").outerHTML = statusPill(c.status || "stale").replace('class="status-pill"', 'id="ad-status" class="status-pill"');
         $("#ad-history").innerHTML = '<p class="text-gray-500">loading…</p>';
         try {
-          const res = await fetch("/api/agents/" + encodeURIComponent(name));
+          const res = await fetch("/ops/api/agents/" + encodeURIComponent(name));
           const d = await res.json();
           $("#ad-history").innerHTML = d.messages.map((m) =>
             '<div class="card p-2.5"><div class="flex items-center gap-2 mb-1"><span class="mono text-[10px] text-cyan-300">#' + m.seq + '</span>' +

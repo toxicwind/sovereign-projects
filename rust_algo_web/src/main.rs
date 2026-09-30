@@ -735,6 +735,10 @@ async fn main() {
         .route("/ws/fleet", get(agents::ws_fleet))
         // /api/status alias for the ops status handler.
         .route("/api/status", get(get_status))
+        // /ops/api/* mirrors for dashboard pages (same-origin /ops/api/* calls).
+        .route("/ops/api/health", get(health))
+        .route("/ops/api/agents/roster", get(agents::roster))
+        .route("/ops/api/agents/:name", get(agents::agent_history))
         .route(
             "/ops/api/mesh",
             get(|| async {

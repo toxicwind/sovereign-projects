@@ -212,7 +212,7 @@
         {
           id: "grafana",
           port: 25110,
-          path: "/api/health",
+          path: "/ops/api/health",
           ui: "http://127.0.0.1:25110/",
           label: "Grafana",
         },
@@ -416,27 +416,27 @@
         ],
         [
           "Fleet roster",
-          "http://127.0.0.1:25201/api/agents/roster",
+          "/ops/api/agents/roster",
           "agent cards JSON",
         ],
         [
           "Fleet WS",
-          "ws://127.0.0.1:25201/ws/fleet",
+          (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws/fleet",
           "live event feed",
         ],
         [
           "Squawk channels",
-          "http://127.0.0.1:25201/ops/api/squawk/channels",
+          "/ops/api/squawk/channels",
           "squawk channels",
         ],
         [
           "Mesh features",
-          "http://127.0.0.1:25201/ops/api/mesh/features",
+          "/ops/api/mesh/features",
           "20 features via dashboard",
         ],
         [
           "Ops status",
-          "http://127.0.0.1:25201/ops/api/status",
+          "/ops/api/status",
           "dashboard JSON",
         ],
         [
